@@ -1,0 +1,13 @@
+<html>
+    <head>
+        <title>Sports App <?php echo $__env->yieldContent('title'); ?></title>
+    </head>
+    <body>
+        <?php $__env->startSection('sidebar'); ?>
+content from master page. 
+<?php echo $__env->yieldSection(); ?>
+
+        <div class="container">
+            </div>
+    </body>
+</html>
