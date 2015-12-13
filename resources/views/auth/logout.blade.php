@@ -5,9 +5,10 @@
 @section('sidebar')
     @parent
 
-    <p>This is appended to the master sidebar.</p>
 @endsection
 
 @section('content')
-    <p>This is my body content.</p>
+    <p>Thanks for your time!</p>
+    <p> You're now logged out. </p>
 @endsection
+@yield('content')

@@ -12,9 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('registration');
+    return view('homepage');
 });
 
+//This is my next route to develop:Route::get('dashboard',)
 	
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');

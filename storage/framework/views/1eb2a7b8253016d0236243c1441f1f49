@@ -4,7 +4,7 @@
     </head>
     <body>
         <?php $__env->startSection('sidebar'); ?>
-content from master page. 
+content from master page for demo. 
 <?php echo $__env->yieldSection(); ?>
 
         <div class="container">

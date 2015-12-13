@@ -22,7 +22,7 @@ class AuthController extends Controller
     */
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
-    private $redirectTo = '/';
+    protected $redirectTo = '/';
 
 
     /**

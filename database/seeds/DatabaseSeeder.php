@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,10 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
+     Model::unguard();
 
-        // $this->call(UserTableSeeder::class);
-
+$this->call('UserTableSeeder'); 
         Model::reguard();
     }
 }
