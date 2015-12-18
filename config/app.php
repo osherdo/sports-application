@@ -109,7 +109,7 @@ return [
     */
 
     'providers' => [
-
+ // sort of building blocks for Laravel 5.
         /*
          * Laravel Framework Service Providers...
          */
@@ -137,6 +137,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+
 
 
         /*
