@@ -21,6 +21,7 @@ class CreateProfilesTable extends Migration
             $table->string('activityType');
             $table->string('expectations');  
             $table->rememberToken();
+            
    
         });
     }
