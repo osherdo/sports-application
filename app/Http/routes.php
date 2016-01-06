@@ -31,4 +31,4 @@ Route::controllers([
 ]);
 
 Route::get('dashboard','DashboardController@dashboard');
-//Route::post('dashboard'),
+Route::post('dashboard','DashboardController@store');
