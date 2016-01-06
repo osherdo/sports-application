@@ -1,5 +1,8 @@
 @extends('layouts.master')
 
+<form method="POST" action="/auth/login">
+    {!! csrf_field() !!}
+<!--verify that the token in the request input matches the token stored in the session. -->
 @section('content')
 <div class="container-fluid">
 	<div class="row">
