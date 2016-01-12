@@ -1,12 +1,13 @@
 @extends('layouts.master')
 
 @section('content')
-
+    {!! csrf_field() !!}
 <html>
     <body>
     <div class="form-group">
     	<h1>Welcome to Click-and-Fit Dashboard! </h1>
     	<h2><strong>Let's Create your gymnast profile:</strong></h2>
+   
         {!! Form::open(['url'=>'profiledata']) !!}
         <p> A)&nbsp I am a: &nbsp{!! Form::radio('ActivityType',null,['class'=>'form-control']) !!} Male
  &nbsp{!! Form::radio('ActivityType',null,['class'=>'form-group']) !!} Female
