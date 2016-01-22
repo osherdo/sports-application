@@ -10,34 +10,15 @@ use Auth;
 
 class DashboardController extends Controller 
 {
-    public function dashboard()
+
+  public function retrieve()
     {
-        return view('dashboard');
-        //if (Auth::check()) { }
-        // The user is logged in...
-
-    }   
-    public function store()
+    	$user = Auth::user();
+    if($user)
     {
-    	
-    //Taking the form data and insert it to the database and then redirect me to somewhere else.
-    	//$input=Request::all();
-    	//return $input;
-
-
-  //$users = DB::table('users')->get();
-
-       // return view('dashboard', ['users' => $users]);
-
-    }
-    public function retrieve()
-    {
-    $user = Auth::user(); // User is being authenticated.
-if($user){
-return $user->name;
+    return view('dashboard')->with(compact('user','expectations'));
+	} else{
+		   return redirect('auth/login');
 }
-else{
-return redirect('auth/register');
-}
-    }
-}
+  	}
+ }

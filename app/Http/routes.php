@@ -14,8 +14,6 @@
 Route::get('/', function () {
     return view('homepage');
 });
-
-//This is my next route to develop:Route::get('dashboard',)
 	
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
@@ -30,6 +28,9 @@ Route::controllers([
    'password' => 'Auth\PasswordController',
 ]);
 
-Route::get('dashboard','DashboardController@dashboard');
-Route::post('dashboard','DashboardController@store');
+Route::post('dashboard','UserProfilesController@store');
 Route::get('dashboard','DashboardController@retrieve');
+
+Route::get('hub','HubController@hub');
+//Route::get('hub','HubController@details'); //load profile details to a nice viewing.
+//Route::post('hub','HubController@follow'); //Store selected users to follow.

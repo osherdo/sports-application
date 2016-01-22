@@ -7,7 +7,8 @@
 content from master page for demo. 
 <?php echo $__env->yieldSection(); ?>
 
-        <div class="container">
-            </div>
+         <div class="container">
+            <?php echo $__env->yieldContent('content'); ?>
+        </div>
     </body>
 </html>

@@ -7,6 +7,7 @@
 
 <div class="container-fluid">
 
+<a href='{!! url('/auth/login'); !!}'>Already registered?</a>
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
@@ -43,7 +44,7 @@
 <div class="form-group">
 <label class="col-md-4 control-label">User Name</label>
 <div class="col-md-6">
-<input type="text" class="form-control" name="text" value="{{ old('username') }}">
+<input type="text" class="form-control" name="username" value="{{ old('username') }}">
 </div>
 </div>
 
@@ -78,5 +79,4 @@
 
 
 @stop
-
-@yield('content')
+    

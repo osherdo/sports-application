@@ -7,7 +7,8 @@
 content from master page for demo. 
 @show
 
-        <div class="container">
-            </div>
+         <div class="container">
+            @yield('content')
+        </div>
     </body>
 </html>

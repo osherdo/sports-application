@@ -6,6 +6,7 @@
 
 <div class="container-fluid">
 
+<a href='<?php echo url('/auth/login');; ?>'>Already registered?</a>
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
@@ -43,7 +44,7 @@
 <div class="form-group">
 <label class="col-md-4 control-label">User Name</label>
 <div class="col-md-6">
-<input type="text" class="form-control" name="text" value="<?php echo e(old('username')); ?>">
+<input type="text" class="form-control" name="username" value="<?php echo e(old('username')); ?>">
 </div>
 </div>
 
@@ -78,6 +79,5 @@
 
 
 <?php $__env->stopSection(); ?>
-
-<?php echo $__env->yieldContent('content'); ?>
+    
 <?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
