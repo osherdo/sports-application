@@ -36,4 +36,14 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+
+    /**
+     * A user has a profile
+     * @return Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function profile()
+    {
+      return $this->hasOne('App\Profile');
+    }
 }

@@ -16,10 +16,10 @@ class CreateProfilesTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('gender',5);
+            $table->integer('user_id')->unsigned();
             $table->tinyInteger('age')->unsigned()->nullable();
             $table->string('goals')->nullable();;
             $table->string('activityType')->nullable();
-            $table->string('expectations')->nullable();  
             $table->rememberToken(); // for remember me feature.
         });
     }
