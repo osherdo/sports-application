@@ -13,7 +13,7 @@ class Expectations extends Migration
     public function up()
     {
         Schema::create('expectations', function (Blueprint $table) {
-            $table->integer('id');
+            $table->increments('id'); // adding an auto-incrementing primary key
             $table->string('name');
         });
     }
@@ -25,11 +25,6 @@ class Expectations extends Migration
      */
     public function down()
     {
-        Schema::table('expectations', function (Blueprint $table) {
-
-                    Schema::drop('expectations');
-
-
-        });
+        Schema::drop('expectations'); // proper syntax for dropping database table
     }
 }
