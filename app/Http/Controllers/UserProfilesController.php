@@ -13,7 +13,6 @@ class UserProfilesController extends Controller
 protected function store(Request $request) //That's request object.
 {
 
-    $expectations = Expectation::lists('name', 'id');
     //dd($request->all()); // Show current array of table creation.
 	// persist the data (insert to db) 
 	//and then redirect to the hub.
@@ -22,10 +21,11 @@ protected function store(Request $request) //That's request object.
             'age' => $request['age'],
             'goals' => $request['goals'],
             'activityType' => $request['activityType'],
-            'expectations' => $request['expectations'];
+            'expectations' => $request['expectations']
             
         ]);
 
+   
     $profile->expectations()->attach($request->expectations);
 
     return redirect('hub');  // this is where you redirect to the hub after you store the User

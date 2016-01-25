@@ -10,6 +10,7 @@ class HubController extends Controller
 {
 public function hub()
 {
+$profile = Profile::findOrFail($id); // a profile that you know you have recently created without errors
 $user = Auth::user();
     if($user)
     {

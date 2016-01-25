@@ -37,14 +37,20 @@
  &nbsp{!! Form::radio('activityType','both',null,['class'=>'ActivityType']) !!} I am pretty good at both <br><br>
  
  E) What do you expect from this app to help you? <br><br> (You can always change this later) <br><br>
- &nbsp{!! Form::checkbox('expectations[]','New anerobic routines',true); !!} Find new anerobic routines <br>
- &nbsp{!! Form::checkbox('expectations[]','New aerobic routines',true); !!} Find new aerobic routines <br>
- &nbsp{!! Form::checkbox('expectations[]','Follow',true); !!} Follow other users to get inspired <br>
+ &nbsp {{-- {!! Form::checkbox('expectations[]','New anerobic routines',true); !!} --} Find new anerobic routines <br>
+ &nbsp {--  {!! Form::checkbox('expectations[]','New aerobic routines',true); !!} Find new aerobic routines <br> 
+ &nbsp{!! Form::checkbox('expectations[]','Follow',true); !!}  Follow other users to get inspired <br> --}}
 <br><br>
 
 @foreach($expectations as $expectation)
     {!! Form::checkbox('expectations[]', $expectation->id,true) !!} {!! $expectation->name !!}<br>
-@endforeach
+@endforeach 
+
+<ul>
+@foreach($profile->expectations as $expectation)
+    <li>{!! $expectation !!}</li>
+@endforeach 
+</ul>
 
 {!! Form::submit('CreateProfile',['class'=>'form-group']) !!}
 </div>
@@ -52,3 +58,4 @@
         
     </body>
 @stop
+

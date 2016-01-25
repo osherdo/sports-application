@@ -13,6 +13,11 @@
         </ul>
     </div> 
 @endif
+<ul>
+@foreach($profile->expectations as $expectation)
+    <li>{!! $expectation !!}</li>
+@endforeach 
+</ul>
 
 
             @yield('content')
