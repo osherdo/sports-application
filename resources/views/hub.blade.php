@@ -11,14 +11,28 @@
                 <li>{{ $error }}</li>
             @endforeach
         </ul>
-    </div> 
+    </div>
 @endif
+
+{{--
+    I don't know what you want to display here, but you have a $user variable available
+    representing the current Auth::user();
+--}}
+
+<p>Name: {{ $user->name }}</p>
+
+{{--
+    This user has a profile whose properties you can also display
+ --}}
+<p>Goals: {{ $user->profile->goals }}</p>
+
+
+{{--
+    You can also drill down to the profile's expectations
+ --}}
+ <p>Expectations</p>
 <ul>
-@foreach($profile->expectations as $expectation)
-    <li>{!! $expectation !!}</li>
-@endforeach 
+  @foreach($user->profile->expectations as $expectation)
+    <li>{!! $expectation->name !!}</li>
+  @endforeach
 </ul>
-
-
-            @yield('content')
-      

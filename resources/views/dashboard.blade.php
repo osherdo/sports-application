@@ -22,8 +22,10 @@
     @endif
 
     <p>
-        A) I am a: {!! Form::radio('gender',null,['class'=>'form-control']) !!} Male
-        {!! Form::radio('gender',null,['class'=>'form-group']) !!} Female
+        A) I am a:
+        {!! Form::radio('gender','male',['class'=>'form-control']) !!} Male
+        {!! Form::radio('gender','female',['class'=>'form-group']) !!} Female
+        <!-- you have got to associate a value with the gender input -->
     </p>
 
     <p>
@@ -33,7 +35,7 @@
 
     <p>
         C) What are your fitness goals for the next year?<br>
-        {!! Form::textarea('goals','By default,other users can see your goals.',['class'=>'form-group', 'maxlength'=>100]) !!}
+        {!! Form::textarea('goals',null, ['class'=>'form-group', 'maxlength'=>100, 'placeholder'=>'By default,other users can see your goals.']) !!}
     </p> <!--default is null -->
     <p>
         D) I am better in:
