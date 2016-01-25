@@ -14,7 +14,7 @@ class ExpectationProfile extends Migration
     {
         Schema::create('expectation_profile', function (Blueprint $table) {
             $table->integer('profile_id')->unsigned();
-            $table->integer('expectation_id')->unsigned;
+            $table->integer('expectation_id')->unsigned();
         });
     }
 
@@ -26,7 +26,7 @@ class ExpectationProfile extends Migration
     public function down()
     {
         Schema::table('expectation_profile', function (Blueprint $table) {
-            Schema::Drop('expectation_profile');
-                    });
+            Schema::drop('expectation_profile');
+        });
     }
 }
