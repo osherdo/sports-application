@@ -34,3 +34,5 @@ Route::get('dashboard','DashboardController@retrieve');
 Route::get('hub','HubController@hub');
 //Route::get('hub','HubController@details'); //load profile details to a nice viewing.
 //Route::post('hub','HubController@follow'); //Store selected users to follow.
+
+Route::get('oop','OopController@view'); //practicing OOP.
