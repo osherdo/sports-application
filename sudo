@@ -1,0 +1,119 @@
+[33mcommit c44d38bc6e0af5e15a71291232ba28cb80d761a9[m
+Author: Osher <osherdo@gmail.com>
+Date:   Sat Jan 30 17:01:58 2016 +0200
+
+    oop studies
+
+[33mcommit 29ed1169d05e0467c89afde1da91a7b22d1e9fc0[m
+Author: Brian O'Sullivan <brian@tykus.ie>
+Date:   Mon Jan 25 23:16:41 2016 +0000
+
+    Tidy up the controllers and views
+
+[33mcommit 13b117a18527caa94d068750ebadcc44eecfbdc0[m
+Author: Brian O'Sullivan <brian@tykus.ie>
+Date:   Mon Jan 25 23:15:27 2016 +0000
+
+    Create a relationship between user and profile
+
+[33mcommit 7ea64901cba492c7f1dc40d98a86f065e80118f8[m
+Author: Brian O'Sullivan <brian@tykus.ie>
+Date:   Mon Jan 25 22:28:16 2016 +0000
+
+    Pass data into the dashboard view
+
+[33mcommit 7a15f2aa1a79537627565b913bb2e1ecc1a662ed[m
+Author: Brian O'Sullivan <brian@tykus.ie>
+Date:   Mon Jan 25 22:25:57 2016 +0000
+
+    Tidy up the dashboard view
+
+[33mcommit 74b758d997f3fde1f107edd68b642d403c4c7539[m
+Author: Brian O'Sullivan <brian@tykus.ie>
+Date:   Mon Jan 25 21:35:45 2016 +0000
+
+    Fix the pivot table migration
+
+[33mcommit b9b069491dd84251d4bf8e55e5fb0509991a2870[m
+Author: Brian O'Sullivan <brian@tykus.ie>
+Date:   Mon Jan 25 21:34:18 2016 +0000
+
+    Expectations model has no timestamps; define properties that can be mass-assigned
+
+[33mcommit 162e6a291f1e1c2e37df206ae53774007073e963[m
+Author: Brian O'Sullivan <brian@tykus.ie>
+Date:   Mon Jan 25 21:29:30 2016 +0000
+
+    Expectations table seeding
+
+[33mcommit f5a2bce491bced43a372ddc49642d6ea362c8340[m
+Author: Brian O'Sullivan <brian@tykus.ie>
+Date:   Mon Jan 25 21:29:11 2016 +0000
+
+    Fix the expectations migration
+
+[33mcommit 80abd15adb4e23caf7e21428942b3de13128dfb1[m
+Author: Osher <osherdo@gmail.com>
+Date:   Mon Jan 25 18:19:16 2016 +0200
+
+    tykus_ikus ready
+
+[33mcommit 6d6cb0e166a05d839e6be2dbde7aeeb418cc344a[m
+Author: Osher <osherdo@gmail.com>
+Date:   Mon Jan 25 15:04:29 2016 +0200
+
+    ready for tykus_ikus
+
+[33mcommit 59baf1d1a4bd31f15fd0c0013540b100bc5300bc[m
+Author: Osher <osherdo@gmail.com>
+Date:   Fri Jan 22 14:17:11 2016 +0200
+
+    trying to figure multiple checkbox insert
+
+[33mcommit d49558c7f6bfd2b2b09341eca7a75b76aae8a27c[m
+Author: Osher <osherdo@gmail.com>
+Date:   Tue Jan 12 18:57:41 2016 +0200
+
+    working redirection - needs to load view now
+
+[33mcommit cecbed8bd7584d2cbd9c1702264745989ab325f5[m
+Author: Osher <osherdo@gmail.com>
+Date:   Wed Jan 6 16:21:22 2016 +0200
+
+    CSRF added
+
+[33mcommit 831d3165f30a461299baee705b7d0cea903f0532[m
+Author: Osher <osherdo@gmail.com>
+Date:   Wed Jan 6 15:52:42 2016 +0200
+
+    ready for authentication
+
+[33mcommit 2457d81c9bade9960df1ed2e05ba4d8eadd828f1[m
+Author: Osher <osherdo@gmail.com>
+Date:   Wed Jan 6 09:13:42 2016 +0200
+
+    working limited textarea on dashboard
+
+[33mcommit 8df95fab5254f119aeb270a18f6b6d88687e5fdd[m
+Author: Osher <osherdo@gmail.com>
+Date:   Sat Dec 19 01:39:40 2015 +0200
+
+    profile form almost ready
+
+[33mcommit dfa8e3ef8f8d41984b47e83fe276bf575cb283ca[m
+Author: Osher <osherdo@gmail.com>
+Date:   Sun Dec 13 20:10:18 2015 +0200
+
+    DashboardStage
+
+[33mcommit 966898ee8d1ca27c66b793491b567164f56998ab[m
+Author: Osher <osherdo@gmail.com>
+Date:   Tue Oct 13 07:36:55 2015 +0300
+
+    second commit
+
+[33mcommit c9a4f7c353dc1ebc637cf218894e9e9e1146e132[m
+Author: Osher <osherdo@gmail.com>
+Date:   Mon Oct 12 19:40:41 2015 +0300
+
+    first commit
