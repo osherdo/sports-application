@@ -25961,3 +25961,6 @@ Stack trace:
 [2016-01-30 14:51:25] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'messsage' (T_STRING)' in /var/www/sports-application/resources/views/oop.php:214
 Stack trace:
 #0 {main}  
+[2016-01-30 20:47:42] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '<'' in /var/www/sports-application/resources/views/oop.php:221
+Stack trace:
+#0 {main}  
