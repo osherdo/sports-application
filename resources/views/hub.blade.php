@@ -19,7 +19,7 @@
     representing the current Auth::user();
 --}}
 
-<p>Name: {{ $user->name }}</p>
+<p>Hello, {{ $user->name }}.</p>
 
 {{--
     This user has a profile whose properties you can also display
@@ -36,3 +36,14 @@
     <li>{!! $expectation->name !!}</li>
   @endforeach
 </ul>
+
+<p><b> this is other users you may want to follow: </br></p>
+<ul>
+@foreach($mutuals as $mutual)
+  <li>{!! $mutual->user->name; !!}
+</li>
+@endforeach 
+</ul>   
+
+@section('status')
+{{ Form::textarea('status') }}

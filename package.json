@@ -4,7 +4,15 @@
     "gulp": "^3.8.8"
   },
   "dependencies": {
+    "backo2": "^1.0.2",
+    "bootstrap-sass": "^3.0.0",
+    "component-bind": "^1.0.0",
+    "gulp-install": "^0.6.0",
+    "has-binary": "^0.1.7",
+    "indexof": "0.0.1",
     "laravel-elixir": "^3.0.0",
-    "bootstrap-sass": "^3.0.0"
+    "laravel-elixir-compass": "git://github.com/rynocouse/laravel-elixir-compass.git",
+    "mime-db": "^1.21.0",
+    "to-array": "^0.1.4"
   }
 }

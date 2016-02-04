@@ -212,12 +212,12 @@ echo $newobj->newMethod();
 echo $newobj->getProperty();
 
 unset($newobj); //generate messsage on browser.
-*/
+
 
 echo "<br><br>"."Sixth Drill"."<br><br>";
-echo "Preserving Original Method Functionality While Overwriting Methods:";
+echo "Preserving Original Method Functionality While Overwriting Methods:"."<br><br>";
 //Using scope resolution operator (::):
-
+//The following won't interpret. look for the next exmaple that's going to work.
 class MyClass
 {
   public $prop1 = "I'm a class property!";
@@ -271,8 +271,198 @@ echo $newobj->newMethod();
 
 // Use a method from the parent class
 echo $newobj->getProperty();
+$space="<br><br>";
 
 unset($newobj); //generate messsage on browser.
 
 
-  ?>
+echo "<br>"."this is a working drill for accessing protected method."."<br>";
+
+class MyClass
+{
+  public $prop1 = "I'm a class property!";
+
+  public function __construct()
+  {
+      echo 'The class "', __CLASS__, '" was initiated!<br />';
+  }
+
+  public function __destruct()
+  {
+      echo 'The class "', __CLASS__, '" was destroyed.<br />';
+  }
+
+  public function __toString()
+  {
+      echo "Using the toString method: ";
+      return $this->getProperty();
+  }
+
+  public function setProperty($newval)
+  {
+      $this->prop1 = $newval;
+  }
+
+  protected function getProperty()
+  {
+      return $this->prop1 . "<br />";
+  }
+}
+
+class MyOtherClass extends MyClass
+{
+  public function __construct()
+  {
+      parent::__construct();
+echo "A new constructor in " . __CLASS__ . ".<br />";
+  }
+
+  public function newMethod()
+  {
+      echo "From a new method in " . __CLASS__ . ".<br />";
+  }
+
+  public function callProtected()
+  {
+      return $this->getProperty();
+  }
+}
+
+// Create a new object
+$newobj = new MyOtherClass;
+
+// Call the protected method from within a public method
+echo $newobj->callProtected(); //This will allow access to protected method.
+unset($newobj);
+
+ echo "Seventh Drill"."<br><br>"."Private Properties and Methods:
+";
+echo "The code below will generate an error:"."<br><br>";
+
+class MyClass
+{
+  public $prop1 = "I'm a class property!";
+
+  public function __construct()
+  {
+      echo 'The class "', __CLASS__, '" was initiated!<br />';
+  }
+
+  public function __destruct()
+  {
+      echo 'The class "', __CLASS__, '" was destroyed.<br />';
+  }
+
+  public function __toString()
+  {
+      echo "Using the toString method: ";
+      return $this->getProperty();
+  }
+
+  public function setProperty($newval)
+  {
+      $this->prop1 = $newval;
+  }
+
+  private function getProperty()
+  {
+      return $this->prop1 . "<br />";
+  }
+}
+
+class MyOtherClass extends MyClass
+{
+  public function __construct()
+  {
+      parent::__construct();
+      echo "A new constructor in " . __CLASS__ . ".<br />";
+  }
+
+  public function newMethod()
+  {
+      echo "From a new method in " . __CLASS__ . ".<br />";
+  }
+
+  public function callProtected()
+  {
+      return $this->getProperty();
+  }
+}
+
+// Create a new object
+$newobj = new MyOtherClass;
+
+// Use a method from the parent class
+echo $newobj->callProtected();
+unset ($newobj);
+*/
+
+echo "Static Properties and Methods"."<br><br>";
+echo "Eighth Drill"."<br><br>";
+
+class MyClass
+{
+  public $prop1 = "I'm a class property!";
+
+  public static $count = 0;
+
+  public function __construct()
+  {
+      echo 'The class "', __CLASS__, '" was initiated!<br />';
+  }
+
+  public function __destruct()
+  {
+      echo 'The class "', __CLASS__, '" was destroyed.<br />';
+  }
+
+  public function __toString()
+  {
+      echo "Using the toString method: ";
+      return $this->getProperty();
+  }
+
+  public function setProperty($newval)
+  {
+      $this->prop1 = $newval;
+  }
+
+  private function getProperty()
+  {
+      return $this->prop1 . "<br />";
+  }
+
+  public static function plusOne()
+  {
+      return "The count is " . ++self::$count . ".<br />"; //self to refer to the current class.
+      //use  $this->member for non-static members, use self::$member for static members.
+  }
+}
+
+class MyOtherClass extends MyClass
+{
+  public function __construct()
+  {
+      parent::__construct();
+      echo "A new constructor in " . __CLASS__ . ".<br />";
+  }
+
+  public function newMethod()
+  {
+      echo "From a new method in " . __CLASS__ . ".<br />";
+  }
+
+  public function callProtected()
+  {
+      return $this->getProperty();
+  }
+}
+
+do
+{
+  // Call plusOne without instantiating MyClass
+  echo MyClass::plusOne();
+} while ( MyClass::$count < 10 );
+/** Check out DocBlock to comment better in PHP (for future developers).
+*/
+?>

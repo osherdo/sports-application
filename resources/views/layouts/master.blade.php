@@ -4,7 +4,7 @@
     </head>
     <body>
         @section('sidebar')
-content from master page for demo. 
+*content from master page for demo.* 
 @show
 
          <div class="container">

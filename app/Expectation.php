@@ -15,7 +15,7 @@ class Expectation extends Model
 
 
   /**
-   * Properties that cn be mass-assigned
+   * Properties that can be mass-assigned
    * @var array
    */
   protected $fillable = ['name'];
