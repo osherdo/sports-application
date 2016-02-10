@@ -1,2 +1,44 @@
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+
+$primaryColor: #eeffcc;
+
+body {
+    background: $primaryColor;
+}
+
+$container-width: 100%;
+$column-count: 4;
+$margin: 1%;
+
+.container {
+  width: $container-width;
+}
+
+.column {
+  background: #1abc9c;
+  height: 200px;
+  display: block;
+  float: left;
+  width: ($container-width / $column-count) - ($margin * 2);
+  margin: 0 $margin;
+}
+
+
+
+.test {
+    width: 500px;
+    height: 70px;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+.test[placeholder]:empty:before {
+    content: attr(placeholder);
+    color: #555; 
+}
+
+.test[placeholder]:empty:focus:before {
+    content: "";
+}

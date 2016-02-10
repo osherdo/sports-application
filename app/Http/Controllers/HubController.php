@@ -6,7 +6,7 @@ use Auth;
 use App\Profile;
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller; //Because both controllers are on the same directory - this import can be deleted safely.
+//use App\Http\Controllers\Controller; //Because both controllers are on the same directory - this import can be deleted safely.
 
 class HubController extends Controller
 {
@@ -17,8 +17,16 @@ class HubController extends Controller
 
     $mutuals = Profile::whereHas('expectations', function($query) use ($profile)
     {
-        $query->whereIn('expectations.id', $profile->expectations->lists('id'));
+        $query->whereIn('expectations.id', $profile->expectations->lists('id')); //returns a dropdown of the id's associated to the user's expectations.
     })->get();
+
+    //dd($mutuals->toArray()); //Inspect the $mutuals collection.
+/**
+whereHas does two things for you in one - it ensures that in the Collection of profiles being returned:
+
+1)each profile being returned has at least one expectation, and
+2)those profiles are further constrained by a where condition (in this case, that the expectation id is one of the current user profile's expectations)
+*/
 
 
     if($user)
@@ -30,29 +38,6 @@ class HubController extends Controller
       return redirect('auth/login');
     }
 }
-    
-    
-   
-/*
-access current user: Auth::user()
-       QUERY: access current user associated columns mysql
-     return * from expectation_profile where expectation_id contain at least 1 value like the current user have. 
-*/
-  /*
 
+}
 
-  public function mutual()
-    { 
-      //$mutualUsers = DB::table('expectation_profile')->where(expectation_id,$user->Auth::user);
-// So you have a profile:
-$profile = Auth::user()->profile;
-
-$mutuals = Profile::whereHas('expectations', function($query) use ($profile)
-{
-  $query->whereIn('expectations.id', $profile->expectations->lists('id'));
-})->get();
-//This is basic stuff - you have to pass the data from the controller to the view
-return view('hub', compact('mutuals'));
-
-*/
-    }

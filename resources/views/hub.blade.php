@@ -43,7 +43,9 @@
   <li>{!! $mutual->user->name; !!}
 </li>
 @endforeach 
-</ul>   
+</ul>
 
-@section('status')
-{{ Form::textarea('status') }}
+<div class="test" placeholder="How's your fitness going?..." contenteditable="true"></div>
+
+@stop
+
