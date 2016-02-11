@@ -46,6 +46,7 @@
 </ul>
 
 <div class="test" placeholder="How's your fitness going?..." contenteditable="true"></div>
+<a href="#" class="button button-rounded">Post to profile</a>
 
 @stop
 

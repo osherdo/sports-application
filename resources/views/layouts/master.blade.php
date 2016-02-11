@@ -10,8 +10,6 @@
 *content from master page for demo.* 
 @show
 
-      
-
       <!--  <div class="container">
   <div class="column"></div>
   <div class="column"></div>
@@ -27,6 +25,8 @@
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript" src="{!! asset('js/status.min.js') !!}"></script>
+
+
 
     </body>
 </html>
