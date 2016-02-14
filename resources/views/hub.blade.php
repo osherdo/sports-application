@@ -31,9 +31,9 @@
     You can also drill down to the profile's expectations
  --}}
  <p>Expectations</p>
-<ul>
+<ul class="profile-list">
   @foreach($user->profile->expectations as $expectation)
-    <li>{!! $expectation->name !!}</li>
+    <li class="profile-list-item">{!! $expectation->name !!}</li>
   @endforeach
 </ul>
 
@@ -44,9 +44,27 @@
 </li>
 @endforeach 
 </ul>
+     <div class=contentWrap>
+        <div class="test" placeholder="How's your fitness going?..." contenteditable="true"></div>
+    </div>
+    <div class=icons>
+        <img alt="heart" src="http://icons.iconarchive.com/icons/succodesign/love-is-in-the-web/512/heart-icon.png">
+    </div>
+{!! Form::submit('Post to profile',['class'=>'button button-rounded button-post-to-profile'])!!}
 
-<div class="test" placeholder="How's your fitness going?..." contenteditable="true"></div>
-<a href="#" class="button button-rounded">Post to profile</a>
+
+<!-- script to check if user typed anything in the textbox before submit.
+  both .text() and .html() return strings. It's testing if the string length is zero.
+  trim is for removing whitespaces before and after a string.
+  the 'submit' event is needed since it's a submit button.
+-->
+
+<script>
+$(document).on('click', '.button-post-to-profile', function() {
+  var isEmpty = $.trim($('.test').html()).length === 0;
+  alert('Is' + (isEmpty ?  '' : ' not') + ' empty.');
+});
+</script>
 
 @stop
 

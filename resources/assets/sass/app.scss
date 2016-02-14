@@ -42,3 +42,36 @@ $margin: 1%;
 .test[placeholder]:empty:focus:before {
     content: "";
 }
+
+.contentWrap {
+  overflow: hidden;
+  max-height: 70px;
+}
+
+.icons {
+  border: 1px solid red;
+}
+
+.test img, .icons img {
+  width: 20px;
+  height: 20px;
+}
+
+.test {
+  width: 500px;
+  overflow: hidden;
+  height: 70px;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 5px;
+  max-height: 70px;
+  &[placeholder]:empty {
+    &:before {
+      content: attr(placeholder);
+      color: #555;
+    }
+    &:focus:before {
+      content: "";
+    }
+  }
+}
