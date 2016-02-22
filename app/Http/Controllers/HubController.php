@@ -6,10 +6,21 @@ use Auth;
 use App\Profile;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\User;
 //use App\Http\Controllers\Controller; //Because both controllers are on the same directory - this import can be deleted safely.
 
 class HubController extends Controller
 {
+
+  protected $user;
+
+public function __construct() { //constructor for checking user's auth after a while.
+
+    $this->middleware('auth');
+    if (!Auth::check()) { return redirect('auth/login'); }
+
+    $this->user = User::find(Auth::user()->id);
+}
    public function hub()
   {
     $user = Auth::user();
@@ -31,6 +42,7 @@ whereHas does two things for you in one - it ensures that in the Collection of p
 
     if($user)
     {
+
       return view('hub', compact('user', 'mutuals'));
     }
     else
@@ -39,5 +51,28 @@ whereHas does two things for you in one - it ensures that in the Collection of p
     }
 }
 
+protected function insert_posts (Request $request)
+{
+  $user = Auth::user();
+
+  // A post belongs to a user.
+  $post = $user->posts()->create([
+
+    'full_post'=>$request['test']
+
+    ]);
+
+        return "Post added succesfully";
+}
+
+
+/*
+public function get_posts()
+{
+
+
+}
+
+*/
 }
 

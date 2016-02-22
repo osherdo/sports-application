@@ -32,6 +32,8 @@ Route::post('dashboard','UserProfilesController@store');
 Route::get('dashboard','DashboardController@retrieve');
 
 Route::get('hub','HubController@hub');
+//Route::get('hub','HubController@insert_posts');
+//Route::get('hub','HubController@get_posts');
 //Route::get('hub','HubController@details'); //load profile details to a nice viewing.
 //Route::post('hub','HubController@follow'); //Store selected users to follow.
 

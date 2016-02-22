@@ -25,7 +25,7 @@ class UserProfilesController extends Controller
 
         $profile->expectations()->attach($request->expectations);
 
-        return redirect('hub');  // this is where you redirect to the hub after you store the User
+        return redirect('hub');  // this is where you redirect to the hub after you store the User.
     }
     /*
     Note: This function should both insert profile data and redirect to the Hub.

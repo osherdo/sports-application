@@ -1,5 +1,7 @@
 @extends('layouts.master')
-
+@section('scripts')
+ <script type="text/javascript" src="{!! asset('js/status.js') !!}"></script>
+@stop
 @section('content')
     {!! csrf_field() !!}
 
@@ -15,7 +17,7 @@
 @endif
 
 {{--
-    I don't know what you want to display here, but you have a $user variable available
+   You have a $user variable available
     representing the current Auth::user();
 --}}
 
@@ -44,14 +46,22 @@
 </li>
 @endforeach 
 </ul>
-     <div class=contentWrap>
-        <div class="test" placeholder="How's your fitness going?..." contenteditable="true"></div>
-    </div>
-    <div class=icons>
-        <img alt="heart" src="http://icons.iconarchive.com/icons/succodesign/love-is-in-the-web/512/heart-icon.png">
-    </div>
-{!! Form::submit('Post to profile',['class'=>'button button-rounded button-post-to-profile'])!!}
+<form method=POST action="">
+ {!! Form::hidden('getPost', 'getPost', array('id' => 'getPost')) !!}
+   <div class=contentWrap>
+    <div class="test" placeholder="How's your fitness going?..." contenteditable="true"></div>
+  </div>
+  <div class=icons>
+    <img alt="heart" src="http://icons.iconarchive.com/icons/succodesign/love-is-in-the-web/512/heart-icon.png">
+  </div>
+  <button>
+    Post to profile
+  </button>
+  <div class=errors>
 
+  </div>
+
+</form>
 
 <!-- script to check if user typed anything in the textbox before submit.
   both .text() and .html() return strings. It's testing if the string length is zero.
@@ -59,6 +69,19 @@
   the 'submit' event is needed since it's a submit button.
 -->
 
+<div class="own_posts">
+
+<p> here are your latest posts:</p>
+<!-- I think I should create foreach loop to iterate over each post and show it here. -->
+</div>
+<br><br>
+<div class="following_posts">
+
+<p> Posts from people you're following: <p>
+  <!-- same as the previous one -->
+</div>
+
+<!--
 <script>
 $(document).on('click', '.button-post-to-profile', function() {
   var isEmpty = $.trim($('.test').html()).length === 0;
@@ -66,5 +89,6 @@ $(document).on('click', '.button-post-to-profile', function() {
 });
 </script>
 
+-->
 @stop
 
