@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('scripts')
- <script type="text/javascript" src="{!! asset('js/status.js') !!}"></script>
+ <script type="text/javascript" src="{!! asset('js/status.min.js') !!}"></script>
 @stop
 @section('content')
     {!! csrf_field() !!}
@@ -15,7 +15,12 @@
         </ul>
     </div>
 @endif
-
+<!-- Using laravel session -->
+@if(Session::has('message')) <!-- Checking if session has a variable called message. -->
+<div class="alert alert-info">
+<li> {{ Session::get('message') }} </li> <!--if true -print the message from the insert_posts variable. -->
+</div>
+@endif
 {{--
    You have a $user variable available
     representing the current Auth::user();
@@ -46,8 +51,15 @@
 </li>
 @endforeach 
 </ul>
-<form method=POST action="">
- {!! Form::hidden('getPost', 'getPost', array('id' => 'getPost')) !!}
+
+<form action="{{ route('createPost') }}" method="post">
+  @if(isset($message)) <!-- if the var exist and have a value it would be printed. -->
+  {{ $message }}
+@endif    
+<!-- only when a post has been submitted the varible value will show. -->
+<!--  telling the form the info go to this route (url). almost equal form action ="samePage" -->
+ {!! Form::hidden('post') !!}
+ {!! csrf_field() !!}
    <div class=contentWrap>
     <div class="test" placeholder="How's your fitness going?..." contenteditable="true"></div>
   </div>
@@ -57,10 +69,9 @@
   <button>
     Post to profile
   </button>
-  <div class=errors>
+  <div class="errors">
 
   </div>
-
 </form>
 
 <!-- script to check if user typed anything in the textbox before submit.

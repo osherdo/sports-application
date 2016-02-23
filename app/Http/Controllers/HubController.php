@@ -7,6 +7,7 @@ use App\Profile;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\User;
+use App\Http\Requests\createPost; //getting the rules file class.
 //use App\Http\Controllers\Controller; //Because both controllers are on the same directory - this import can be deleted safely.
 
 class HubController extends Controller
@@ -51,25 +52,29 @@ whereHas does two things for you in one - it ensures that in the Collection of p
     }
 }
 
-protected function insert_posts (Request $request)
+protected function insert_posts (createPost $request) // first parameter is going through the validation file.
+//Then post input is saved to the $request object.
 {
+  //dd($request);
+  $message="Post added succesfully";
+  //$mutuals = Profile::whereHas('expectations', function($query) use ($profile));
+
   $user = Auth::user();
 
   // A post belongs to a user.
   $post = $user->posts()->create([
 
-    'full_post'=>$request['test']
+    'full_post'=>$request->get('post') // get the input name.
 
     ]);
 
-        return "Post added succesfully";
+        return back()->with("message",$message);
 }
 
 
 /*
 public function get_posts()
 {
-
 
 }
 
