@@ -27,11 +27,11 @@ $ubtn-namespace: '.button' !default; //prefix for all classes
 * The font size and height are used to set the base size for the buttons.
 * The size values will be used to calculate the larger and smaller button sizes.
 */
-$ubtn-bgcolor: #ffcc00 !default;
+$ubtn-bgcolor: #fdfd96 !default;
 $ubtn-font-color: #666 !default;
 $ubtn-font-weight: 300 !default;
-$ubtn-font-size: 16px !default;
-$ubtn-height: 40px !default;
+$ubtn-font-size: 8px !default;
+$ubtn-height: 25px !default;
 $ubtn-font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif  !default;
 
 

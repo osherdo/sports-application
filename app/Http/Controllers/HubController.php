@@ -71,13 +71,11 @@ protected function insert_posts (createPost $request) // first parameter is goin
         return back()->with("message",$message);
 }
 
-
-/*
-public function get_posts()
+public function followee_post()
 {
 
 }
 
-*/
+
 }
 

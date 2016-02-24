@@ -32,9 +32,14 @@ Route::post('dashboard','UserProfilesController@store');
 Route::get('dashboard','DashboardController@retrieve');
 
 Route::get('hub','HubController@hub');
-Route::post('hub','HubController@insert_posts')->name('createPost'); //name(createPost) is used as a shortcut for a route.
-//Route::get('hub','HubController@get_posts');
+Route::post('hub','HubController@insert_posts')->name('createPost'); //name->(createPost)-Chain the name method(and definition) onto the end of the route definition.
+//The name chaining is good since by this I can access the route easier in the view.
+// e.g. (in the view): <form action="{{ route('createPost') }}" method="post">
+
 //Route::get('hub','HubController@details'); //load profile details to a nice viewing.
 //Route::post('hub','HubController@follow'); //Store selected users to follow.
+
+Route::get('hub','HubController@followee_post'); 
+
 
 Route::get('oop','OopController@view'); //practicing OOP.

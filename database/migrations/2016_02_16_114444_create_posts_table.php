@@ -11,7 +11,7 @@ class CreatePostsTable extends Migration
      * @return void
      */
     public function up()
-    { // check if I should change to Schema::table after first migration.
+    { // Check if I should change to Schema::table after first migration.
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
             // Create a user_id so we'll know who posted this post.

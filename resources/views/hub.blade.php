@@ -47,15 +47,17 @@
 <p><b> this is other users you may want to follow: </br></p>
 <ul>
 @foreach($mutuals as $mutual)
-  <li>{!! $mutual->user->name; !!}
+  <br><li><a href="#" class="button button-3d" name="make_follow">Follow User</a>
+{!! $mutual->user->name; !!} 
 </li>
 @endforeach 
 </ul>
 
-<form action="{{ route('createPost') }}" method="post">
+<form action="{{ route('createPost') }}" method="post"> <!--the form action is the method in a route called createPost -->
   @if(isset($message)) <!-- if the var exist and have a value it would be printed. -->
   {{ $message }}
-@endif    
+@endif   
+<br> 
 <!-- only when a post has been submitted the varible value will show. -->
 <!--  telling the form the info go to this route (url). almost equal form action ="samePage" -->
  {!! Form::hidden('post') !!}
