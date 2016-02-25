@@ -92,6 +92,10 @@
 
 <p> Posts from people you're following: <p>
   <!-- same as the previous one -->
+  @foreach ($followees as $followee)
+<li class=followee-list-item> {!! followee_post->followee_id  !!}</li>
+
+  @endforeach
 </div>
 
 <!--

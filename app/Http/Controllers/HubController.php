@@ -71,9 +71,10 @@ protected function insert_posts (createPost $request) // first parameter is goin
         return back()->with("message",$message);
 }
 
-public function followee_post()
+protected function followee_post()
 {
-
+  $user =Auth::user();
+  $user->followee()->attach($id_user);
 }
 
 

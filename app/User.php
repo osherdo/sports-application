@@ -51,4 +51,12 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasMany('App\Post'); 
     }
-}
+
+    public function followee() //Fetch the followee list for the follower.
+    {
+    return this->BelongsToMany('App\Followee');
+
+    }
+
+    }
+
