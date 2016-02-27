@@ -29,9 +29,10 @@ class CreateUsersTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        
-    Schema::drop('users');
-    }
+   public function down()
+{ // this method is to delete parent tables without errors for foreign keys.
+    DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+    Schema::dropIfExists('users');
+    DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+}
 }

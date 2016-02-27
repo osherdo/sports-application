@@ -29,10 +29,9 @@ class FollowerFollowee extends Migration
      * @return void
      */
     public function down() 
-    { 
-        Schema::table('follower_followee', function (Blueprint $table)
-     { 
-        Schema::drop('follower_followee'); 
-  }); 
+{// this method is to delete parent tables without errors for foreign keys.
+    DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+    Schema::dropIfExists('follower_followee');
+    DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 }
 }
