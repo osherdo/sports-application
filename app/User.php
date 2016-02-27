@@ -52,11 +52,27 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany('App\Post'); 
     }
 
-    public function followee() //Fetch the followee list for the follower.
-    {
-    return this->BelongsToMany('App\Followee');
 
-    }
+/**get the users that a user wants to follow.
+Many to Many 
+@return \Illuminate\Database\Elouquent\Relations\BelongsTo
+**/
 
-    }
+    
 
+
+  public function followees() 
+  { //Fetch the followee list for the follower.
+    return $this->belongsToMany('User', 'follower_followee', 'follower_id', 'followed_id');
+                            // 'User' is the model name.'follower_followee' is the name of the pivot table.
+                            //'follower_id', 'followed_id' are the columns in the pivot table.
+
+  }
+
+  
+
+  public function followers() {
+   // fetch those that follow you.
+    return $this->belongsToMany('User', 'follower_followee', 'followed_id', 'follower_id');
+  }
+}

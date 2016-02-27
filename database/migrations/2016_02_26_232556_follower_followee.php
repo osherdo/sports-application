@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Followee extends Migration
+class FollowerFollowee extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class Followee extends Migration
      */
     public function up()
     {
-        Schema::create('followee_posts', function (Blueprint $table) 
+        Schema::create('follower_followee', function (Blueprint $table) 
         {
             $table->integer('follower_id')->unsigned(); // follower id number,must be positive.
             $table->integer('followee_id')->unsigned(); // followee id number,must be positive.
@@ -29,9 +29,8 @@ class Followee extends Migration
      * @return void
      */
     public function down()
-    {
-        Schema::table('followee_posts', function (Blueprint $table) {
+    
+{
             //
-        });
     }
 }
