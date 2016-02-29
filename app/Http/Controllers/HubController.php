@@ -71,10 +71,18 @@ protected function insert_posts (createPost $request) // first parameter is goin
         return back()->with("message",$message);
 }
 
-protected function followee_post()
+protected function add_followee($user_id) //$user_id passed from the route.
 {
+  //dd($user_id); // Check out the contents of a variable; 
+
+  //$user_id value is taken from the view.
   $user =Auth::user();
-  $user->followee()->attach($id_user);
+  // after receiving the user id with $user_id.
+  //now it's time to get the name of the user.
+  $user->followee()->attach($user_id); // attach the name from the route.
+  // followee() is the name of the method from the user.php model.
+  //$notify= "you're now following".$mutual->user->id; // notification about following user.
+
 }
 
 

@@ -47,7 +47,9 @@
 <p><b> this is other users you may want to follow: </br></p>
 <ul>
 @foreach($mutuals as $mutual)
-  <br><li><a href="#" class="button button-3d" name="make_follow">Follow User</a>
+<!-- hub/{{$mutual->user->id}}
+  It goes to the user that matches the value of $mutual criteria. and then it goes and gets its id.This is sent to the controller for further handling.Check page source to see id's numbers. -->
+  <br><li><a href="hub/{{$mutual->user->id}}" class="button button-3d" name="make_follow">Follow User</a>
 {!! $mutual->user->name; !!} 
 </li>
 @endforeach 
@@ -92,10 +94,7 @@
 
 <p> Posts from people you're following: <p>
   <!-- same as the previous one -->
-  @foreach ($followees as $followee)
-<li class=followee-list-item> {!! followee_post->followee_id  !!}</li>
 
-  @endforeach
 </div>
 
 <!--

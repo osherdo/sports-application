@@ -61,9 +61,9 @@ Many to Many
     
 
 
-  public function followees() 
+  public function followee() 
   { //Fetch the followee list for the follower.
-    return $this->belongsToMany('User', 'follower_followee', 'follower_id', 'followed_id');
+    return $this->belongsToMany('App\User', 'follower_followee', 'follower_id', 'followee_id');
                             // 'User' is the model name.'follower_followee' is the name of the pivot table.
                             //'follower_id', 'followed_id' are the columns in the pivot table.
 

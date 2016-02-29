@@ -37,9 +37,9 @@ Route::post('hub','HubController@insert_posts')->name('createPost'); //name->(cr
 // e.g. (in the view): <form action="{{ route('createPost') }}" method="post">
 
 //Route::get('hub','HubController@details'); //load profile details to a nice viewing.
-//Route::post('hub','HubController@follow'); //Store selected users to follow.
 
-Route::get('hub','HubController@followee_post'); 
-
+Route::get('hub/{user_id}','HubController@add_followee');
+// telling laravel there's a paramter (variable) in the uri that's called user_id.
+// hub/{user_id} is needed to pass the user id to the controller.
 
 Route::get('oop','OopController@view'); //practicing OOP.
