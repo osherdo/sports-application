@@ -49,14 +49,15 @@
 @foreach($mutuals as $mutual)
 <!-- hub/{{$mutual->user->id}}
   It goes to the user that matches the value of $mutual criteria. and then it goes and gets its id.This is sent to the controller for further handling.Check page source to see id's numbers. -->
-  <br><li><a href="hub/{{$mutual->user->id}}" class="button button-3d" name="make_follow">Follow User</a>
+  <br><li><a href="{{URL::to('hub', [$mutual->user->id])}}" class="button button-3d" name="make_follow">Follow User</a>
 {!! $mutual->user->name; !!} 
 </li>
 @endforeach 
 </ul>
 
 <form action="{{ route('createPost') }}" method="post"> <!--the form action is the method in a route called createPost -->
-  @if(isset($message)) <!-- if the var exist and have a value it would be printed. -->
+  @if(isset($message)) <!-- if the var exist and have a value it would be printed. 
+It is used for all the notifications in this page.-->
   {{ $message }}
 @endif   
 <br> 
@@ -96,15 +97,5 @@
   <!-- same as the previous one -->
 
 </div>
-
-<!--
-<script>
-$(document).on('click', '.button-post-to-profile', function() {
-  var isEmpty = $.trim($('.test').html()).length === 0;
-  alert('Is' + (isEmpty ?  '' : ' not') + ' empty.');
-});
-</script>
-
--->
 @stop
 

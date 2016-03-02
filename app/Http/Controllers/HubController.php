@@ -20,17 +20,24 @@ public function __construct() { //constructor for checking user's auth after a w
     $this->middleware('auth');
     if (!Auth::check()) { return redirect('auth/login'); }
 
-    $this->user = User::find(Auth::user()->id);
+    $this->user = Auth::user(); // Auth method always use User.php model. (shown in config/auth.php)
+    // Now we can call the user in other methods when we need to call the user.
 }
    public function hub()
   {
-    $user = Auth::user();
-    $profile = $user->profile;
-
-    $mutuals = Profile::whereHas('expectations', function($query) use ($profile)
+    //$user = Auth::user(); // no need to call since we have initiated the user in the constructor.
+    $profile = $this->user->profile;
+    // $followingNow - a relationship between the current user and its followees.
+    //Next I find the followees of the current user.
+    //getting the user that's the instructor generating. Then I try to find user'id's that I follow and get them to a collection.
+    $followingNow= $this->user->followee()->get();
+    //dd($followingNow->lists('id')); // Get the 'id' column value in an array.
+// Profile is the name of the model.
+    $mutuals = Profile::whereHas('expectations', function($query) use ($profile,$followingNow)
     {
         $query->whereIn('expectations.id', $profile->expectations->lists('id')); //returns a dropdown of the id's associated to the user's expectations.
-    })->get();
+      
+    })->whereNotIn('profiles.user_id',$followingNow->lists('id'))->get(); // exclude all the id's that match the $followingNow variable criteria.
 
     //dd($mutuals->toArray()); //Inspect the $mutuals collection.
 /**
@@ -41,10 +48,10 @@ whereHas does two things for you in one - it ensures that in the Collection of p
 */
 
 
-    if($user)
+    if($this->user)
     {
 
-      return view('hub', compact('user', 'mutuals'));
+      return view('hub', compact('mutuals'))->with(['user' => $this->user]);
     }
     else
     {
@@ -59,10 +66,10 @@ protected function insert_posts (createPost $request) // first parameter is goin
   $message="Post added succesfully";
   //$mutuals = Profile::whereHas('expectations', function($query) use ($profile));
 
-  $user = Auth::user();
+  //$user = Auth::user(); //Redundtant since it's declared in the construct method already.
 
   // A post belongs to a user.
-  $post = $user->posts()->create([
+  $post = $this->user->posts()->create([
 
     'full_post'=>$request->get('post') // get the input name.
 
@@ -81,8 +88,10 @@ protected function add_followee($user_id) //$user_id passed from the route.
   //now it's time to get the name of the user.
   $user->followee()->attach($user_id); // attach the name from the route.
   // followee() is the name of the method from the user.php model.
-  //$notify= "you're now following".$mutual->user->id; // notification about following user.
-
+   $userToFollow = User::find($user_id); // passing the user id. Now I can access properties of the user in the db. 
+  $notify= "you're now following".$userToFollow->name; // notification about following user.
+  return back()->with("message",$notify); // go to last page. using the name "message" (could be other name).
+  //The back() function generates a redirect response to the user's previous location: 
 }
 
 

@@ -27,18 +27,7 @@ class UserProfilesController extends Controller
 
         return redirect('hub');  // this is where you redirect to the hub after you store the User.
     }
-    /*
-    Note: This function should both insert profile data and redirect to the Hub.
- function pass_multiple_values($first_arg,$second_arg,$third_arg)
-{
-
-   $value1= $first_arg; // Calculated some value and assign it to value1.
-   $value2= $secon_arg;
-   $value3= $third_arg;
-
-    return array($value1,$value2,$value3);
-}
-*/
+   
 
 }
 
