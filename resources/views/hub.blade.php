@@ -49,8 +49,10 @@
 @foreach($mutuals as $mutual)
 <!-- hub/{{$mutual->user->id}}
   It goes to the user that matches the value of $mutual criteria. and then it goes and gets its id.This is sent to the controller for further handling.Check page source to see id's numbers. -->
+  <!-- In the href - Passing the user to your controller -->
+
   <br><li><a href="{{URL::to('hub', [$mutual->user->id])}}" class="button button-3d" name="make_follow">Follow User</a>
-{!! $mutual->user->name; !!} 
+{!! $mutual->user->name; !!}  <!-- I access the user's name property -->
 </li>
 @endforeach 
 </ul>
@@ -94,7 +96,16 @@ It is used for all the notifications in this page.-->
 <div class="following_posts">
 
 <p> Posts from people you're following: <p>
-  <!-- same as the previous one -->
+
+
+@foreach ($user->follower_id->followee_id->posts as $post)
+<form action="/html/tags/html_form_tag_action.cfm" method="post">
+<textarea name="comments" id="comments" style="width:96%;height:90px;background-color:white;color:black;border:none;padding:2%;font:22px/30px sans-serif;">
+{!! $posts->full_post !!} </textarea>
+
+</form>
+@endforeach
+
 
 </div>
 @stop

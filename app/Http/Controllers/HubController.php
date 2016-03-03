@@ -39,6 +39,10 @@ public function __construct() { //constructor for checking user's auth after a w
       
     })->whereNotIn('profiles.user_id',$followingNow->lists('id'))->get(); // exclude all the id's that match the $followingNow variable criteria.
 
+// Getting followees posts
+
+//$get_followee_posts = $this->user->with("")
+
     //dd($mutuals->toArray()); //Inspect the $mutuals collection.
 /**
 whereHas does two things for you in one - it ensures that in the Collection of profiles being returned:
@@ -89,11 +93,36 @@ protected function add_followee($user_id) //$user_id passed from the route.
   $user->followee()->attach($user_id); // attach the name from the route.
   // followee() is the name of the method from the user.php model.
    $userToFollow = User::find($user_id); // passing the user id. Now I can access properties of the user in the db. 
-  $notify= "you're now following".$userToFollow->name; // notification about following user.
+  $notify= "You're now following".$userToFollow->name; // notification about following user.
   return back()->with("message",$notify); // go to last page. using the name "message" (could be other name).
   //The back() function generates a redirect response to the user's previous location: 
 }
+ /*
+protected function get_followee_posts($followee_posts) ////$followee_posts passed from the route.
+{
 
+
+
+ 
+// Get Users object with followers and followers posts.
+// We use with() to eager load relationships
+$user = User::with('followers.posts')->find(2);
+
+// Return associative array of post objects
+$postsArray = $user->followers->lists('posts');
+
+// Combine posts into a single collection
+$posts = (new \Illuminate\Support\Collection($postsArray))->collapse()->toArray();
+
+print_r($posts);
+
+  
+  $user = $this->user;
+  $user->followee()->attach($followee_posts);
+  $followee_posts = User::find($followee_posts);
+*/
 
 }
+
+
 
