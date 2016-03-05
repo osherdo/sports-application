@@ -97,12 +97,19 @@ It is used for all the notifications in this page.-->
 
 <p> Posts from people you're following: <p>
 
+<!-- Iterate over the followee's posts with a foreach loop:
+  the first parameter the foreach gets is the array expression.
+  Second element: On each iteration, the value of the current element (which is a post) is assigned to $value (second element) and the internal array pointer is advanced by one.
 
-@foreach ($user->follower_id->followee_id->posts as $post)
+  Next: within these: {{-- {!! $post->full_post !!} </textarea>
+ -- }} I access the $key (which is $post) and then access the full_post column in the posts table.
+-->
+
+@foreach ($get_followee_posts as $post)
 <form action="/html/tags/html_form_tag_action.cfm" method="post">
 <textarea name="comments" id="comments" style="width:96%;height:90px;background-color:white;color:black;border:none;padding:2%;font:22px/30px sans-serif;">
-{!! $posts->full_post !!} </textarea>
-
+{{!! $post->full_post !!} </textarea>
+ </textarea>
 </form>
 @endforeach
 

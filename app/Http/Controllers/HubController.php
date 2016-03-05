@@ -7,6 +7,7 @@ use App\Profile;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\User;
+use App\Post;
 use App\Http\Requests\createPost; //getting the rules file class.
 //use App\Http\Controllers\Controller; //Because both controllers are on the same directory - this import can be deleted safely.
 
@@ -29,8 +30,25 @@ public function __construct() { //constructor for checking user's auth after a w
     $profile = $this->user->profile;
     // $followingNow - a relationship between the current user and its followees.
     //Next I find the followees of the current user.
-    //getting the user that's the instructor generating. Then I try to find user'id's that I follow and get them to a collection.
+    //getting the user the constructor generating. Then I try to find user'id's that I follow and get them to a collection.
+    // followee is the method from the User.php model.
     $followingNow= $this->user->followee()->get();
+    // How to get a followee's post for the current user (Similar to $mutuals query):
+    //I first instantiate the Post Model and by that I get a collection of the methods in this model.
+    //Then I type a where clause since
+    //$posts= $this->user->fo
+
+    // $get_followee_posts = I need the the posts where user_id be equals to $following now id. Means that I get the posts of my followees.
+    // Where clause in Laravel 5.1 requires 3 arguments: 'full_post' is the name of the column in the table associated with Post model.
+    // That column is what we want to compare with the third argument.
+    // (OPTIONAL): Second argument is an operator, which can be any of the database's supported operators.If none is given laravel assumes it's  '=';
+    // Third argument is what I compare the first parameter with. So I get all user id's that match my followee's list.
+    // Before trying to echo out the values of the query, try to dd() the var to see its contents.
+    $get_followee_posts= Post::whereIn('user_id',$followingNow->lists('id'))->get();
+    //dd($get_followee_posts);
+    // After dd() is showing an array with items - it's time to pass the variable value within a return statement.
+    // Then iterate over them in the view (@foreach).
+
     //dd($followingNow->lists('id')); // Get the 'id' column value in an array.
 // Profile is the name of the model.
     $mutuals = Profile::whereHas('expectations', function($query) use ($profile,$followingNow)
@@ -39,9 +57,7 @@ public function __construct() { //constructor for checking user's auth after a w
       
     })->whereNotIn('profiles.user_id',$followingNow->lists('id'))->get(); // exclude all the id's that match the $followingNow variable criteria.
 
-// Getting followees posts
 
-//$get_followee_posts = $this->user->with("")
 
     //dd($mutuals->toArray()); //Inspect the $mutuals collection.
 /**
@@ -55,7 +71,7 @@ whereHas does two things for you in one - it ensures that in the Collection of p
     if($this->user)
     {
 
-      return view('hub', compact('mutuals'))->with(['user' => $this->user]);
+      return view('hub', compact('mutuals','get_followee_posts'))->with(['user' => $this->user]);
     }
     else
     {
@@ -96,33 +112,4 @@ protected function add_followee($user_id) //$user_id passed from the route.
   $notify= "You're now following".$userToFollow->name; // notification about following user.
   return back()->with("message",$notify); // go to last page. using the name "message" (could be other name).
   //The back() function generates a redirect response to the user's previous location: 
-}
- /*
-protected function get_followee_posts($followee_posts) ////$followee_posts passed from the route.
-{
-
-
-
- 
-// Get Users object with followers and followers posts.
-// We use with() to eager load relationships
-$user = User::with('followers.posts')->find(2);
-
-// Return associative array of post objects
-$postsArray = $user->followers->lists('posts');
-
-// Combine posts into a single collection
-$posts = (new \Illuminate\Support\Collection($postsArray))->collapse()->toArray();
-
-print_r($posts);
-
-  
-  $user = $this->user;
-  $user->followee()->attach($followee_posts);
-  $followee_posts = User::find($followee_posts);
-*/
-
-}
-
-
-
+}}
