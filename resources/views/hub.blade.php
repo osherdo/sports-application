@@ -101,8 +101,7 @@ It is used for all the notifications in this page.-->
   the first parameter the foreach gets is the array expression.
   Second element: On each iteration, the value of the current element (which is a post) is assigned to $value (second element) and the internal array pointer is advanced by one.
 
-  Next: within these: {{-- {!! $post->full_post !!} </textarea>
- -- }} I access the $key (which is $post) and then access the full_post column in the posts table.
+  Next: within these: {{-- {!! $post->full_post !!} --}} I access the $key (which is $post) and then access the full_post column in the posts table.
 -->
 
 @foreach ($get_followee_posts as $post)
@@ -116,4 +115,3 @@ It is used for all the notifications in this page.-->
 
 </div>
 @stop
-
