@@ -35,15 +35,21 @@ public function __construct() { //constructor for checking user's auth after a w
     $followingNow= $this->user->followee()->get();
     // How to get a followee's post for the current user (Similar to $mutuals query):
     //I first instantiate the Post Model and by that I get a collection of the methods in this model.
-    //Then I type a where clause since
-    //$posts= $this->user->fo
-
+    
+    //$this->user access the user() method in the Post model via the constructor.
+    // Then I return the whole Post model. And then I access all the posts of the current user. 
+    //$get_own_posts= $this->user->posts; 
+    //dd($get_own_posts);
+    
+    /**
     // $get_followee_posts = I need the the posts where user_id be equals to $following now id. Means that I get the posts of my followees.
-    // Where clause in Laravel 5.1 requires 3 arguments: 'full_post' is the name of the column in the table associated with Post model.
+    // Where clause in Laravel 5.1 requires 3 arguments: 'user_id' is the name of the column in the table associated with Post model.
     // That column is what we want to compare with the third argument.
     // (OPTIONAL): Second argument is an operator, which can be any of the database's supported operators.If none is given laravel assumes it's  '=';
     // Third argument is what I compare the first parameter with. So I get all user id's that match my followee's list.
     // Before trying to echo out the values of the query, try to dd() the var to see its contents.
+    **/
+
     $get_followee_posts= Post::whereIn('user_id',$followingNow->lists('id'))->get();
     //dd($get_followee_posts);
     // After dd() is showing an array with items - it's time to pass the variable value within a return statement.

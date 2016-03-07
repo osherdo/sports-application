@@ -90,7 +90,7 @@ It is used for all the notifications in this page.-->
 <div class="own_posts">
 
 <p> here are your latest posts:</p>
-<!-- I think I should create foreach loop to iterate over each post and show it here. -->
+
 </div>
 <br><br>
 <div class="following_posts">
@@ -106,8 +106,8 @@ It is used for all the notifications in this page.-->
 
 @foreach ($get_followee_posts as $post)
 <form action="/html/tags/html_form_tag_action.cfm" method="post">
-<textarea name="comments" id="comments" style="width:96%;height:90px;background-color:white;color:black;border:none;padding:2%;font:22px/30px sans-serif;">
-{{!! $post->full_post !!} </textarea>
+<textarea readonly name="comments" id="comments" style="width:96%;height:90px;background-color:white;color:black;border:none;padding:2%;font:22px/30px sans-serif;">
+{!! $post->full_post !!} </textarea>
  </textarea>
 </form>
 @endforeach
