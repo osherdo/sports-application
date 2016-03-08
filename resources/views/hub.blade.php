@@ -98,6 +98,12 @@ It is used for all the notifications in this page.-->
 
 <p> here are your latest posts:</p>
 
+@foreach ($get_own_posts as $own_post)
+
+{!! $own_post->full_post !!}<br><br>
+
+@endforeach
+
 </div>
 <br><br>
 <div class="followees_section">
@@ -111,12 +117,15 @@ It is used for all the notifications in this page.-->
 -->
 <div class="followee_posts">
 
+@foreach ($get_post_uploader as $name)
+
 @foreach ($get_followee_posts as $post)
 
-{!! $post->full_post !!} <br><br>
+{!! $name->name !!} <br><br>
+{!! $post->full_post !!} <br><br><hr>
 
 @endforeach
-
+@endforeach
 </div>
 </div>
 @stop

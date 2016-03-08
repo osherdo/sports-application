@@ -69,7 +69,8 @@ body {
 
 .test img,
 .icons img,
-.followee_posts img {
+.followee_posts img,
+.own_posts img {
   width: 24px;
   height: 24px;
 }
