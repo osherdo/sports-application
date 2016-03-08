@@ -68,9 +68,10 @@ body {
 }
 
 .test img,
-.icons img {
-  width: 20px;
-  height: 20px;
+.icons img,
+.followee_posts img {
+  width: 24px;
+  height: 24px;
 }
 
 .test {

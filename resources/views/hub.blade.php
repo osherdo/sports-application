@@ -15,12 +15,14 @@
         </ul>
     </div>
 @endif
+
 <!-- Using laravel session -->
 @if(Session::has('message')) <!-- Checking if session has a variable called message. -->
 <div class="alert alert-info">
 <li> {{ Session::get('message') }} </li> <!--if true -print the message from the insert_posts variable. -->
 </div>
 @endif
+
 {{--
    You have a $user variable available
     representing the current Auth::user();
@@ -31,12 +33,13 @@
 {{--
     This user has a profile whose properties you can also display
  --}}
-<p>Goals: {{ $user->profile->goals }}</p>
 
+<p>Goals: {{ $user->profile->goals }}</p>
 
 {{--
     You can also drill down to the profile's expectations
  --}}
+
  <p>Expectations</p>
 <ul class="profile-list">
   @foreach($user->profile->expectations as $expectation)
@@ -47,6 +50,7 @@
 <p><b> this is other users you may want to follow: </br></p>
 <ul>
 @foreach($mutuals as $mutual)
+
 <!-- hub/{{$mutual->user->id}}
   It goes to the user that matches the value of $mutual criteria. and then it goes and gets its id.This is sent to the controller for further handling.Check page source to see id's numbers. -->
   <!-- In the href - Passing the user to your controller -->
@@ -72,6 +76,9 @@ It is used for all the notifications in this page.-->
   </div>
   <div class=icons>
     <img alt="heart" src="http://icons.iconarchive.com/icons/succodesign/love-is-in-the-web/512/heart-icon.png">
+    <img alt="food" src="http://icons.iconarchive.com/icons/jamespeng/cuisine/256/Pork-Chop-Set-icon.png">
+    <img alt="workout" src="images/post_icons/dumbell.png">
+    <!--add more icons as you wish in this div -->
   </div>
   <button>
     Post to profile
@@ -93,8 +100,7 @@ It is used for all the notifications in this page.-->
 
 </div>
 <br><br>
-<div class="following_posts">
-
+<div class="followees_section">
 <p> Posts from people you're following: <p>
 
 <!-- Iterate over the followee's posts with a foreach loop:
@@ -103,15 +109,14 @@ It is used for all the notifications in this page.-->
 
   Next: within these: {{-- {!! $post->full_post !!} --}} I access the $key (which is $post) and then access the full_post column in the posts table.
 -->
+<div class="followee_posts">
 
 @foreach ($get_followee_posts as $post)
-<form action="/html/tags/html_form_tag_action.cfm" method="post">
-<textarea readonly name="comments" id="comments" style="width:96%;height:90px;background-color:white;color:black;border:none;padding:2%;font:22px/30px sans-serif;">
-{!! $post->full_post !!} </textarea>
- </textarea>
-</form>
+
+{!! $post->full_post !!} <br><br>
+
 @endforeach
 
-
+</div>
 </div>
 @stop
