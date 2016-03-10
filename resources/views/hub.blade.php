@@ -54,6 +54,7 @@
 <!-- hub/{{$mutual->user->id}}
   It goes to the user that matches the value of $mutual criteria. and then it goes and gets its id.This is sent to the controller for further handling.Check page source to see id's numbers. -->
   <!-- In the href - Passing the user to your controller -->
+<!-- About URL::to: http://daylerees.com/codebright-url-generation/ -->
 
   <br><li><a href="{{URL::to('hub', [$mutual->user->id])}}" class="button button-3d" name="make_follow">Follow User</a>
 {!! $mutual->user->name; !!}  <!-- I access the user's name property -->
