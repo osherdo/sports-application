@@ -2,6 +2,9 @@
 @section('scripts')
  <script type="text/javascript" src="{!! asset('js/status.min.js') !!}"></script>
 @stop
+
+
+
 @section('content')
     {!! csrf_field() !!}
 
@@ -62,7 +65,6 @@
 @endforeach 
 </ul>
 
-<form action="{{ route('createPost') }}" method="post"> <!--the form action is the method in a route called createPost -->
   @if(isset($message)) <!-- if the var exist and have a value it would be printed. 
 It is used for all the notifications in this page.-->
   {{ $message }}
@@ -78,7 +80,7 @@ It is used for all the notifications in this page.-->
   <div class=icons>
     <img alt="heart" src="http://icons.iconarchive.com/icons/succodesign/love-is-in-the-web/512/heart-icon.png">
     <img alt="food" src="http://icons.iconarchive.com/icons/jamespeng/cuisine/256/Pork-Chop-Set-icon.png">
-    <img alt="workout" src="images/post_icons/dumbell.png">
+    <img alt="workout" src="images/post_icons/dumbbell.png">
     <!--add more icons as you wish in this div -->
   </div>
   <button>
@@ -87,7 +89,6 @@ It is used for all the notifications in this page.-->
   <div class="errors">
 
   </div>
-</form>
 
 <!-- script to check if user typed anything in the textbox before submit.
   both .text() and .html() return strings. It's testing if the string length is zero.
