@@ -26,12 +26,13 @@
 
 <!-- preferences search: -->
 <select id="select_preferences" multiple="multiple">
-    <option value="cheese"> Do Anerobic Routines</option>
-    <option value="tomatoes">Do Aerobic Routines</option>
-    <option value="mozarella">Diet Healthy</option>
+    <option value="Anerobic"> Do Anerobic Routines</option>
+    <option value="Aerobic">Do Aerobic Routines</option>
+    <option value="Diet">Diet Healthy</option>
 </select>
 <script type="text/javascript">
     $(document).ready(function() {
+        $('range-slider').hide();
         $('#select_preferences').multiselect({
             buttonText: function(options, select) {
                 return 'Look for users that:';
@@ -41,16 +42,34 @@
                 options.each(function () {
                     labels.push($(this).text());
                 });
+                $('item').show();
                 return labels.join(' - ');
             }
         });
     });
 </script>
+<!-- html code & script for age-range selector -->
+
+<input type="hidden" class="slider-input" value="23" />
+
+<script>
+    $(document).ready(function() {
+
+$('.range-slider').jRange({
+    from: 16,
+    to: 100,
+    step: 1,
+    scale: [16,30,50,75,100],
+    format: '%s',
+    width: 300,
+    showLabels: true,
+    isRange : true
+})});
+</script>
 </div>
 
 
 </form>
-@yield('search_box')
 
 @section('sidebar')
 *content from master page for demo.* 
@@ -64,5 +83,6 @@
         
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <script src="{!! asset('js/bootstrap-multiselect.js') !!}"></script>
+<script src="{!! asset('js/jquery.range-min.js') !!}"></script>
     </body>
 </html>
