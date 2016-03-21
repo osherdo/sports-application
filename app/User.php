@@ -69,7 +69,6 @@ Many to Many
         //The fourth argument is the foreign key name of the model that you are joining to. (destination.)
   }
 
-  
 
   public function followers() {
    // fetch those that follow you.
