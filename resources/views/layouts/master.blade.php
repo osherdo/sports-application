@@ -17,7 +17,7 @@
 <form action="{{ route('search') }}" method="post">
         <!--the form action is the method in a route called search -->
         {!! csrf_field() !!} @section('search_box')
-        <div class="search_box_area col-xs-3">
+        <div class="search_box_area col-xs-3 pagination-centered">
             <form class="form-wrapper cf">
                 <input type="text" placeholder="Search for name/user..." required> &nbsp; Or:
 <a href="#" class="button button-circle button-flat-action">Search
@@ -86,7 +86,7 @@
       range: true,
       min: 16,
       max: 120,
-      values: [ 75, 300 ],
+      values: [ 16, 45 ],
       slide: function( event, ui ) {
         $( "#amount" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
       }

@@ -403,11 +403,6 @@ body {
   color: #999;
 }
 
-div.hide {
-  display: inline-block;
-  float: left;
-}
-
 /* Jquery UI */
 
 .ui-helper-hidden {
@@ -2262,6 +2257,13 @@ body .ui-tooltip {
   opacity: .2;
   filter: Alpha(Opacity=20);
   border-radius: 5px;
+}
+
+/* Multi-select and slider aligned each under one. */
+
+.container col-centered {
+  float: none;
+  margin: 0 auto;
 }
 
 .errors {
