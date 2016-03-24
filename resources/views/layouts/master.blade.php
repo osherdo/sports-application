@@ -17,28 +17,33 @@
 <form action="{{ route('search') }}" method="post">
         <!--the form action is the method in a route called search -->
         {!! csrf_field() !!} @section('search_box')
-        <div class="search_box_area col-xs-3 pagination-centered">
-            <form class="form-wrapper cf">
-                <input type="text" placeholder="Search for name/user..." required> &nbsp; Or:
-<a href="#" class="button button-circle button-flat-action">Search
-</a>     </form>
-        <div class="second_select">
-    <!-- preferences search: -->
-    <select id="select_preferences" multiple="multiple">
-        <option class="options" value="Anaerobic"> Do Anaerobic Routines</option>
-        <option class="options" value="Aerobic">Do Aerobic Routines</option>
-        <option class="options" value="Diet">Diet Healthy</option>
-    </select>
-</div>
-        <!-- html code for age-range selector -->
-
-<div id="range-div" class="hide">
-</div>
-<div id="range-options" class="hide-2">
-<label for="amount">within the ages:</label>
-<br><br><input id="amount">
-<a href="#" class="button button-circle button-flat-action">Search</a>
-</div>
+        <div class="search_box_area col-xs-12 pagination-centered">
+				   <div class="col-sm-3">	
+						<form class="form-wrapper cf">
+							<input type="text" placeholder="Search for name/user..." required> &nbsp; Or:
+								<a href="#" class="button button-circle button-flat-action">Search
+								</a>  
+						</form>
+					</div>
+					<div class="second_select col-sm-3">
+						<!-- preferences search: -->
+						<select id="select_preferences" multiple="multiple">
+							<option class="options" value="Anaerobic"> Do Anaerobic Routines</option>
+							<option class="options" value="Aerobic">Do Aerobic Routines</option>
+							<option class="options" value="Diet">Diet Healthy</option>
+						</select>
+					</div>
+							<!-- html code for age-range selector -->
+                
+					<div class="col-sm-3">
+						<div id="range-div" class="hide">
+						</div>
+						<div id="range-options" class="hide-2">
+						<label for="amount">within the ages:</label>
+						<br><br><input id="amount">
+						<a href="#" class="button button-circle button-flat-action">Search</a>
+						</div>
+					</div>
 
         </div>
 </form>

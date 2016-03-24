@@ -25,7 +25,7 @@ class SearchController extends Controller
     {
     	$user = $request->user(); // Grab the authenticated user for the request. and store it in $user.
     	$userINput= $request->idOfSearchInput;
-    	$UserNameQuery = User::Where('name',$UserInputHere)->get;
+    	$UserNameQuery = User::Where('name',$UserInput)->get;
     	// Look for the user.
 
     	//  make the query with a where clause.
