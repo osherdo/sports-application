@@ -24,9 +24,10 @@ class SearchController extends Controller
     protected function query()
     {
     	$user = $request->user(); // Grab the authenticated user for the request. and store it in $user.
-    	$userINput= $request->idOfSearchInput;
-    	$UserNameQuery = User::Where('name',$UserInput)->get;
-    	// Look for the user.
+    	$userInput= $request->'NameUser'; // id of input type text.
+    	$UserNameQuery = User::where('name',$UserInput)->where('username', $UserInput)->get(); 
+
+    	// Querying 2 columns: 'username' and 'name' (chaining the search on username column:);
 
     	//  make the query with a where clause.
     }

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+ <!--For Bootstrap mobile proper rendering and touch zooming -->
+
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="{{   elixir('css/app.css') }}" >
     @yield( 'scripts')
@@ -18,14 +20,14 @@
         <!--the form action is the method in a route called search -->
         {!! csrf_field() !!} @section('search_box')
         <div class="search_box_area col-xs-12 pagination-centered">
-				   <div class="col-sm-3">	
+				   <div class="col-sm-4">	
 						<form class="form-wrapper cf">
-							<input type="text" placeholder="Search for name/user..." required> &nbsp; Or:
+							<input type="text" placeholder="Search for name/user..." required name="NameUser"> &nbsp; Or:
 								<a href="#" class="button button-circle button-flat-action">Search
 								</a>  
 						</form>
 					</div>
-					<div class="second_select col-sm-3">
+					<div class="second_select col-sm-4">
 						<!-- preferences search: -->
 						<select id="select_preferences" multiple="multiple">
 							<option class="options" value="Anaerobic"> Do Anaerobic Routines</option>
