@@ -23,17 +23,18 @@
 				   <div class="col-sm-4">	
 						<form class="form-wrapper cf">
 							<input type="text" placeholder="Search for name/user..." required name="NameUser"> &nbsp; Or:
-								<a href="#" class="button button-circle button-flat-action">Search
-								</a>  
+
+              <input type="submit" name="searchButton" value="Search" class="button button-circle button-flat-action">
 						</form>
 					</div>
 					<div class="second_select col-sm-4">
+            <form action="{{ route('multi_search') }}" method="post">
 						<!-- preferences search: -->
 						<select id="select_preferences" multiple="multiple">
 							<option class="options" value="Anaerobic"> Do Anaerobic Routines</option>
 							<option class="options" value="Aerobic">Do Aerobic Routines</option>
 							<option class="options" value="Diet">Diet Healthy</option>
-						</select>
+						</select></form>
 					</div>
 							<!-- html code for age-range selector -->
                 

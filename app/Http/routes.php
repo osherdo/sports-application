@@ -45,8 +45,11 @@ Route::get('hub/{user_id}','HubController@add_followee')->name('follow');
 // In the view: instead : 'hub/user/1' you can use {{route('follow')}} 
 // In the controller: redirect('hub/user/o1') I can do this: redirect()->route('follow')
 
+//creating 2 routes under one group that should be authenticated.
 Route::group(['middleware' => 'auth'] ,function(){
-    Route::post('search','SearchController@query')->name('search');
+    Route::post('search','SearchController@query')->name('search'); // route for name/user search
+    Route::post('search_multiple','SearchController@multi_select')->name('multi_search'); // Route for multi-select search.
+    // url's will be accessible only from a registered user.
 });
 
 Route::get('oop','OopController@view'); //practicing OOP.
