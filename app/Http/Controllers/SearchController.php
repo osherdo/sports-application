@@ -27,23 +27,22 @@ class SearchController extends Controller
     // Then post input is saved to the $request object.
 
     {
-    	$user = $request->user(); // Grab the authenticated user for the request. and store it in $user.
-    	$userInput= $request->get('NameUser'); // id of input type text.
-    	$UserNameQuery = User::where('name',$userInput)->orWhere('username', $userInput)->get(); 
-    	dd($request);
-    	 // Querying 2 columns: 'username' and 'name' (chaining the search on username column:);
+        $user = $request->user(); // Grab the authenticated user for the request. and store it in $user.
+        $userInput= $request->get('NameUser'); // id of input type text.
+        $UserNameQuery = User::where('name',$userInput)->orWhere('username', $userInput)->get(); 
+        dd($UserNameQuery);
+        // Querying 2 columns: 'username' and 'name' (chaining the search on username column:);
 
-    	return view('search',compact('user','userInput'));
+      return view('search',compact('user','userInput'));
 
     	//  make the query with a where clause.
     }
 
-    protected function multi_select(Request $request)
+    public function multiSelect(Request $request)
 
     {
         $user = $request->user();
-        $userSelect = $request->get('select_preferences');
-        dd($userSelect);
-
+        $userSelect = $request->select_preferences;
+        dd($user);
     }
 }

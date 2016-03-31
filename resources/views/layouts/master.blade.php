@@ -3,6 +3,8 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
  <!--For Bootstrap mobile proper rendering and touch zooming -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+ <script src="/js/jquery-ui.min.js"></script>
 
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="{{   elixir('css/app.css') }}" >
@@ -15,49 +17,52 @@
 <body>
     @section('sidebar') Maser Page content demo @show
     <div class="container">
+<div class="col-sm-4">
+ <form action="{{ route('search') }}" method="post" >
+  <!--the form action is the method in a route called search -->
+  {!! csrf_field() !!} 
+  <div class="search_box_area col-xs-12 pagination-centered">
+   <div class="col-sm-4"> 
+   <input type="text" placeholder="Search for name/user..." required name="NameUser"> &nbsp; Or:
+    <input type="submit" name="searchButton" value="Search" class="button button-circle button-flat-action">
+
+   </div>
+  </div>
+ </form>
+</div>
+<div class="col-sm-8">
+{!! Form::open(array('route'=>'multi_search'))!!}
+  <div class="second_select col-sm-6">
+   <!-- preferences search: -->
+   {!! csrf_field() !!}
+  
+
+   <select id="select_preferences" name="select_preferences[]" multiple="multiple"> <!-- using [] to return multiple options and make the select an array. -->
+    <option class="options" value="Anaerobic"> Do Anaerobic Routines</option>
+    <option class="options" value="Aerobic">Do Aerobic Routines</option>
+    <option class="options" value="Diet">Diet Healthy</option>
+   </select>
+  </div>
+  <!-- html code for age-range selector -->
+
+  <div class="col-sm-6">
+   <div id="range-div" class="hide">
+   </div>
+   <div id="range-options" class="hide-2">
+    <label for="amount">within the ages:</label>
+    <br><br><input id="amount">
+
+    <input type="submit" name="2ndsearchButton" id="submitMultiSearch" value="Search" class="button button-circle button-flat-action">
+
+   </div>
+  </div>
+{!! Form::close()!!}
+</div>
         @yield('content')
-<form action="{{ route('search') }}" method="post">
-        <!--the form action is the method in a route called search -->
-        {!! csrf_field() !!} @section('search_box')
-        <div class="search_box_area col-xs-12 pagination-centered">
-				   <div class="col-sm-4">	
-						<form class="form-wrapper cf">
-							<input type="text" placeholder="Search for name/user..." required name="NameUser"> &nbsp; Or:
 
-              <input type="submit" name="searchButton" value="Search" class="button button-circle button-flat-action">
-						</form>
-					</div>
-					<div class="second_select col-sm-4">
-            <form action="{{ route('multi_search') }}" method="post">
-						<!-- preferences search: -->
-						<select id="select_preferences" multiple="multiple">
-							<option class="options" value="Anaerobic"> Do Anaerobic Routines</option>
-							<option class="options" value="Aerobic">Do Aerobic Routines</option>
-							<option class="options" value="Diet">Diet Healthy</option>
-						</select></form>
-					</div>
-							<!-- html code for age-range selector -->
-                
-					<div class="col-sm-3">
-						<div id="range-div" class="hide">
-						</div>
-						<div id="range-options" class="hide-2">
-						<label for="amount">within the ages:</label>
-						<br><br><input id="amount">
-						<a href="#" class="button button-circle button-flat-action">Search</a>
-						</div>
-					</div>
-
-        </div>
-</form>
-
-    </div>
-
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</div>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
- <script src="/js/jquery-ui.min.js"></script>
-<script src="/js/bootstrap-multiselect.js"></script>
+<script src="{{asset('js/bootstrap-multiselect.js')}}"></script>
 
     <!-- Script for the multi-select. -->
 
@@ -71,7 +76,7 @@
         buttonTitle: function(options, select) {
             var labels = [];
             options.each(function() {
-                labels.push($(this).text()); //get the options in a string (with .text method). later it would be joined with - seperated between each.
+                labels.push($(this).text()); // get the options in a string (with .text method). later it would be joined with - seperated between each.
             });
             $('#range-div,#range-options').toggleClass('hide', labels.length === 0); // hiding both range-div and range-options divs.
 
