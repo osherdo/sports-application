@@ -3,10 +3,7 @@
  <script type="text/javascript" src="{!! asset('js/status.min.js') !!}"></script>
 @stop
 
-
-
 @section('content')
-    {!! csrf_field() !!}
 
 @if (count($errors) > 0)
   <div class="alert alert-danger">
@@ -18,5 +15,18 @@
         </ul>
     </div>
 @endif
+ {!! csrf_field() !!}
 
-<p> Welcome to the search page: </p>
+
+<p> {{ $user->name }}, Welcome to the search page:<br><br>
+Here are your search results:<br><br> </p>
+
+<hr>
+@foreach($prefQuery as $name)
+@foreach($prefQuery as $age)
+@foreach($prefQuery as $userSelect)
+
+{{}}
+@endforeach
+
+<br><br><br><hr>

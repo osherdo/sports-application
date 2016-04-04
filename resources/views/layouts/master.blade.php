@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   <!--For Bootstrap mobile proper rendering and touch zooming -->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
- <!--For Bootstrap mobile proper rendering and touch zooming -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
  <script src="/js/jquery-ui.min.js"></script>
 
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{   elixir('css/app.css') }}" >
+    <link rel="stylesheet" href="{{ elixir('css/app.css') }}" >
     @yield( 'scripts')
     <title>Sports App @yield('title')</title>
 </head>
@@ -32,11 +32,10 @@
 </div>
 <div class="col-sm-8">
 {!! Form::open(array('route'=>'multi_search'))!!}
+  {!! csrf_field() !!} 
+
   <div class="second_select col-sm-6">
    <!-- preferences search: -->
-   {!! csrf_field() !!}
-  
-
    <select id="select_preferences" name="select_preferences[]" multiple="multiple"> <!-- using [] to return multiple options and make the select an array. -->
     <option class="options" value="Anaerobic"> Do Anaerobic Routines</option>
     <option class="options" value="Aerobic">Do Aerobic Routines</option>
@@ -50,7 +49,8 @@
    </div>
    <div id="range-options" class="hide-2">
     <label for="amount">within the ages:</label>
-    <br><br><input id="amount">
+    <br><br>
+    <input id="amount" name="amount"> <!-- Getting the ages to later be used in the controller (using the name attribute) -->
 
     <input type="submit" name="2ndsearchButton" id="submitMultiSearch" value="Search" class="button button-circle button-flat-action">
 
