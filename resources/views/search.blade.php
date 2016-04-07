@@ -37,8 +37,10 @@ Here are your search results:<br><br> </p>
         {{ $expectation->name }}
     @endforeach
     <hr>
-
 @endforeach
 
-<br><br><br><hr>
+@foreach ($UserNameQuery as $user)
+<hr>
+
+{{ $user->name}}
 @stop

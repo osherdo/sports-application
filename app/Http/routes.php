@@ -55,10 +55,10 @@ Route::group(['middleware' => 'auth'] ,function(){
 });
 */
 
- Route::post('search','SearchController@query')->name('search'); // route for name/user search
+ Route::post('search','SearchController@query')->name('search'); // Route for name/user search.
    
  Route::post('search_multiple', 'SearchController@multiSelect')->name('multi_search');
 
  //Route::get('searchprofile')
 
-Route::get('oop','OopController@view'); // Practicing OOP.
+ Route::get('oop','OopController@view'); // Practicing OOP.

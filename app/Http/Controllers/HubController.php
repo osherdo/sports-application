@@ -27,7 +27,12 @@ public function __construct() { // Constructor for checking user's auth after a 
    public function hub()
   {
     //$user = Auth::user(); // no need to call since we have initiated the user in the constructor.
-
+    if(!isset($this->user->profile->id)) // Only users that have a profile id ( basically have an id) will be refered to hub page.
+    // I could use this !isset for the middleware of checking if user have a profile.
+    
+    {
+      return redirect()->to('dashboard');
+    }
     $profile = $this->user->profile; // Should check what's this.
 
     // $followingNow - a relationship between the current user and its followees.
@@ -75,7 +80,8 @@ public function __construct() { // Constructor for checking user's auth after a 
       
     })->whereNotIn('profiles.user_id',$followingNow->lists('id'))->get(); // exclude all the id's that match the $followingNow variable criteria.
 
-
+   
+    
 
     //dd($mutuals->toArray()); //Inspect the $mutuals collection.
 /**

@@ -31,11 +31,11 @@ class SearchController extends Controller
     {
         $user = $request->user(); // Grab the authenticated user for the request. and store it in $user.
         $userInput= $request->get('NameUser'); // id of input type text.
-        $UserNameQuery = User::where('name',$userInput)->orWhere('username', $userInput)->get(); 
-        dd($UserNameQuery);
         // Querying 2 columns: 'username' and 'name' (chaining the search on username column:);
+        $UserNameQuery = User::where('name',$userInput)->orWhere('username', $userInput)->get(); 
+        //dd($UserNameQuery);
 
-      return view('search',compact('user','userInput'));
+      return view('search',compact('user','userInput','UserNameQuery'));
 
     	
     }
@@ -44,7 +44,7 @@ class SearchController extends Controller
 
     {
         $amount = Input::get('amount'); // First getting the age range from the input in html (name="amount").
-        $amount = str_replace(' ','',$amount); //remove the blank spaces between the ages value, if there's any.
+        $amount = str_replace(' ','',$amount); // Remove the blank spaces between the ages value, if there's any.
         $amount = explode('-',$amount); // is breaking the value 16-45, as 16 and 45, '-' being the breaking point. And finally turns the value into array.
         // Getting the array value as index 0 and 1.
         $min = $amount[0];
@@ -85,8 +85,5 @@ class SearchController extends Controller
       return redirect('auth/login');
     }
     }
-    public function search (Request $request)
-    {
-
-    }
+   
 }

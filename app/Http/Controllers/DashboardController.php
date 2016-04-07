@@ -19,9 +19,12 @@ class DashboardController extends Controller
     you need to pass a variable to the view with these expectations in order to create the checkboxes. 
     The beauty of this approach is you can easily add or delete expectations without touching your code - just add/edit/delete on the expectations table.
     */
-    
-    $expectations = Expectation::all();
     $user = Auth::user();
+    if(isset($user->profile->id)){
+      return redirect()->to('hub');
+    }
+    $expectations = Expectation::all();
+    
 
     if($user)
     {

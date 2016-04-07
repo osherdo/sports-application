@@ -23,7 +23,7 @@
   {!! csrf_field() !!} 
   <div class="search_box_area col-xs-12 pagination-centered">
    <div class="col-sm-4"> 
-   <input type="text" placeholder="Search for name/user..." required name="NameUser"> &nbsp; Or:
+   <input type="text" placeholder="Search for name/user..." required name="NameUser"> 
     <input type="submit" name="searchButton" value="Search" class="button button-circle button-flat-action">
 
    </div>
@@ -31,6 +31,7 @@
  </form>
 </div>
 <div class="col-sm-8">
+  &nbsp; Or: 
 {!! Form::open(array('route'=>'multi_search'))!!}
   {!! csrf_field() !!} 
 

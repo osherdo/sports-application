@@ -53,7 +53,7 @@
 <p><b> this is other users you may want to follow: </br></p>
 <ul>
 @foreach($mutuals as $mutual)
-
+@if(isset($mutual->user->id))
 <!-- hub/{{$mutual->user->id}}
   It goes to the user that matches the value of $mutual criteria. and then it goes and gets its id.This is sent to the controller for further handling.Check page source to see id's numbers. -->
   <!-- In the href - Passing the user to your controller -->
@@ -61,7 +61,9 @@
 
   <br><li><a href="{{URL::to('hub', [$mutual->user->id])}}" class="button button-3d" name="make_follow">Follow User</a>
 {!! $mutual->user->name; !!}  <!-- I access the user's name property -->
+
 </li>
+@endif
 @endforeach 
 </ul>
 

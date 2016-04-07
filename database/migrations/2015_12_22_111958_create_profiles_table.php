@@ -17,6 +17,7 @@ class CreateProfilesTable extends Migration
             $table->timestamps();
             $table->string('gender',5);
             $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->tinyInteger('age')->unsigned()->nullable();
             $table->string('goals')->nullable();;
             $table->string('activityType')->nullable();
