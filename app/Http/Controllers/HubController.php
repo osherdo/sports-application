@@ -50,7 +50,7 @@ public function __construct() { // Constructor for checking user's auth after a 
     /**
         
 
-     $get_followee_posts = I need the posts where user_id be equals to $following now id. Means that I get the posts of my followees.
+     $get_followee_posts = I need the posts where user_id equals to $following now id. Means that I get the posts of my followees.
      Where clause in Laravel 5.1 requires 3 arguments: 'user_id' is the name of the column in the table associated with Post model.
      That column is what we want to compare with the third argument.
      (OPTIONAL): Second argument is an operator, which can be any of the database's supported operators.If none is given laravel assumes it's  '=';

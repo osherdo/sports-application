@@ -54,27 +54,39 @@ class SearchController extends Controller
         $user = $request->user();
         $userSelect = Input::get('select_preferences');
         //dd($userSelect); // Getting user selection.
-        
+        /*
         // Chain 2 queries: find both same expectations and same age range.
         //pass in the $userSelect variable into the closure (with use).
-        $prefQuery = Profile::whereHas('expectations', function($query) use($userSelect)
-        {
-        $query->whereIn('expectations.name', $userSelect); //now chain another query:
-        //Passing the function 2 arguments: minimum and maximum values from the view (with 'use').
-        })->whereHas('user', function ($query) use ($min,$max)
-        {
-        $query->whereBetween('age', [$min,$max]);
-        })->get();
-        //dd($prefQuery);
+        // I can query the expectations table since: A profile has one or more expectations.
+        // First access the expectations tabel and then the column (in the query itself).
+        $prefQuery = Profile::whereHas('expectations', function($query) use($userSelect) {
+        $query->whereIn('name', $userSelect); // First Query: compare the name column in expectations table with the user selection.
+
+        //now chain another query:
+        })->whereBetween('age', [$min,$max])    //Passing the function 2 arguments: minimum and maximum values from the view (with 'use').
+        ->with('user', 'expectations')->get();
+        })
+*/
+         $prefQuery = Profile::whereHas('expectations', function($query) use($userSelect) {
+        $query->whereIn('name', $userSelect); // First Query: compare the name column in expectations table with the user selection.
+
+        //now chain another query:
+        })->whereBetween('age', [$min,$max])->get();   //Passing the function 2 arguments: minimum and maximum values from the view (with 'use').
+
+        //return $prefQuery; // Return in json format.
 
          if($this->user)
     {
 
-      return view('search', compact('amount','min','max','userSelect'))->with(['user' => $this->user]);
+      return view('search', compact('prefQuery','amount','min','max','userSelect'))->with(['user' => $this->user]);
     }
     else
     {
       return redirect('auth/login');
     }
+    }
+    public function search (Request $request)
+    {
+
     }
 }
