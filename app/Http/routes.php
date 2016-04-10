@@ -59,8 +59,9 @@ Route::group(['middleware' => 'auth'] ,function(){
    
  Route::post('search_multiple', 'SearchController@multiSelect')->name('multi_search');
 
- Route::get('personal/{slug}','IdController@get_details')->name('personal'); // {slug} does representation of the value
+ Route::get('personal/{slug}','IdController@get_details')->name('personal'); // {slug} does representation of the value.
 
  Route::get('follow/{id}','IdController@follow_current')->name('personal_follow');
+
 
  Route::get('oop','OopController@view'); // Practicing OOP.

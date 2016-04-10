@@ -3,8 +3,6 @@
  <script type="text/javascript" src="{!! asset('js/status.min.js') !!}"></script>
 @stop
 
-
-
 @section('content')
     {!! csrf_field() !!}
 

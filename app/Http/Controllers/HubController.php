@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Post;
 use App\Http\Requests\createPost; //getting the rules file class.
+use App\Expectation;
 //use App\Http\Controllers\Controller; //Because both controllers are on the same directory - this import can be deleted safely.
 
 class HubController extends Controller
@@ -24,7 +25,7 @@ public function __construct() { // Constructor for checking user's auth after a 
     $this->user = Auth::user(); // Auth method always use User.php model. (shown in config/auth.php)
     // Now we can call the user in other methods when we need to call the user.
     $expectations_list=expectation::all();
-    view()->share('expectations_list',$expectations_list)
+    view()->share('expectations_list',$expectations_list);
 }
    public function hub()
   {
