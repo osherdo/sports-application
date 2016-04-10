@@ -31,16 +31,19 @@
  </form>
 </div>
 <div class="col-sm-8">
-  &nbsp; Or: 
+  &nbsp; Or:
 {!! Form::open(array('route'=>'multi_search'))!!}
   {!! csrf_field() !!} 
 
   <div class="second_select col-sm-6">
    <!-- preferences search: -->
    <select id="select_preferences" name="select_preferences[]" multiple="multiple"> <!-- using [] to return multiple options and make the select an array. -->
-    <option class="options" value="Anaerobic"> Do Anaerobic Routines</option>
-    <option class="options" value="Aerobic">Do Aerobic Routines</option>
-    <option class="options" value="Diet">Diet Healthy</option>
+           
+    @if(isset($expectations_list))
+    @foreach($expectations_list as $exp)
+    <option value="{{$exp->id}}" class="options">{{$exp->name}}</option>
+    @endforeach
+   @endif
    </select>
   </div>
   <!-- html code for age-range selector -->
