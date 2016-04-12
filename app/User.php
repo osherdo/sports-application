@@ -74,4 +74,10 @@ Many to Many
    // fetch those that follow you.
     return $this->belongsToMany('User', 'follower_followee', 'followed_id', 'follower_id');
   }
+
+  public function routine()
+  {
+    //fetch the routing for each user.
+    return $this->belongsToMany('App\User','user_routine')
+  }
 }

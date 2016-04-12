@@ -63,5 +63,6 @@ Route::group(['middleware' => 'auth'] ,function(){
 
  Route::get('follow/{id}','IdController@follow_current')->name('personal_follow');
 
+ Route::get('routine','RoutineController@create')->name('create_routine');
 
  Route::get('oop','OopController@view'); // Practicing OOP.
