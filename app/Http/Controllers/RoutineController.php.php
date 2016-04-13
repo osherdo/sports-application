@@ -7,14 +7,17 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class RoutineController.php extends Controller
+class RoutineController extends Controller
 {
-public function __construct
-{
-protected $user;
 
-public function __construct() { // Constructor for checking user's auth after a while.
+  protected $user;
+
+
+public function __construct() 
+{ 
+// Constructor for checking user's auth after a while.
   
+
     $this->middleware('auth');
     if (!Auth::check()) { return redirect('auth/login'); }
 
@@ -24,12 +27,12 @@ public function __construct() { // Constructor for checking user's auth after a 
     view()->share('expectations_list',$expectations_list);
 }
 
-}
 public function create()
 {
 	$user = Auth::user();
 	// A routine belogns to user.
-	$routine = $user->routine()->create([
+	return view('routine');
+	//$routine = $user->routine()->create([
 
 
 

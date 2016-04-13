@@ -25,7 +25,6 @@
    <div class="col-sm-4"> 
    <input type="text" placeholder="Search for name/user..." required name="NameUser"> 
     <input type="submit" name="searchButton" value="Search" class="button button-circle button-flat-action">
-
    </div>
   </div>
  </form>
@@ -60,6 +59,7 @@
 
    </div>
   </div>
+
 {!! Form::close()!!}
 </div>
         @yield('content')

@@ -13,6 +13,7 @@ return array(
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'Exercises' => $baseDir . '/database/migrations/2016_04_12_135020_exercises.php',
+    'ExercisesSubCategory' => $baseDir . '/database/migrations/2016_04_13_022559_exercises_sub_category.php',
     'ExpectationProfile' => $baseDir . '/database/migrations/2016_01_20_200616_expectation_profile.php',
     'Expectations' => $baseDir . '/database/migrations/2016_01_20_234538_expectations.php',
     'ExpectationsTableSeeder' => $baseDir . '/database/seeds/ExpectationsTableSeeder.php',

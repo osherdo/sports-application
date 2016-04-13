@@ -18,9 +18,16 @@
 
  {!! csrf_field() !!}
 <!-- $username is passed from the controller. -->
-<p> {{ $user->name }}, here you can create your first workout routine! </p>
-<hr>
+<p> {{ $user->name }}, here you can create your first workout routine!<br><br>
+ Let's get started: </p>
 
+{!! Form::open(['route' => 'view_routine']) !!}
 
+Pick your routine type: {!! Form::select('type', ['Aerobic' => 'Aerobic', 'Anaerobic' => 'Anaerobic']); !!} <br><br>
 
-@stop {{-- ending the current section (content) --}}
+Give your routine a name: {!! Form::text('username'); !!}
+
+    
+{!! Form::close() !!}
+
+@stop {{-- ending the current section 'content' --}}

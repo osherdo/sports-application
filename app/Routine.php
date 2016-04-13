@@ -15,4 +15,6 @@ public function users()
 	return $this->belongsTo('App\User');
 }
 
+
+
 }
