@@ -26,6 +26,7 @@ public function __construct() { // Constructor for checking user's auth after a 
     // Now we can call the user in other methods when we need to call the user.
     $expectations_list=expectation::all();
     view()->share('expectations_list',$expectations_list);
+    
 }
    public function hub()
   {

@@ -10,9 +10,9 @@ class Routine extends Model
     public $timestamps = true;
     $fillable = ['name'];
 
-public function exercises()
+public function users()
 {
-	return $this->belongsTo('App\Routine');
+	return $this->belongsTo('App\User');
 }
 
 }

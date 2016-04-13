@@ -9,21 +9,25 @@ jQuery(function($){
 
 jQuery(function($) {
     $("button").click(function() {
-        var element = $(".test");
+        var element = $("#test");
         var test = $.trim(element.text())
-        console.log(test.length, test,element.html())
-        alert(test ? "Not Empty" : "Empty")
-        $("[name=content]").val(element.html())
+        //console.log(test.length, test,element.html())
+       // alert(test ? "Not Empty" : "Empty")
+        $("[name=post]").val(element.html())
       //  if (!test) return false
         
         
         // debugging
-        console.log ($("form").serialize())
-        return false
+       // console.log ($("form").serialize())
+        //return false
     })
+
+    // id attribute refernces a single element.
+    // class is used for multiple objects.
+
     $(".icons img").click(function() {
-        $(".test").append($(this).clone())
-        placeCaretAtEnd($(".test")[0])
+        $("#test").append($(this).clone())
+        placeCaretAtEnd($("#test"))
 
     })
 });

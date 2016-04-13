@@ -78,6 +78,6 @@ Many to Many
   public function routine()
   {
     //fetch the routing for each user.
-    return $this->belongsToMany('App\User','user_routine')
+    return $this->hasMany('App\Routine');
   }
 }

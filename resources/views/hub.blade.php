@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('scripts')
- <script type="text/javascript" src="{!! asset('js/status.min.js') !!}"></script>
+ <script type="text/javascript" src="{!! asset('js/status.js') !!}"></script>
 @stop
 
 @section('content')
@@ -72,10 +72,13 @@ It is used for all the notifications in this page.-->
 <br> 
 <!-- only when a post has been submitted the varible value will show. -->
 <!--  telling the form the info go to this route (url). almost equal form action ="samePage" -->
- {!! Form::hidden('post') !!}
+{!! Form::open(['route' => 'createPost','method'=>'post']) !!}
+ {!! Form::hidden('post') !!} {{--used for getting the emoticons in the post from the js filer --}}
+
  {!! csrf_field() !!}
    <div class=contentWrap>
-    <div class="test" placeholder="How's your fitness going?..." contenteditable="true"></div>
+    <!-- id is used for using in status.js file. class is for the css. --> 
+    <div id="test" class="test" placeholder="How's your fitness going?..." contenteditable="true"></div>
   </div>
   <div class=icons>
     <img alt="heart" src="http://icons.iconarchive.com/icons/succodesign/love-is-in-the-web/512/heart-icon.png">
@@ -86,9 +89,7 @@ It is used for all the notifications in this page.-->
   <button>
     Post to profile
   </button>
-  <div class="errors">
-
-  </div>
+  {!! Form::close() !!}
 
 <!-- script to check if user typed anything in the textbox before submit.
   both .text() and .html() return strings. It's testing if the string length is zero.
