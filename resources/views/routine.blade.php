@@ -1,6 +1,10 @@
 @extends('layouts.master')
 @section('scripts')
  <script type="text/javascript" src="{!! asset('js/status.min.js') !!}"></script>
+ <script type="text/javascript" src="{!! asset('js/content-filter/jquery.mixitup.min.js !!}"></script>
+ <script type="text/javascript" src="{!! asset('js/content-filter/main.js !!}"></script> 
+ <script type="text/javascript" src="{!! asset('js/content-filter/modernizr.js') !!}"></script> 
+
 @stop
 
 @section('content')
@@ -26,6 +30,8 @@
 Pick your routine type: {!! Form::select('type', ['Aerobic' => 'Aerobic', 'Anaerobic' => 'Anaerobic']); !!} <br><br>
 
 Give your routine a name: {!! Form::text('username'); !!}
+
+
 
     
 {!! Form::close() !!}
