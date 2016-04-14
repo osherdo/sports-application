@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('scripts')
  <script type="text/javascript" src="{!! asset('js/status.min.js') !!}"></script>
- <script type="text/javascript" src="{!! asset('js/content-filter/jquery.mixitup.min.js !!}"></script>
- <script type="text/javascript" src="{!! asset('js/content-filter/main.js !!}"></script> 
+ <script type="text/javascript" src="{!! asset('js/content-filter/jquery.mixitup.min.js') !!}"></script>
+ <script type="text/javascript" src="{!! asset('js/content-filter/main.js') !!}"></script> 
  <script type="text/javascript" src="{!! asset('js/content-filter/modernizr.js') !!}"></script> 
 
 @stop
