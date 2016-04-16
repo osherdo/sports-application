@@ -419,15 +419,16 @@ $margin: 1%;
 
 /* jquery routine content-filter (filter exercises type) */
 
+
 @import 'node_modules/bourbon/app/assets/stylesheets/_bourbon.scss'; // http://bourbon.io/
 
 @import "node_modules/node-neat/node_modules/bourbon-neat/app/assets/stylesheets/_neat.scss";
 
-@import '../partials/variables'; // colors, fonts etc...
+@import 'resources/assets/sass/content-filter/partials/_variables.scss'; // colors, fonts etc...
 
-@import '../partials/mixins'; // custom mixins
+@import 'resources/assets/sass/content-filter/partials/_mixins.scss'; // custom mixins
 
-@import '../partials/layout'; // responsive grid and media queries
+@import 'resources/assets/sass/content-filter/partials/_layout.scss'; // responsive grid and media queries
 
 /* -------------------------------- 
 
