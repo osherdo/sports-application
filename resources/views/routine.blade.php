@@ -58,21 +58,21 @@ Give your routine a name: {!! Form::text('username'); !!}
 	<section class="cd-gallery">
 		<ul>
 			<!--biceps exercises -->
-
-			<li class="mix biceps check1 radio1 option1"><img src="images/exercises/biceps/Alternate Hammer Curl.jpg" alt="Image 1"></li>
-			<li class="mix biceps check2 radio2 option2"><img src="images/exercises/biceps/Barbell Curl.jpg" alt="Image 2"></li>
-			<li class="mix biceps check3 radio3 option3"><img src="images/exercises/biceps/Barbell Curls Lying Against An Incline.jpg" alt="Image 3"></li>
-			<li class="mix biceps check4 radio4 option4"><img src="images/exercises/biceps/Cable Hammer Curls - Rope Attachment.jpg" alt="Image 4"></li>
-			<li class="mix biceps check5 radio5 option5"><img src="images/exercises/biceps/Close-Grip EZ-Bar Curl with Band.jpg" alt="Image 5"></li>
+			<div class="elements">
+			<li class="mix biceps check1 radio1 option1"><img src="images/exercises/biceps/Alternate Hammer Curl.jpg" alt="Image 1" data-text="first image"></li>
+			<li class="mix biceps check2 radio2 option2"><img src="images/exercises/biceps/Barbell Curl.jpg" alt="Image 2" data-text="second image"></li>
+			<li class="mix biceps check3 radio3 option3"><img src="images/exercises/biceps/Barbell Curls Lying Against An Incline.jpg" alt="Image 3" data-text="third image"></li>
+			<li class="mix biceps check4 radio4 option4"><img src="images/exercises/biceps/Cable Hammer Curls - Rope Attachment.jpg" alt="Image 4" data-text="fourth image"></li>
+			<li class="mix biceps check5 radio5 option5"><img src="images/exercises/biceps/Close-Grip EZ-Bar Curl with Band.jpg" alt="Image 5" data-text="fifth image"></li>
 			<!-- <li class="gap"></li> --> <!-- Creating a gap on abdominals section -->
 
 			<!--abdominals exercises -->
 
-			<li class="mix abdominals check1 radio1 option1"><img src="images/exercises/abdominals/bottoms up.jpg" alt="Image 1"></li>
-			<li class="mix abdominals check1 radio1 option1"><img src="images/exercises/abdominals/Frog Sit-Ups.jpg" alt="Image 1"></li>
-			<li class="mix abdominals check1 radio1 option1"><img src="images/exercises/abdominals/Hanging Oblique Knee Raise.jpg" alt="Image 1"></li>
-			<li class="mix abdominals check1 radio1 option1"><img src="images/exercises/abdominals/plank.jpg" alt="Image 1"></li>
-			<li class="mix abdominals check1 radio1 option1"><img src="images/exercises/abdominals/Wind Sprints.jpg	" alt="Image 1"></li>
+			<li class="mix abdominals check1 radio1 option1"><img src="images/exercises/abdominals/bottoms up.jpg" alt="Image 1" data-text="sixth image"></li>
+			<li class="mix abdominals check1 radio1 option1"><img src="images/exercises/abdominals/Frog Sit-Ups.jpg" alt="Image 1" data-text="seventh image"></li>
+			<li class="mix abdominals check1 radio1 option1"><img src="images/exercises/abdominals/Hanging Oblique Knee Raise.jpg" alt="Image 1" data-text="eight image"></li>
+			<li class="mix abdominals check1 radio1 option1"><img src="images/exercises/abdominals/plank.jpg" alt="Image 1" data-text="ninth image"></li>
+			<li class="mix abdominals check1 radio1 option1"><img src="images/exercises/abdominals/Wind Sprints.jpg	" alt="Image 1" data-text="tenth image"></li>
 
 			<!--back exercises -->
 
@@ -125,6 +125,7 @@ Give your routine a name: {!! Form::text('username'); !!}
 			<li class="mix triceps check1 radio1 option1"><img src="images/exercises/triceps/Seated Triceps Press.jpg" alt="Image 1"></li>
 
 			<li class="mix triceps check1 radio1 option1"><img src="images/exercises/triceps/Weighted Bench Dip.jpg" alt="Image 1"></li>
+		</div>
 		</ul>
 		<div class="cd-fail-message">No results found</div>
 	</section> <!-- cd-gallery -->
@@ -145,9 +146,39 @@ Give your routine a name: {!! Form::text('username'); !!}
  
 	<a href="#0" class="cd-filter-trigger">Filters</a>
 </main> <!-- cd-main-content -->
+
 <!--hidden field for the images textbox. -->
 
  <input type="hidden" id="show_text_box">
+
+<!-- div for the text box and submit of each image. -->
+ <div class="info_box" >
+      <div class="elem-msg clear">
+        <!-- now the different text will reside here -->
+      </div>
+      <form action="">
+        <input type="hidden" id="ID will come from js"><!-- this(hidden input) will be used to pass the parameter -->
+        <button type="submit">
+          ADD TO ROUTINE <!-- will submit the form -->
+        </button>
+      </form>
+    </div>
+
+   <script>
+    $(function(){
+    	/* elems is a name that preceding the selectors.
+			get all img tags found inside li tags and fire the function.
+			Then bind to the elem-msg div (which is inside the info_box) the elemText value.
+		*/
+ 	$('.elements li img').click(function(){
+        elemText = $(this).attr('data-text');
+        //elemId = $(this).attr('id');
+        $('.info_box .elem-msg').html(elemText); 
+        //$('.info_box input[type="hidden"]').attr('id',elemId);
+      })
+    })
+    </script>
+
     
 {!! Form::close() !!}
 
