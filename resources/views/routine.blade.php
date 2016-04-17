@@ -125,11 +125,6 @@ Give your routine a name: {!! Form::text('username'); !!}
 			<li class="mix triceps check1 radio1 option1"><img src="images/exercises/triceps/Seated Triceps Press.jpg" alt="Image 1"></li>
 
 			<li class="mix triceps check1 radio1 option1"><img src="images/exercises/triceps/Weighted Bench Dip.jpg" alt="Image 1"></li>
-
-
-
-
-
 		</ul>
 		<div class="cd-fail-message">No results found</div>
 	</section> <!-- cd-gallery -->
@@ -150,7 +145,9 @@ Give your routine a name: {!! Form::text('username'); !!}
  
 	<a href="#0" class="cd-filter-trigger">Filters</a>
 </main> <!-- cd-main-content -->
+<!--hidden field for the images textbox. -->
 
+ <input type="hidden" id="show_text_box">
     
 {!! Form::close() !!}
 
