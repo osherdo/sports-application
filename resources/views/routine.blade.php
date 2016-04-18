@@ -155,6 +155,7 @@ Give your routine a name: {!! Form::text('username'); !!}
 <div class="body-inactive"></div>
  <div class="info_box" >
  	<a href="javascript:;" id="closeIt">X</a> <!-- the x for closing the info_box -->
+ 	<img class="exercise_img img-responsive">
       <div class="elem-msg clear">
         <!-- now the different text will reside here -->
       </div>
@@ -176,6 +177,8 @@ Give your routine a name: {!! Form::text('username'); !!}
  		$('.body-inactive').show();
  		 $('.info_box').fadeIn(2000); // The info_box hidden using the css, this line of js is telling that, if the img is being clicked, the info_box should be visible(fadeIn) with a transition of 2000ms.
         elemText = $(this).attr('data-text');
+        elemSrc = $(this).attr('src'); //Getting the img src (to be viewed in the info_box).
+        $('.info_box .exercise_img').attr('src',elemSrc); // get the value (image) of the src tag that the function gets from the html code.
         //elemId = $(this).attr('id');
         $('.info_box .elem-msg').html(elemText); 
         //$('.info_box input[type="hidden"]').attr('id',elemId);
