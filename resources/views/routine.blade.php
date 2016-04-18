@@ -152,7 +152,9 @@ Give your routine a name: {!! Form::text('username'); !!}
  <input type="hidden" id="show_text_box">
 
 <!-- div for the text box and submit of each image. -->
+<div class="body-inactive"></div>
  <div class="info_box" >
+ 	<a href="javascript:;" id="closeIt">X</a> <!-- the x for closing the info_box -->
       <div class="elem-msg clear">
         <!-- now the different text will reside here -->
       </div>
@@ -171,6 +173,8 @@ Give your routine a name: {!! Form::text('username'); !!}
 			Then bind to the elem-msg div (which is inside the info_box) the elemText value.
 		*/
  	$('.elements li img').click(function(){
+ 		$('.body-inactive').show();
+ 		 $('.info_box').fadeIn(2000); // The info_box hidden using the css, this line of js is telling that, if the img is being clicked, the info_box should be visible(fadeIn) with a transition of 2000ms.
         elemText = $(this).attr('data-text');
         //elemId = $(this).attr('id');
         $('.info_box .elem-msg').html(elemText); 
@@ -179,6 +183,84 @@ Give your routine a name: {!! Form::text('username'); !!}
     })
     </script>
 
+<!-- script for closing the info_box -->
+
+    <script>
+  $(function(){
+    $('a#closeIt, .body-inactive').click(function(){
+      $('.info_box,.body-inactive').fadeOut(350);
+    });
+  })
+</script>
+
+<!--sidebar code. -->
+
+<div id="wrapper">
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand"><a href="#">Routine Plan:</a>
+            </li>
+            <!-- Here place the routine exercises with division per muscle group -->
+            <li><a href="#">Dashboard</a>
+            </li>
+            <li><a href="#">Shortcuts</a>
+            </li>
+
+            <li><a href="#">Overview</a>
+            </li>
+            <li><a href="#">Events</a>
+            </li>
+            <li><a href="#">About</a>
+            </li>
+            <li><a href="#">Services</a>
+            </li>
+            <li><a href="#">Contact</a>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- Page content -->
+    <div id="page-content-wrapper">
+        <div class="content-header">
+            <h1>
+                <a id="menu-toggle" href="#" class="btn btn-default"><i class="glyphicon glyphicon-th-list"></i></a>
+                Bootstrap Sidebar
+            </h1>
+        </div>
+        <!-- Keep all page content within the page-content inset div! -->
+        <div class="page-content inset">
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="lead">This simple sidebar template has a hint of JavaScript to make the template responsive. It also includes Font Awesome icon fonts.</p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="well">The template still uses the default Bootstrap rows and columns.</p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="well">But the full-width layout means that you wont be using containers.</p>
+                </div>
+                <div class="col-sm-4">
+                    <p class="well">Three Column Example</p>
+                </div>
+                <div class="col-sm-4">
+                    <p class="well">Three Column Example</p>
+                </div>
+                <div class="col-sm-4">
+                    <p class="well">You get the idea! Do whatever you want in the page content area!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- script for ths sidebar routine -->
+
+<script>
+$("#menu-toggle").click(function(e) {
+  e.preventDefault();
+  $("#wrapper").toggleClass("active");
+});
+</script>
     
 {!! Form::close() !!}
 
