@@ -4,6 +4,7 @@
  <script type="text/javascript" src="{!! asset('js/content-filter/jquery.mixitup.min.js') !!}"></script>
  <script type="text/javascript" src="{!! asset('js/content-filter/main.js') !!}"></script> 
  <script type="text/javascript" src="{!! asset('js/content-filter/modernizr.js') !!}"></script> 
+<link rel="stylesheet" href="{{ URL::asset('css/simple-sidebar.css') }}" />
 
 @stop
 
@@ -198,73 +199,96 @@ Give your routine a name: {!! Form::text('username'); !!}
 
 <!--sidebar code. -->
 
-<div id="wrapper">
-    <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li class="sidebar-brand"><a href="#">Routine Plan:</a>
-            </li>
-            <!-- Here place the routine exercises with division per muscle group -->
-            <li><a href="#">Dashboard</a>
-            </li>
-            <li><a href="#">Shortcuts</a>
-            </li>
+  <title>Simple Sidebar - Start Bootstrap Template</title>
 
-            <li><a href="#">Overview</a>
-            </li>
-            <li><a href="#">Events</a>
-            </li>
-            <li><a href="#">About</a>
-            </li>
-            <li><a href="#">Services</a>
-            </li>
-            <li><a href="#">Contact</a>
-            </li>
-        </ul>
-    </div>
-    
-    <!-- Page content -->
-    <div id="page-content-wrapper">
-        <div class="content-header">
-            <h1>
-                <a id="menu-toggle" href="#" class="btn btn-default"><i class="glyphicon glyphicon-th-list"></i></a>
-                Bootstrap Sidebar
-            </h1>
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Start Bootstrap
+                    </a>
+                </li>
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li>
+                    <a href="#">Shortcuts</a>
+                </li>
+                <li>
+                    <a href="#">Overview</a>
+                </li>
+                <li>
+                    <a href="#">Events</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+            </ul>
         </div>
-        <!-- Keep all page content within the page-content inset div! -->
-        <div class="page-content inset">
-            <div class="row">
-                <div class="col-sm-12">
-                    <p class="lead">This simple sidebar template has a hint of JavaScript to make the template responsive. It also includes Font Awesome icon fonts.</p>
-                </div>
-                <div class="col-sm-6">
-                    <p class="well">The template still uses the default Bootstrap rows and columns.</p>
-                </div>
-                <div class="col-sm-6">
-                    <p class="well">But the full-width layout means that you wont be using containers.</p>
-                </div>
-                <div class="col-sm-4">
-                    <p class="well">Three Column Example</p>
-                </div>
-                <div class="col-sm-4">
-                    <p class="well">Three Column Example</p>
-                </div>
-                <div class="col-sm-4">
-                    <p class="well">You get the idea! Do whatever you want in the page content area!</p>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Simple Sidebar</h1>
+                        <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
+                        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- /#page-content-wrapper -->
+
     </div>
-</div>
+    <!-- /#wrapper -->
 
-<!-- script for ths sidebar routine -->
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
 
-<script>
-$("#menu-toggle").click(function(e) {
-  e.preventDefault();
-  $("#wrapper").toggleClass("active");
-});
-</script>
-    
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+<!-- end of html structure for sidebar routine. -->
+
+
+
 {!! Form::close() !!}
 
 @stop {{-- ending the current section 'content' --}}
