@@ -490,7 +490,29 @@ Main Components
     }
   }
 }
-
+.affix.showSidebar{
+   top: 50px!important;
+   }
+.showSidebar{
+    right: 0px; /* show the sidebar from the right */
+    left: auto!important;
+    display: inherit!important;
+}
+#sidebar-nav{
+left: auto!important;
+ display: none;
+ ul{
+ list-style: none;
+ padding-left: 10px;
+ }
+}
+#wrapper.pushWrapper {
+    -webkit-transform: translate3d(-250px, 0, 0)!important;
+    -moz-transform: translate3d(-250px, 0, 0)!important;
+    -ms-transform: translate3d(-250px, 0, 0)!important;
+    -o-transform: translate3d(-250px, 0, 0)!important;
+    transform: translate3d(-250px, 0, 0)!important;
+}
 .cd-main-content {
   position: relative;
   min-height: 100vh;
@@ -500,7 +522,7 @@ Main Components
     .cd-tab-filter-wrapper {
       position: fixed;
       top: 0;
-      left: 0;
+      right: 0;
       width: 100%;
     }
 

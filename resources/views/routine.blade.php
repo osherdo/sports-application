@@ -36,7 +36,7 @@ Give your routine a name: {!! Form::text('username'); !!}
 	<h1>Now pick your routine exercises:</h1>
 </header>
  
-<main class="cd-main-content">
+<main class="cd-main-content" >
 	<div class="cd-tab-filter-wrapper">
 		<div class="cd-tab-filter">
 			<ul class="cd-filters">
@@ -199,92 +199,116 @@ Give your routine a name: {!! Form::text('username'); !!}
 
 <!--sidebar code. -->
 
-  <title>Simple Sidebar - Start Bootstrap Template</title>
+ 	<style>
+		*,
+		*:before,
+		*:after{
+			padding:0;
+			margin:0;
+		}
 
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+		body{
+			font-size:20px;
+		}
+	</style>
 
-    <!-- Custom CSS -->
-    <link href="css/simple-sidebar.css" rel="stylesheet">
+	<div id="sidebar-nav" data-spy="affix" data-offset-top="197">
+		<ul>
+			<li>
+				<a href="">Item One</a>
+			</li>
+			<li>
+				<a href="">Item One</a>
+			</li>
+			<li>
+				<a href="">Item One</a>
+			</li>
+			<li>
+				<a href="">Item One</a>
+			</li>
+			<li>
+				<a href="">Item One</a>
+			</li>
+		</ul>
+	</div>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+	<div id="wrapper">
+		<div id="toggle-button">
+			<a href="javascript:;">
+				Toggle Offcanvas(click to see what happens next)
+			</a>
+		</div>
+		<br>
+		<br>
 
-</head>
+		Hi Osher,
 
-<body>
+		<br>
+		<br>
+		
+		<b>NOTE:</b> Probably you have had your pc off, so I was unable to download the files, But seeing your rush, I here write the code of pushing menu, without waiting you till evening.
+		
+		<br>
+		<br>
+		
+		<strong>OUTPUT: Click on toggle Canvas button to see the result. </strong>
+		<br>
+		<br>
 
-    <div id="wrapper">
+		Here you will find a very easy way to do the pushing menu.
 
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="#">
-                        Start Bootstrap
-                    </a>
-                </li>
-                <li>
-                    <a href="#">Dashboard</a>
-                </li>
-                <li>
-                    <a href="#">Shortcuts</a>
-                </li>
-                <li>
-                    <a href="#">Overview</a>
-                </li>
-                <li>
-                    <a href="#">Events</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">Services</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
+		<br>
+		<br>
 
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1>Simple Sidebar</h1>
-                        <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /#page-content-wrapper -->
+		First find the siderbar-nav elements,
+		<br>
+		<br>
 
-    </div>
-    <!-- /#wrapper -->
+		Second Find the wrapper elements,
+		<br>
+		<br>
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+		Third find that the toggle button resides within the wrapper.
+		<br>
+		<br>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+		Use only style.css file, the css from the html page is not required.
+		<br>
+		<br>
 
-    <!-- Menu Toggle Script -->
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
+		You don't need the CDN file for jquery, you have that already.
+		<br>
+		<br>
+		Find 3 line of code for jquery doing all the things for moving the wrapper and revealing the side menu.
+		<br>
+		<br>
+		NOTE: Styling is not done for the sidebar, but that will be peice of cake, I guess.
+		<br>
+		<br>
+		Also, note how the markups been written, WHILE DOING THE OFFCANVAS PUSH MENUS, you need to be extra sensitive about the markups.
 
+		<br>
+		<br>
+		Try this out when you get back to your pc, I hope you'll get it as expected. First run this file in your browser, and take pieces of code out of it. So that the original is preserved and you can do back and forth to make your code working.
+
+		<br>
+		<br>
+		And ofcousrse feel free to ask me whenever you find yourself in a difficult position.
+		<br>
+		<br>
+		HAPPY CODING.
+	</div>
+
+	
+
+	<script>
+		$(function(){
+			$('#toggle-button a').click(function(){
+				$('#sidebar-nav').toggleClass('showSidebar');
+				$('#wrapper').toggleClass('pushWrapper');
+			});
+		})
+	</script>
 <!-- end of html structure for sidebar routine. -->
 
 
