@@ -4,7 +4,6 @@
  <script type="text/javascript" src="{!! asset('js/content-filter/jquery.mixitup.min.js') !!}"></script>
  <script type="text/javascript" src="{!! asset('js/content-filter/main.js') !!}"></script> 
  <script type="text/javascript" src="{!! asset('js/content-filter/modernizr.js') !!}"></script> 
-<link rel="stylesheet" href="{{ URL::asset('css/simple-sidebar.css') }}" />
 
 @stop
 
@@ -146,6 +145,14 @@ Give your routine a name: {!! Form::text('username'); !!}
 	</div> <!-- cd-filter -->
  
 	<a href="#0" class="cd-filter-trigger">Filters</a>
+
+		<div id="toggle-button">
+	<!-- <a href="javascript:;"> refers to a js code. the js code is the jquery at the bottom. The jquery gets the a href by the selector. I am using only empty ahref jquery (without <a href="javascript:;"> instead) -->
+		<a href="">																			
+				Toggle Offcanvas(click to see what happens next)
+			</a>
+		</div>
+
 </main> <!-- cd-main-content -->
 
 <!--hidden field for the images textbox. -->
@@ -161,8 +168,8 @@ Give your routine a name: {!! Form::text('username'); !!}
         <!-- now the different text will reside here -->
       </div>
       <form action="">
-        <input type="hidden" id="ID will come from js"><!-- this(hidden input) will be used to pass the parameter -->
-        <button type="submit">
+        <input type="hidden" id="ID will come from js"> <!-- this(hidden input) will be used to pass the parameter -->
+        <button type="submit" id="add_to_routine" form>
           ADD TO ROUTINE <!-- will submit the form -->
         </button>
       </form>
@@ -170,7 +177,7 @@ Give your routine a name: {!! Form::text('username'); !!}
 
    <script>
     $(function(){
-    	/* elems is a name that preceding the selectors.
+    	/* elements is a name that preceding the selectors.
 			get all img tags found inside li tags and fire the function.
 			Then bind to the elem-msg div (which is inside the info_box) the elemText value.
 		*/
@@ -212,106 +219,35 @@ Give your routine a name: {!! Form::text('username'); !!}
 		}
 	</style>
 
-	<div id="sidebar-nav" data-spy="affix" data-offset-top="197">
+<div id="sidebar-nav">
 		<ul>
-			<li>
-				<a href="">Item One</a>
-			</li>
-			<li>
-				<a href="">Item One</a>
-			</li>
-			<li>
-				<a href="">Item One</a>
-			</li>
-			<li>
-				<a href="">Item One</a>
-			</li>
-			<li>
-				<a href="">Item One</a>
-			</li>
+		<form>
+			<!-- content will come here from js as li elements -->
+
+			<button type="submit">Submit</button>
+			</form>
 		</ul>
-	</div>
-
-	<div id="wrapper">
-		<div id="toggle-button">
-			<a href="javascript:;">
-				Toggle Offcanvas(click to see what happens next)
-			</a>
-		</div>
-		<br>
-		<br>
-
-		Hi Osher,
-
-		<br>
-		<br>
-		
-		<b>NOTE:</b> Probably you have had your pc off, so I was unable to download the files, But seeing your rush, I here write the code of pushing menu, without waiting you till evening.
-		
-		<br>
-		<br>
-		
-		<strong>OUTPUT: Click on toggle Canvas button to see the result. </strong>
-		<br>
-		<br>
-
-		Here you will find a very easy way to do the pushing menu.
-
-		<br>
-		<br>
-
-		First find the siderbar-nav elements,
-		<br>
-		<br>
-
-		Second Find the wrapper elements,
-		<br>
-		<br>
-
-		Third find that the toggle button resides within the wrapper.
-		<br>
-		<br>
-
-		Use only style.css file, the css from the html page is not required.
-		<br>
-		<br>
-
-		You don't need the CDN file for jquery, you have that already.
-		<br>
-		<br>
-		Find 3 line of code for jquery doing all the things for moving the wrapper and revealing the side menu.
-		<br>
-		<br>
-		NOTE: Styling is not done for the sidebar, but that will be peice of cake, I guess.
-		<br>
-		<br>
-		Also, note how the markups been written, WHILE DOING THE OFFCANVAS PUSH MENUS, you need to be extra sensitive about the markups.
-
-		<br>
-		<br>
-		Try this out when you get back to your pc, I hope you'll get it as expected. First run this file in your browser, and take pieces of code out of it. So that the original is preserved and you can do back and forth to make your code working.
-
-		<br>
-		<br>
-		And ofcousrse feel free to ask me whenever you find yourself in a difficult position.
-		<br>
-		<br>
-		HAPPY CODING.
-	</div>
+	</div>								
 
 	
-
 	<script>
 		$(function(){
-			$('#toggle-button a').click(function(){
-				$('#sidebar-nav').toggleClass('showSidebar');
-				$('#wrapper').toggleClass('pushWrapper');
-			});
-		})
+   $('#toggle-button a').click(function(e){
+    $('#sidebar-nav').toggleClass('showSidebar'); // Shows the side bar (from the right, when clicking on the button, with the help of css).
+    $('main').toggleClass('pushWrapper'); // This makes the transition for the sidebar in the css file.
+e.preventDefault(); // Prevent the anchor tag to refresh the page or taking it to other page , with e.preventDefault(), same as the javascript:; did. 
+   });
+  })
+
 	</script>
 <!-- end of html structure for sidebar routine. -->
 
-
+<!-- Script for adding exercises to sidebar 
+<script>
+$(function(){
+	$('#')
+})
+--> 
 
 {!! Form::close() !!}
 
