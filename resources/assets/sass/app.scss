@@ -558,6 +558,10 @@ main {
 
 }
 
+#sidebar-nav ul form button[type="submit"]{
+  display: none;
+}
+
 .cd-main-content {
   position: relative;
   min-height: 100vh;
@@ -571,9 +575,7 @@ main {
       width: 100%;
     }
 
-#sidebar-nav ul form button[type="submit"]{
-  display: none;
-}
+
     .cd-gallery {
       padding-top: 26px+$tab-filter-height;
     }

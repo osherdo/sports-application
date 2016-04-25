@@ -59,9 +59,15 @@ Give your routine a name: {!! Form::text('username'); !!}
 		<ul>
 			<!--biceps exercises -->
 			<div class="elements">
-			<li class="mix biceps check1 radio1 option1"><img src="images/exercises/biceps/Alternate Hammer Curl.jpg" alt="Image 1" data-text="first image"></li>
-			<li class="mix biceps check2 radio2 option2"><img src="images/exercises/biceps/Barbell Curl.jpg" alt="Image 2" data-text="second image"></li>
-			<li class="mix biceps check3 radio3 option3"><img src="images/exercises/biceps/Barbell Curls Lying Against An Incline.jpg" alt="Image 3" data-text="third image"></li>
+			<!-- data-id - data from the database.
+
+			data-state="false" means that, it is not added to sidebar yet.
+
+			class="r1" 1 is again a id(same as data id) which will come from the database, and r is short term for routine
+			 -->	
+			<li class="mix biceps check1 radio1 option1"><img src="images/exercises/biceps/1.jpg" alt="Image 1" data-text="first image"  data-id="1" data-state="false" class="r1"></li>
+			<li class="mix biceps check2 radio2 option2"><img src="images/exercises/biceps/Barbell Curl.jpg" alt="Image 2" data-text="second image"  data-id="2" data-state="false" class="r2"></li>
+			<li class="mix biceps check3 radio3 option3"><img src="images/exercises/biceps/Barbell Curls Lying Against An Incline.jpg" alt="Image 3" data-text="third image" data-id="3" data-state="false" class="r3"></li>
 			<li class="mix biceps check4 radio4 option4"><img src="images/exercises/biceps/Cable Hammer Curls - Rope Attachment.jpg" alt="Image 4" data-text="fourth image"></li>
 			<li class="mix biceps check5 radio5 option5"><img src="images/exercises/biceps/Close-Grip EZ-Bar Curl with Band.jpg" alt="Image 5" data-text="fifth image"></li>
 			<!-- <li class="gap"></li> --> <!-- Creating a gap on abdominals section -->
@@ -160,38 +166,85 @@ Give your routine a name: {!! Form::text('username'); !!}
  <input type="hidden" id="show_text_box">
 
 <!-- div for the text box and submit of each image. -->
+
 <div class="body-inactive"></div>
- <div class="info_box" >
- 	<a href="javascript:;" id="closeIt">X</a> <!-- the x for closing the info_box -->
- 	<img class="exercise_img img-responsive">
-      <div class="elem-msg clear">
-        <!-- now the different text will reside here -->
-      </div>
-      <form action="">
-        <input type="hidden" id="ID will come from js"> <!-- this(hidden input) will be used to pass the parameter -->
-        <button type="submit" id="add_to_routine" form>
-          ADD TO ROUTINE <!-- will submit the form -->
-        </button>
-      </form>
-    </div>
+
+<div class="info_box" >
+		<a href="javascript:;" id="closeIt">X</a> <!-- the x for closing the info_box -->
+		<div class="info_content"  id="" data-state=""> 
+			
+			<img class="exercise_img img-responsive">
+			<div class="elem-msg clear">
+				<!-- now the different text will reside here -->
+			</div>
+			<a href="" class="add_to_routine"> <!-- will submit the form -->
+				ADD TO ROUTINE 
+			</a>
+		</div>
+	</div>
 
    <script>
     $(function(){
     	/* elements is a name that preceding the selectors.
 			get all img tags found inside li tags and fire the function.
-			Then bind to the elem-msg div (which is inside the info_box) the elemText value.
+			
 		*/
  	$('.elements li img').click(function(){
  		$('.body-inactive').show();
+ 		elemSrc = $(this).attr('src');  //Getting the img src (to be viewed in the info_box).
+
+ 		// Parameters associated with the routines (used to interact with the database):
+
+		elemId = $(this).attr('data-id');
+		elemText = $(this).attr('data-text'); //get data text attribute from the image clicked.
+		elemState = $(this).attr('data-state');
  		 $('.info_box').fadeIn(2000); // The info_box hidden using the css, this line of js is telling that, if the img is being clicked, the info_box should be visible(fadeIn) with a transition of 2000ms.
-        elemText = $(this).attr('data-text');
-        elemSrc = $(this).attr('src'); //Getting the img src (to be viewed in the info_box).
-        $('.info_box .exercise_img').attr('src',elemSrc); // get the value (image) of the src tag that the function gets from the html code.
-        //elemId = $(this).attr('id');
-        $('.info_box .elem-msg').html(elemText); 
-        //$('.info_box input[type="hidden"]').attr('id',elemId);
-      })
-    })
+
+ 		 // Next the two lines beyond says:
+
+ 		 $('.info_box .info_content').attr('id',elemId); //refer to the div info_content inside the div info_box -then fill its attribute called id witht eh value of elemId variable.
+ 		 //Same thing for the two lines beyond as well. as well.
+
+				$('.info_box .info_content').attr('data-state',elemState);
+				$('.info_box .info_content .exercise_img').attr('src',elemSrc);
+
+				// Bind to the elem-msg div (which is inside the info_box) the elemText value.
+				$('.info_box .info_content .elem-msg').html(elemText); 
+
+				if(elemState == 'false'){
+					//accesses the ahref and changes it.add the content of class add_to_routine . also clear out previous data of text,id.state and others.also clear out the text if it's writing: "already added".
+					$('.info_box .info_content a').addClass('add_to_routine').html('ADD TO ROUTINE ');
+				}
+
+
+			});
+
+			$('.add_to_routine').click(function(e){
+				// this function will only be for those who have data-state as false.
+				findId = $(this).parent('').attr('id'); // Refer to the parent div which is info_content and access its id attribute. Accessing the parent will give us access to attributes of id and state.
+				findImg = $(this).parent('').children('img').attr('src');
+				findText = $(this).parent('').children('.elem-msg').html();
+
+				findIfAlreadyChecked = $('.elements li img.r'+findId).attr('data-state');
+				if(findIfAlreadyChecked == 'true'){
+				}
+				else{
+					elem= '<li>';
+					elem+= '<input type="hidden" value='+findId+'>';
+					elem+= '<img src='+findImg+'>';
+					elem+= '<span>' + findText + '</span>';
+					elem+= '</li>';
+					$('#sidebar-nav ul form button').before(elem);
+					$('#sidebar-nav ul form button[type="submit"]').show();
+
+			// acknowledging that this routine has been added
+			$('.elements li img.r'+findId).attr('data-state','true');
+			// if routine is added, then add to button is of no need
+			$(this).removeClass('add_to_routine').html('Exercise Added');
+		}
+		e.preventDefault();
+	});
+		});
     </script>
 
 <!-- script for closing the info_box -->
@@ -238,7 +291,6 @@ Give your routine a name: {!! Form::text('username'); !!}
 e.preventDefault(); // Prevent the anchor tag to refresh the page or taking it to other page , with e.preventDefault(), same as the javascript:; did. 
    });
   })
-
 	</script>
 <!-- end of html structure for sidebar routine. -->
 
