@@ -40,6 +40,7 @@ Give your routine a name: {!! Form::text('username'); !!}
 		<div class="cd-tab-filter">
 			<ul class="cd-filters">
 				<li class="placeholder"> 
+					<!-- Filter through the various exercises types (not the sidebar). -->
 					<a data-type="all" href="#0">All</a> <!-- selected option on mobile -->
 				</li> 
 				<li class="filter"><a class="selected" href="#0" data-type="all">All</a></li>
@@ -50,7 +51,7 @@ Give your routine a name: {!! Form::text('username'); !!}
 				<li class="filter" data-filter=".legs"><a href="#0" data-type="legs">Legs</a></li>
 				<li class="filter" data-filter=".shoulders"><a href="#0" data-type="shoulders">Shoulders</a></li>
 				<li class="filter" data-filter=".triceps"><a href="#0" data-type="triceps">Triceps</a></li>
-				<li class="filter" data-filter=".test"><a href="#0" data-type="test">Test</a></li>
+				
 			</ul> <!-- cd-filters -->
 		</div> <!-- cd-tab-filter -->
 	</div> <!-- cd-tab-filter-wrapper -->
@@ -139,12 +140,74 @@ Give your routine a name: {!! Form::text('username'); !!}
 	<div class="cd-filter">
 		<form>
 			<div class="cd-filter-block">
-				<h4>Block title</h4>
-				
-				<div class="cd-filter-content">
-					<!-- filter content -->
-				</div> <!-- cd-filter-content -->
+				<h4>Search</h4>
+					
+					<div class="cd-filter-content">
+						<input type="search" placeholder="Search">
+					</div> <!-- cd-filter-content -->
 			</div> <!-- cd-filter-block -->
+			<!-- checkboxes -side filter. -->
+			<div class="cd-filter-block">
+					<h4>Check boxes</h4>
+
+					<ul class="cd-filter-content cd-filters list">
+						<li>
+							<input class="filter" data-filter=".biceps" type="checkbox" id="checkbox1">
+			    			<label class="checkbox-label" for="checkbox1">Biceps</label>
+						</li>
+
+						<li>
+							<input class="filter" data-filter=".abdominals" type="checkbox" id="checkbox2">
+							<label class="checkbox-label" for="checkbox2">Abdominals</label>
+						</li>
+
+						<li>
+							<input class="filter" data-filter=".back" type="checkbox" id="checkbox3">
+							<label class="checkbox-label" for="checkbox3">Back</label>
+						</li>
+
+						<li>
+							<input class="filter" data-filter=".chest" type="checkbox" id="checkbox4">
+							<label class="checkbox-label" for="checkbox4">Chest</label>
+						</li>
+
+						<li>
+							<input class="filter" data-filter=".legs" type="checkbox" id="checkbox5">
+							<label class="checkbox-label" for="checkbox5">Legs</label>
+						</li>
+
+						<li>
+							<input class="filter" data-filter=".shoulders" type="checkbox" id="checkbox6">
+							<label class="checkbox-label" for="checkbox6">Shoulders</label>
+						</li>
+
+						<li>
+							<input class="filter" data-filter=".triceps" type="checkbox" id="checkbox7">
+							<label class="checkbox-label" for="checkbox7">Triceps</label>
+						</li>
+					</ul> <!-- cd-filter-content -->
+				</div> <!-- cd-filter-block -->
+
+				<div class="cd-filter-block">
+					<h4>Radio buttons</h4>
+
+					<ul class="cd-filter-content cd-filters list">
+						<li>
+							<input class="filter" data-filter="" type="radio" name="radioButton" id="radio1" checked>
+							<label class="radio-label" for="radio1">All</label>
+						</li>
+
+						<li>
+							<input class="filter" data-filter=".radio2" type="radio" name="radioButton" id="radio2">
+							<label class="radio-label" for="radio2">Choice 2</label>
+						</li>
+
+						<li>
+							<input class="filter" data-filter=".radio3" type="radio" name="radioButton" id="radio3">
+							<label class="radio-label" for="radio3">Choice 3</label>
+						</li>
+					</ul> <!-- cd-filter-content -->
+				</div> <!-- cd-filter-block -->
 		</form>
  
 		<a href="#0" class="cd-close">Close</a>
