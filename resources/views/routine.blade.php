@@ -29,7 +29,7 @@
 
 Pick your routine type: {!! Form::select('type', ['Aerobic' => 'Aerobic', 'Anaerobic' => 'Anaerobic']); !!} <br><br>
 
-Give your routine a name: {!! Form::text('username'); !!}
+Give your routine a name: {!! Form::text('routine_name'); !!}
 
 <header class="cd-header">
 	<h1>Now pick your routine exercises:</h1>
@@ -66,77 +66,78 @@ Give your routine a name: {!! Form::text('username'); !!}
 
 			class="r1" 1 is again a id(same as data id) which will come from the database, and r is short term for routine
 			 -->	
-			<li class="mix biceps check1 radio1 option1"><img src="images/exercises/biceps/alternate_hammer_curl.jpg" alt="Alternate Hammer Curl" data-text="Alternate Hammer Curl"  data-id="1" data-state="false" class="r1" name="alternate_hammer_curl"></li>
-			<li class="mix biceps check2 radio2 option2"><img src="images/exercises/biceps/barbell_curl.jpg" alt="Barbell Curl" data-text="Barbell Curl"  data-id="2" data-state="false" class="r2" name="barbell_curl"></li>
-			<li class="mix biceps check3 radio3 option3"><img src="images/exercises/biceps/barbell_curls_lying_against_an_incline.jpg" alt="Barbell Curls Lying Against An Incline" data-text="Barbell Curls Lying Against An Incline" data-id="3" data-state="false" class="r3" name="barbell_curls_lying_against_an_incline"></li>
-			<li class="mix biceps check4 radio4 option4"><img src="images/exercises/biceps/cable_hammer_curls_-_rope_attachment.jpg" alt="Cable Hammer Curls - Rope Attachment" data-text="Cable Hammer Curls - Rope Attachment" name="able_hammer_curls_-_rope_attachment"></li>
-			<li class="mix biceps check5 radio5 option5"><img src="images/exercises/biceps/close-grip_EZ-Bar_curl_with_band.jpg" alt="Close-Grip EZ-Bar Curl with Band" data-text="Close-Grip EZ-Bar Curl with Band" name="close-grip_EZ-Bar_curl_with_band"></li>
+			<li class="mix biceps check1 radio1 option1"><img src="images/exercises/biceps/alternate_hammer_curl.jpg" alt="Alternate Hammer Curl" data-text="Alternate Hammer Curl"  data-id="1" data-state="false" class="r1"></li>
+			<li class="mix biceps check1 radio1 option1"><img src="images/exercises/biceps/barbell_curl.jpg" alt="Barbell Curl" data-text="Barbell Curl"  data-id="2" data-state="false" class="r2"></li>
+			<li class="mix biceps check1 radio1 option1"><img src="images/exercises/biceps/barbell_curls_lying_against_an_incline.jpg" alt="Barbell Curls Lying Against An Incline" data-text="Barbell Curls Lying Against An Incline" data-id="3" data-state="false" class="r3" ></li>
+
+			<li class="mix biceps check1 radio1 option1"><img src="images/exercises/biceps/cable_hammer_curls_-_rope_attachment.jpg" alt="Cable Hammer Curls - Rope Attachment" data-text="Cable Hammer Curls - Rope Attachment" data-id="4" data-state="false" class="r4"></li>
+			<li class="mix biceps check1 radio1 option1"><img src="images/exercises/biceps/close-grip_EZ-Bar_curl_with_band.jpg" alt="Close-Grip EZ-Bar Curl with Band" data-text="Close-Grip EZ-Bar Curl with Band" data-id="5" data-state="false" class="r5"></li>
 			<!-- <li class="gap"></li> --> <!-- Creating a gap on abdominals section -->
 
-			<!-- Continue adding name attributes from here -->
 
 			<!--abdominals exercises -->
 
-			<li class="mix abdominals check1 radio1 option1"><img src="images/exercises/abdominals/bottoms_up.jpg" alt="Bottoms Up" data-text="Bottoms Up"></li>
-			<li class="mix abdominals check1 radio1 option1"><img src="images/exercises/abdominals/frog_sit-ups.jpg" alt="Frog Sit-Ups" data-text="Frog Sit-Ups"></li>
-			<li class="mix abdominals check1 radio1 option1"><img src="images/exercises/abdominals/hanging_oblique_knee_raise.jpg" alt="Hanging Oblique Knee Raise" data-text="Hanging Oblique Knee Raise"></li>
-			<li class="mix abdominals check1 radio1 option1"><img src="images/exercises/abdominals/plank.jpg" alt="plank" data-text="plank"></li>
-			<li class="mix abdominals check1 radio1 option1"><img src="images/exercises/abdominals/wind_sprints.jpg	" alt="Wind Sprints" data-text="Wind Sprints"></li>
+			<li class="mix abdominals check1 radio1 option1"><img src="images/exercises/abdominals/bottoms_up.jpg" alt="Bottoms Up" data-text="Bottoms Up" data-id="6" data-state="false" class="r6"></li>
+			<li class="mix abdominals check1 radio1 option1"><img src="images/exercises/abdominals/frog_sit-ups.jpg" alt="Frog Sit-Ups" data-text="Frog Sit-Ups" data-id="7" data-state="false" class="r7"></li>
+			<li class="mix abdominals check1 radio1 option1"><img src="images/exercises/abdominals/hanging_oblique_knee_raise.jpg" alt="Hanging Oblique Knee Raise" data-text="Hanging Oblique Knee Raise" data-id="8" data-state="false" class="r8"></li>
+			<li class="mix abdominals check1 radio1 option1"><img src="images/exercises/abdominals/plank.jpg" alt="plank" data-text="plank" data-id="9" data-state="false" class="r9"></li>
+			<li class="mix abdominals check1 radio1 option1"><img src="images/exercises/abdominals/wind_sprints.jpg	" alt="Wind Sprints" data-text="Wind Sprints" data-id="10" data-state="false" class="r10"></li>
 
 			<!--back exercises -->
 
-			<li class="mix back check1 radio1 option1"><img src="images/exercises/back/alternating_renegade_row.jpg" alt="alternating_renegade_row" data-text="Alternating Renegade Row"></li>
-			<li class="mix back check1 radio1 option1"><img src="images/exercises/back/bent_over_one-Arm_long_bar_row.jpg" alt="Bent Over One-Arm Long Bar Row" data-text="Bent Over One-Arm Long Bar Row"></li>
-			<li class="mix back check1 radio1 option1"><img src="images/exercises/back/bent_over_two-Dumbbell_row_with_palms_in.jpg" alt="Bent Over Two-Dumbbell Row With Palms In" data-text="Bent Over Two-Dumbbell Row With Palms In"></li>
-			<li class="mix back check1 radio1 option1"><img src="images/exercises/back/incline_bench_pull.jpg" alt="Incline Bench Pull" data-text="Incline Bench Pull"></li>
-			<li class="mix back check1 radio1 option1"><img src="images/exercises/back/mixed_grip_chin.jpg" alt="Mixed Grip Chin" data-text="Mixed Grip Chin"></li>
+			<li class="mix back check1 radio1 option1"><img src="images/exercises/back/alternating_renegade_row.jpg" alt="alternating_renegade_row" data-text="Alternating Renegade Row" data-id="11" data-state="false" class="r11" ></li>
+			<li class="mix back check1 radio1 option1"><img src="images/exercises/back/bent_over_one-Arm_long_bar_row.jpg" alt="Bent Over One-Arm Long Bar Row" data-text="Bent Over One-Arm Long Bar Row" data-id="12" data-state="false" class="r12"></li>
+			<li class="mix back check1 radio1 option1"><img src="images/exercises/back/bent_over_two-Dumbbell_row_with_palms_in.jpg" alt="Bent Over Two-Dumbbell Row With Palms In" data-text="Bent Over Two-Dumbbell Row With Palms In" data-id="13" data-state="false" class="r13"></li>
+			<li class="mix back check1 radio1 option1"><img src="images/exercises/back/incline_bench_pull.jpg" alt="Incline Bench Pull" data-text="Incline Bench Pull" data-id="14" data-state="false" class="r14"></li>
+			<li class="mix back check1 radio1 option1"><img src="images/exercises/back/mixed_grip_chin.jpg" alt="Mixed Grip Chin" data-text="Mixed Grip Chin" data-id="15" data-state="false" class="r15"></li>
 
 			<!-- chest exercises -->
 
-			<li class="mix chest check1 radio1 option1"><img src="images/exercises/chest/barbell_bench_press_-_medium_grip.jpg" alt="Barbell Bench Press - Medium Grip" data-text="Barbell Bench Press - Medium Grip"></li>
-			<li class="mix chest check1 radio1 option1"><img src="images/exercises/chest/cable_crossover.jpg" alt="Cable Crossover" data-text="Cable Crossover"></li>
+			<li class="mix chest check1 radio1 option1"><img src="images/exercises/chest/barbell_bench_press_-_medium_grip.jpg" alt="Barbell Bench Press - Medium Grip" data-text="Barbell Bench Press - Medium Grip" data-id="16" data-state="false" class="r16"></li>
 
-			<li class="mix chest check1 radio1 option1"><img src="images/exercises/chest/dips.jpg" alt="Dips" data-text="Dips"></li>
+			<li class="mix chest check1 radio1 option1"><img src="images/exercises/chest/cable_crossover.jpg" alt="Cable Crossover" data-text="Cable Crossover" data-id="17" data-state="false" class="r17"></li>
 
-			<li class="mix chest check1 radio1 option1"><img src="images/exercises/chest/dumbbell_bench_press.jpg" alt="Dumbbell Bench Press" data-text="Dumbbell Bench Press"></li>
+			<li class="mix chest check1 radio1 option1"><img src="images/exercises/chest/dips.jpg" alt="Dips" data-text="Dips" data-id="18" data-state="false" class="r18"></li>
 
-			<li class="mix chest check1 radio1 option1"><img src="images/exercises/chest/pushups.jpg" alt="Pushups" data-text="Pushups"></li>
+			<li class="mix chest check1 radio1 option1"><img src="images/exercises/chest/dumbbell_bench_press.jpg" alt="Dumbbell Bench Press" data-text="Dumbbell Bench Press" data-id="19" data-state="false" class="r19"></li>
+
+			<li class="mix chest check1 radio1 option1"><img src="images/exercises/chest/pushups.jpg" alt="Pushups" data-text="Pushups" data-id="20" data-state="false" class="r20"></li>
 
 			<!--legs exercises -->
 
-			<li class="mix legs check1 radio1 option1"><img src="images/exercises/legs/barbell_full_squat.jpg" alt="Barbell Full Squat" data-text="Barbell Full Squat"></li>
+			<li class="mix legs check1 radio1 option1"><img src="images/exercises/legs/barbell_full_squat.jpg" alt="Barbell Full Squat" data-text="Barbell Full Squat" data-id="21" data-state="false" class="r21"></li>
 
-			<li class="mix legs check1 radio1 option1"><img src="images/exercises/legs/barbell_lunge.jpg" alt="Barbell Lunge" data-text="Barbell Lunge"></li>
+			<li class="mix legs check1 radio1 option1"><img src="images/exercises/legs/barbell_lunge.jpg" alt="Barbell Lunge" data-text="Barbell Lunge" data-id="22" data-state="false" class="r22"></li>
 
-			<li class="mix legs check1 radio1 option1"><img src="images/exercises/legs/barbell_Walking_lung.jpg" alt="Barbell Walking Lung" data-text="Barbell Walking Lung"></li>
+			<li class="mix legs check1 radio1 option1"><img src="images/exercises/legs/barbell_Walking_lung.jpg" alt="Barbell Walking Lung" data-text="Barbell Walking Lung" data-id="23" data-state="false" class="r23"></li>
 
-			<li class="mix legs check1 radio1 option1"><img src="images/exercises/legs/front_squats_with_two_kettlebells.jpg" alt="Front Squats With Two Kettlebells" data-text="Front Squats With Two Kettlebells"></li>
+			<li class="mix legs check1 radio1 option1"><img src="images/exercises/legs/front_squats_with_two_kettlebells.jpg" alt="Front Squats With Two Kettlebells" data-text="Front Squats With Two Kettlebells" data-id="24" data-state="false" class="r24"></li>
 
-			<li class="mix legs check1 radio1 option1"><img src="images/exercises/legs/narrow_stance_leg_press.jpg" alt="Narrow Stance Leg Press" data-text="Narrow Stance Leg Press"></li>
+			<li class="mix legs check1 radio1 option1"><img src="images/exercises/legs/narrow_stance_leg_press.jpg" alt="Narrow Stance Leg Press" data-text="Narrow Stance Leg Press" data-id="25" data-state="false" class="r25"></li>
 
 			<!--shoulders exercises -->
 
-			<li class="mix shoulders check1 radio1 option1"><img src="images/exercises/shoulders/dumbbell_lying_one-Arm_rear_lateral_raise.jpg" alt="Dumbbell Lying One-Arm Rear Lateral Raise" data-text="Dumbbell Lying One-Arm Rear Lateral Raise"></li>
+			<li class="mix shoulders check1 radio1 option1"><img src="images/exercises/shoulders/dumbbell_lying_one-Arm_rear_lateral_raise.jpg" alt="Dumbbell Lying One-Arm Rear Lateral Raise" data-text="Dumbbell Lying One-Arm Rear Lateral Raise" data-id="26" data-state="false" class="r26"></li>
 
-			<li class="mix shoulders check1 radio1 option1"><img src="images/exercises/shoulders/reverse_flyes.jpg" alt="Reverse Flyes" data-text="Reverse Flyes"></li>
+			<li class="mix shoulders check1 radio1 option1"><img src="images/exercises/shoulders/reverse_flyes.jpg" alt="Reverse Flyes" data-text="Reverse Flyes" data-id="27" data-state="false" class="r27"></li>
 
-			<li class="mix shoulders check1 radio1 option1"><img src="images/exercises/shoulders/side_laterals_to_front_raise.jpg" alt="Side Laterals to Front Raise" data-text="Side Laterals to Front Raise"></li>
+			<li class="mix shoulders check1 radio1 option1"><img src="images/exercises/shoulders/side_laterals_to_front_raise.jpg" alt="Side Laterals to Front Raise" data-text="Side Laterals to Front Raise" data-id="28" data-state="false" class="r28"></li>
 
-			<li class="mix shoulders check1 radio1 option1"><img src="images/exercises/shoulders/single-Arm_linear_jammer.jpg" alt="Single-Arm Linear Jammer" data-text="Single-Arm Linear Jammer"></li>
+			<li class="mix shoulders check1 radio1 option1"><img src="images/exercises/shoulders/single-Arm_linear_jammer.jpg" alt="Single-Arm Linear Jammer" data-text="Single-Arm Linear Jammer" data-id="29" data-state="false" class="r29"></li>
 
-			<li class="mix shoulders check1 radio1 option1"><img src="images/exercises/shoulders/standing_palm-In_one-Arm_dumbbell_press.jpg" alt="Standing Palm-In One-Arm Dumbbell Press" data-text="Standing Palm-In One-Arm Dumbbell Press"></li>
+			<li class="mix shoulders check1 radio1 option1"><img src="images/exercises/shoulders/standing_palm-In_one-Arm_dumbbell_press.jpg" alt="Standing Palm-In One-Arm Dumbbell Press" data-text="Standing Palm-In One-Arm Dumbbell Press" data-id="30" data-state="false" class="r30"></li>
 
 			<!-- triceps exercises -->
 
-			<li class="mix triceps check1 radio1 option1"><img src="images/exercises/triceps/decline_EZ_bar_triceps_extension.jpg" alt="Decline EZ Bar Triceps Extension" data-text="Decline EZ Bar Triceps Extension"></li>
+			<li class="mix triceps check1 radio1 option1"><img src="images/exercises/triceps/decline_EZ_bar_triceps_extension.jpg" alt="Decline EZ Bar Triceps Extension" data-text="Decline EZ Bar Triceps Extension" data-id="31" data-state="false" class="r32"></li>
 
-			<li class="mix triceps check1 radio1 option1"><img src="images/exercises/triceps/parallel_bar_dip.jpg" alt="Parallel Bar Dip" data-text="Parallel Bar Dip"></li>
+			<li class="mix triceps check1 radio1 option1"><img src="images/exercises/triceps/parallel_bar_dip.jpg" alt="Parallel Bar Dip" data-text="Parallel Bar Dip" data-id="32" data-state="false" class="r32"></li>
 
-			<li class="mix triceps check1 radio1 option1"><img src="images/exercises/triceps/push-Ups_-_close_triceps_position.jpg" alt="Push-Ups - Close Triceps Position" data-text="Push-Ups - Close Triceps Position"></li>
+			<li class="mix triceps check1 radio1 option1"><img src="images/exercises/triceps/push-Ups_-_close_triceps_position.jpg" alt="Push-Ups - Close Triceps Position" data-text="Push-Ups - Close Triceps Position" data-id="33" data-state="false" class="r33"></li>
 
-			<li class="mix triceps check1 radio1 option1"><img src="images/exercises/triceps/seated_triceps_press.jpg" alt="Seated Triceps Press" data-text="Seated Triceps Press"></li>
+			<li class="mix triceps check1 radio1 option1"><img src="images/exercises/triceps/seated_triceps_press.jpg" alt="Seated Triceps Press" data-text="Seated Triceps Press" data-id="34" data-state="false" class="r34"></li>
 
-			<li class="mix triceps check1 radio1 option1"><img src="images/exercises/triceps/weighted_bench_dip.jpg" alt="Weighted Bench Dip" data-text="Weighted Bench Dip"></li>
+			<li class="mix triceps check1 radio1 option1"><img src="images/exercises/triceps/weighted_bench_dip.jpg" alt="Weighted Bench Dip" data-text="Weighted Bench Dip" data-id="35" data-state="false" class="35"></li>
 		</div>
 		</ul>
 		<div class="cd-fail-message">No results found</div>
@@ -284,19 +285,20 @@ Give your routine a name: {!! Form::text('username'); !!}
 		*/
  	$('.elements li img').click(function(){
  		$('.body-inactive').show();
- 		elemSrc = $(this).attr('src');  //Getting the img src (to be viewed in the info_box).
+ 		elemSrc = $(this).attr('src');  //Getting the current img's src (to be viewed in the info_box).
 
  		// Parameters associated with the routines (used to interact with the database):
 
 		elemId = $(this).attr('data-id');
 		elemText = $(this).attr('data-text'); //get data text attribute from the image clicked.
-		elemState = $(this).attr('data-state');
+		elemState = $(this).attr('data-state'); // You get the idea.
+
  		 $('.info_box').fadeIn(2000); // The info_box hidden using the css, this line of js is telling that, if the img is being clicked, the info_box should be visible(fadeIn) with a transition of 2000ms.
 
  		 // Next the two lines beyond says:
 
- 		 $('.info_box .info_content').attr('id',elemId); //refer to the div info_content inside the div info_box -then fill its attribute called id witht eh value of elemId variable.
- 		 //Same thing for the two lines beyond as well. as well.
+ 		 $('.info_box .info_content').attr('id',elemId); // Refer to the div info_content inside the div info_box -then fill its attribute called id with the value of elemId variable.
+ 		 //Same thing for the two lines beyond as well.
 
 				$('.info_box .info_content').attr('data-state',elemState);
 				$('.info_box .info_content .exercise_img').attr('src',elemSrc);
@@ -323,14 +325,17 @@ Give your routine a name: {!! Form::text('username'); !!}
 				}
 				else{
 					elem= '<li>';
-					elem+= '<input type="hidden" value='+findId+'>';
+					// adding the exercises to an array ( [] ). should ask Ankit about this (what's the difference between this and data-id attribute).
+					elem+= '<input type="hidden" name="routine[]" value='+findId+'>';
+					// Now it equals to this:
+					//<li>  < input type="hidden" name="routine[]" value='+findId+'>
 					elem+= '<img src='+findImg+'>';
 					elem+= '<span>' + findText + '</span>';
 					elem+= '</li>';
 					$('#sidebar-nav ul form button').before(elem);
 					$('#sidebar-nav ul form button[type="submit"]').show();
 
-			// acknowledging that this routine has been added.
+			// acknowledge this routine has been added.
 			$('.elements li img.r'+findId).attr('data-state','true');
 			// if routine is added, then add to button is of no need
 			$(this).removeClass('add_to_routine').html('Exercise Added');
@@ -367,11 +372,13 @@ Give your routine a name: {!! Form::text('username'); !!}
 
 <div id="sidebar-nav">
 		<ul>
-		<form>
+		<form action="{{ route('view_routine') }}" method="post">
+		{!! csrf_field() !!} 
+
 			<!-- content will come here from js as li elements -->
 
-			<button type="submit">Submit</button>
-			</form>
+			<button type="submit" name="submit_routine">Submit</button>
+		</form>
 		</ul>
 	</div>								
 

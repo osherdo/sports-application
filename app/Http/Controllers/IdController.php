@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Expectation;
+use App\Profile;
 
 class IdController extends Controller
 {
@@ -28,11 +29,18 @@ class IdController extends Controller
     {
     	$user = $request->user(); // Grab the authenticated user for the request. and store it in $user.
   		//return $slug; // returning the user name (which is now the slug).
+        // $slug - A slug is assigned to the username.
   		$username= \App\User::where('username',$slug)->first(); // first() - returns the first element of the get array and turn it into an object.
   		// if using ->get(); - Laravel using Eloquent array to refer to this data.
+        
+        // To check if no user has been found , we use the isset.
 
-    	return view('id_personal',compact('username','user'));
-
+        if(isset($username->id))
+        {    
+        return view('id_personal',compact('username','user','id_expectations','profile'));
+        }else{
+            return redirect()->back(); // return to search page in case no user has been found.
+        }
     }
 
     public function follow_current($id)

@@ -29,16 +29,23 @@ public function __construct()
     view()->share('expectations_list',$expectations_list);
 }
 
-public function create()
+public function create(Request $request)
 {
 	$user = Auth::user();
-	//dd($user);
+  /*
+  $routine = $user->profile()->create
+  ([
+    'name'=>$request['routine_name'],
+    'type'=> Input::get['type'],
+    'aerobic'=>$request['routine[]'],
+    'anaerobic'=>$request['routine[]'];
+  ]);
+    
+  dd($routine);
 
 	//return view('routine')->with('user')->first;
-	//$routine = $user->routine()->create([
-      return view('routine',compact('user'));
-
-
+*/
+return view('routine',compact('user'));
 
 }
 

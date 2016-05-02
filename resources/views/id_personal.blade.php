@@ -18,11 +18,19 @@
 
  {!! csrf_field() !!}
 <!-- $username is passed from the controller. -->
-<p> {{ $user->name }}, Welcome to {{ $username->username }} page:<br><br></p>
-
+<p> {{ $user->name }}, Welcome to {{ $username->username }} page:<br></p>
+<p> Full name: {{$username->name }}.</p>
 <hr>
+<!--  Get the id's expectations.-->
+ <p> Expectations:
+@foreach($username->profile->expectations as $exp)
+	{{$exp->name}}
+@endforeach
+</p>
 <!-- getting the user that matches $username query and finding it id in the 'id' column. -->
-<br><li><a href="{{URL::route('personal_follow',[$username->id])}}" class="button button-3d" name="make_follow">Follow {{ $username->username }} </a>
+<br><li><a href="{{URL::route('personal_follow',[$username->id])}}" class="button button-3d" name="make_follow">Follow {{ $username->username }} </a></li>
+<br>
+
 
 @if(Session::has('message')) <!-- Checking if session has a variable called message. -->
 <div class="alert alert-info">

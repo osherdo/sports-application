@@ -33,6 +33,7 @@
 @foreach($prefQuery as $profile)
 <hr>
  <!-- Accessing the profile model - then the relationship with the user associated with it. then the column username. -->
+ <!-- [$profile->user->username] is becoming the slug. (in IdController.php) -->
    <a href="{{ URL::route('personal',[$profile->user->username]) }}" class="">{{ $profile->user->username }}</a>  
     {{ $profile->age }}
     @foreach($profile->expectations as $expectation)
