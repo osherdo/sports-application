@@ -53,5 +53,22 @@ class IdController extends Controller
   		  return back()->with("message",$notify); // go to last page. using the name "message" (could be other name).
     }
 
+    public function unfollow_current($id)
+    {
+        $user= Auth::user();
+        // Gets the user to unfollow by finding the current id of profile page.
+        $follow_current= \App\User::find($id);
+        $user_to_unfollow=$this->user->followers()->detach($follow_current);
+        // Get the list of users that follow a followee.
+        $userFollowers= User::whereIn('id',$userfollowers->lists('id'))->get;
+        
+
+        //dd($userFollowers);
+
+
+
+    }
+ 
+
 }
 

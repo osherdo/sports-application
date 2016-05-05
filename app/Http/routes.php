@@ -63,10 +63,14 @@ Route::group(['middleware' => 'auth'] ,function(){
 
  Route::get('follow/{id}','IdController@follow_current')->name('personal_follow');
 
+ Route::get('unfollow/{id}','IdController@unfollow_current')->name('personal_unfollow');
+
  Route::get('routine','RoutineController@create')->name('create_routine');
 
  //Route::get('edit_routine','RoutineController@edit')->name('edit_routine');
 
  Route::get('view_routine','RoutineController@view_routine')->name('view_routine');
+
+ Route::post('save_routine','RoutineController@save')->name('save_routine');
 
  Route::get('oop','OopController@view'); // Practicing OOP.

@@ -44,13 +44,13 @@ Give your routine a name: {!! Form::text('routine_name'); !!}
 					<a data-type="all" href="#0">All</a> <!-- selected option on mobile -->
 				</li> 
 				<li class="filter"><a class="selected" href="#0" data-type="all">All</a></li>
-				<li class="filter" data-filter=".biceps"><a href="#0" data-type="biceps">Biceps</a></li>
-				<li class="filter" data-filter=".abdominals"><a href="#0" data-type="abdominals">Abdominals</a></li>
-				<li class="filter" data-filter=".back"><a href="#0" data-type="back">Back</a></li>
-				<li class="filter" data-filter=".chest"><a href="#0" data-type="chest">Chest</a></li>
-				<li class="filter" data-filter=".legs"><a href="#0" data-type="legs">Legs</a></li>
-				<li class="filter" data-filter=".shoulders"><a href="#0" data-type="shoulders">Shoulders</a></li>
-				<li class="filter" data-filter=".triceps"><a href="#0" data-type="triceps">Triceps</a></li>
+				<li class="filter" data-filter=".Biceps"><a href="#0" data-type="biceps">Biceps</a></li>
+				<li class="filter" data-filter=".Abdominals"><a href="#0" data-type="abdominals">Abdominals</a></li>
+				<li class="filter" data-filter=".Back"><a href="#0" data-type="back">Back</a></li>
+				<li class="filter" data-filter=".Chest"><a href="#0" data-type="chest">Chest</a></li>
+				<li class="filter" data-filter=".Quads"><a href="#0" data-type="quads">Quads</a></li>
+				<li class="filter" data-filter=".Shoulders"><a href="#0" data-type="shoulders">Shoulders</a></li>
+				<li class="filter" data-filter=".Triceps"><a href="#0" data-type="triceps">Triceps</a></li>
 				
 			</ul> <!-- cd-filters -->
 		</div> <!-- cd-tab-filter -->
@@ -60,14 +60,51 @@ Give your routine a name: {!! Form::text('routine_name'); !!}
 		<ul>
 			<!--biceps exercises -->
 			<div class="elements">
-			<!-- data-id - data from the database.
 
+				{{-- Little bit of a start in showing exercises programatically --}}
+				
+				{{--
+				// Visual representation of the variable
+				$excercise = {
+					'id' => 1,
+					'category' => 'biceps',
+					'image_path' => '...',
+					'name' => 'Alternate Hammer Curl'
+				}
+				--}}
+
+				<!-- Iterating over the array of JSON of exercises model. (Echo out all the exercises) -->
+
+				@foreach ($exercises as $exercise)
+					<li class="mix {{ $exercise['category'] }} check1 radio1 option1 ">
+						<img 
+							src="images/{{ $exercise['image_path'] }}" 
+							alt="{{ $exercise['name'] }}" 
+							data-text="{{ $exercise['name'] }}" 
+							data-id="{{ $exercise['id'] }}" 
+							data-state="false" 
+							class="r{{ $exercise['id'] }}"
+						>
+					</li>
+
+				@endforeach
+				
+			
+			{{-- Hardcoded exercises --}}
+
+			<!-- data-id - data from the database.
+			
 			data-state="false" means that, it is not added to sidebar yet.
 
 			class="r1" 1 is again a id(same as data id) which will come from the database, and r is short term for routine
 			 -->	
+
+			 {{--
 			<li class="mix biceps check1 radio1 option1"><img src="images/exercises/biceps/alternate_hammer_curl.jpg" alt="Alternate Hammer Curl" data-text="Alternate Hammer Curl"  data-id="1" data-state="false" class="r1"></li>
+			
 			<li class="mix biceps check1 radio1 option1"><img src="images/exercises/biceps/barbell_curl.jpg" alt="Barbell Curl" data-text="Barbell Curl"  data-id="2" data-state="false" class="r2"></li>
+			
+			
 			<li class="mix biceps check1 radio1 option1"><img src="images/exercises/biceps/barbell_curls_lying_against_an_incline.jpg" alt="Barbell Curls Lying Against An Incline" data-text="Barbell Curls Lying Against An Incline" data-id="3" data-state="false" class="r3" ></li>
 
 			<li class="mix biceps check1 radio1 option1"><img src="images/exercises/biceps/cable_hammer_curls_-_rope_attachment.jpg" alt="Cable Hammer Curls - Rope Attachment" data-text="Cable Hammer Curls - Rope Attachment" data-id="4" data-state="false" class="r4"></li>
@@ -103,17 +140,17 @@ Give your routine a name: {!! Form::text('routine_name'); !!}
 
 			<li class="mix chest check1 radio1 option1"><img src="images/exercises/chest/pushups.jpg" alt="Pushups" data-text="Pushups" data-id="20" data-state="false" class="r20"></li>
 
-			<!--legs exercises -->
+			<!--Quads exercises -->
 
-			<li class="mix legs check1 radio1 option1"><img src="images/exercises/legs/barbell_full_squat.jpg" alt="Barbell Full Squat" data-text="Barbell Full Squat" data-id="21" data-state="false" class="r21"></li>
+			<li class="mix quads check1 radio1 option1"><img src="images/exercises/quads/barbell_full_squat.jpg" alt="Barbell Full Squat" data-text="Barbell Full Squat" data-id="21" data-state="false" class="r21"></li>
 
-			<li class="mix legs check1 radio1 option1"><img src="images/exercises/legs/barbell_lunge.jpg" alt="Barbell Lunge" data-text="Barbell Lunge" data-id="22" data-state="false" class="r22"></li>
+			<li class="mix quads check1 radio1 option1"><img src="images/exercises/quads/barbell_lunge.jpg" alt="Barbell Lunge" data-text="Barbell Lunge" data-id="22" data-state="false" class="r22"></li>
 
-			<li class="mix legs check1 radio1 option1"><img src="images/exercises/legs/barbell_Walking_lung.jpg" alt="Barbell Walking Lung" data-text="Barbell Walking Lung" data-id="23" data-state="false" class="r23"></li>
+			<li class="mix quads check1 radio1 option1"><img src="images/exercises/quads/barbell_Walking_lung.jpg" alt="Barbell Walking Lung" data-text="Barbell Walking Lung" data-id="23" data-state="false" class="r23"></li>
 
-			<li class="mix legs check1 radio1 option1"><img src="images/exercises/legs/front_squats_with_two_kettlebells.jpg" alt="Front Squats With Two Kettlebells" data-text="Front Squats With Two Kettlebells" data-id="24" data-state="false" class="r24"></li>
+			<li class="mix quads check1 radio1 option1"><img src="images/exercises/quads/front_squats_with_two_kettlebells.jpg" alt="Front Squats With Two Kettlebells" data-text="Front Squats With Two Kettlebells" data-id="24" data-state="false" class="r24"></li>
 
-			<li class="mix legs check1 radio1 option1"><img src="images/exercises/legs/narrow_stance_leg_press.jpg" alt="Narrow Stance Leg Press" data-text="Narrow Stance Leg Press" data-id="25" data-state="false" class="r25"></li>
+			<li class="mix quads check1 radio1 option1"><img src="images/exercises/quads/narrow_stance_leg_press.jpg" alt="Narrow Stance Leg Press" data-text="Narrow Stance Leg Press" data-id="25" data-state="false" class="r25"></li>
 
 			<!--shoulders exercises -->
 
@@ -138,6 +175,8 @@ Give your routine a name: {!! Form::text('routine_name'); !!}
 			<li class="mix triceps check1 radio1 option1"><img src="images/exercises/triceps/seated_triceps_press.jpg" alt="Seated Triceps Press" data-text="Seated Triceps Press" data-id="34" data-state="false" class="r34"></li>
 
 			<li class="mix triceps check1 radio1 option1"><img src="images/exercises/triceps/weighted_bench_dip.jpg" alt="Weighted Bench Dip" data-text="Weighted Bench Dip" data-id="35" data-state="false" class="35"></li>
+
+			--}}
 		</div>
 		</ul>
 		<div class="cd-fail-message">No results found</div>
@@ -158,37 +197,37 @@ Give your routine a name: {!! Form::text('routine_name'); !!}
 
 					<ul class="cd-filter-content cd-filters list">
 						<li>
-							<input class="filter" data-filter=".biceps" type="checkbox" id="checkbox1">
+							<input class="filter" data-filter=".Biceps" type="checkbox" id="checkbox1">
 			    			<label class="checkbox-label" for="checkbox1">Biceps</label>
 						</li>
 
 						<li>
-							<input class="filter" data-filter=".abdominals" type="checkbox" id="checkbox2">
+							<input class="filter" data-filter=".Abdominals" type="checkbox" id="checkbox2">
 							<label class="checkbox-label" for="checkbox2">Abdominals</label>
 						</li>
 
 						<li>
-							<input class="filter" data-filter=".back" type="checkbox" id="checkbox3">
+							<input class="filter" data-filter=".Back" type="checkbox" id="checkbox3">
 							<label class="checkbox-label" for="checkbox3">Back</label>
 						</li>
 
 						<li>
-							<input class="filter" data-filter=".chest" type="checkbox" id="checkbox4">
+							<input class="filter" data-filter=".Chest" type="checkbox" id="checkbox4">
 							<label class="checkbox-label" for="checkbox4">Chest</label>
 						</li>
 
 						<li>
-							<input class="filter" data-filter=".legs" type="checkbox" id="checkbox5">
-							<label class="checkbox-label" for="checkbox5">Legs</label>
+							<input class="filter" data-filter=".Quads" type="checkbox" id="checkbox5">
+							<label class="checkbox-label" for="checkbox5">Quads</label>
 						</li>
 
 						<li>
-							<input class="filter" data-filter=".shoulders" type="checkbox" id="checkbox6">
+							<input class="filter" data-filter=".Shoulders" type="checkbox" id="checkbox6">
 							<label class="checkbox-label" for="checkbox6">Shoulders</label>
 						</li>
 
 						<li>
-							<input class="filter" data-filter=".triceps" type="checkbox" id="checkbox7">
+							<input class="filter" data-filter=".Triceps" type="checkbox" id="checkbox7">
 							<label class="checkbox-label" for="checkbox7">Triceps</label>
 						</li>
 					</ul> <!-- cd-filter-content -->
@@ -204,37 +243,37 @@ Give your routine a name: {!! Form::text('routine_name'); !!}
 						</li>
 
 						<li>
-							<input class="filter" data-filter=".biceps" type="radio" name="radioButton" id="radio2">
+							<input class="filter" data-filter=".Biceps" type="radio" name="radioButton" id="radio2">
 							<label class="radio-label" for="radio2">Biceps</label>
 						</li>
 
 						<li>
-							<input class="filter" data-filter=".abdominals" type="radio" name="radioButton" id="radio3">
+							<input class="filter" data-filter=".Abdominals" type="radio" name="radioButton" id="radio3">
 							<label class="radio-label" for="radio3">Abdominals</label>
 						</li>
 
 						<li>
-							<input class="filter" data-filter=".back" type="radio" name="radioButton" id="radio4">
+							<input class="filter" data-filter=".Back" type="radio" name="radioButton" id="radio4">
 							<label class="radio-label" for="radio4">Back</label>
 						</li>
 
 						<li>
-							<input class="filter" data-filter=".chest" type="radio" name="radioButton" id="radio5">
+							<input class="filter" data-filter=".Chest" type="radio" name="radioButton" id="radio5">
 							<label class="radio-label" for="radio5">Chest</label>
 						</li>
 
 						<li>
-							<input class="filter" data-filter=".legs" type="radio" name="radioButton" id="radio6">
-							<label class="radio-label" for="radio6">Legs</label>
+							<input class="filter" data-filter=".Quads" type="radio" name="radioButton" id="radio6">
+							<label class="radio-label" for="radio6">Quads</label>
 						</li>
 
 						<li>
-							<input class="filter" data-filter=".shoulders" type="radio" name="radioButton" id="radio7">
+							<input class="filter" data-filter=".Shoulders" type="radio" name="radioButton" id="radio7">
 							<label class="radio-label" for="radio7">Shoulders</label>
 						</li>
 
 						<li>
-							<input class="filter" data-filter=".triceps" type="radio" name="radioButton" id="radio8">
+							<input class="filter" data-filter=".Triceps" type="radio" name="radioButton" id="radio8">
 							<label class="radio-label" for="radio8">Triceps</label>
 						</li>
 					</ul> <!-- cd-filter-content -->
@@ -372,12 +411,12 @@ Give your routine a name: {!! Form::text('routine_name'); !!}
 
 <div id="sidebar-nav">
 		<ul>
-		<form action="{{ route('view_routine') }}" method="post">
+		<form action="{{ route('save_routine') }}" method="post">
 		{!! csrf_field() !!} 
 
 			<!-- content will come here from js as li elements -->
 
-			<button type="submit" name="submit_routine">Submit</button>
+			<button id="submit_routine" type="submit" name="submit_routine">Submit</button>
 		</form>
 		</ul>
 	</div>								
@@ -402,5 +441,13 @@ $(function(){
 --> 
 
 {!! Form::close() !!}
+
+<script type="text/javascript">
+(function($) {
+	$("#submit_routine").on('click', function() {
+
+	});
+})(jQuery);
+</script>
 
 @stop {{-- ending the current section 'content' --}}

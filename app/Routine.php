@@ -8,13 +8,11 @@ class Routine extends Model
 {
 	protected $table='routines';
     public $timestamps = true;
-    $fillable = ['name'];
+    protected $fillable = ['name'];
 
 public function users()
 {
 	return $this->belongsTo('App\User');
 }
-
-
 
 }

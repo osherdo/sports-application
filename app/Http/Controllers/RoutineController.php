@@ -31,7 +31,11 @@ public function __construct()
 
 public function create(Request $request)
 {
-	$user = Auth::user();
+  $user = Auth::user();
+
+  // Retrieve exercises
+  $exercises = \App\Exercise::all();
+
   /*
   $routine = $user->profile()->create
   ([
@@ -43,10 +47,40 @@ public function create(Request $request)
     
   dd($routine);
 
-	//return view('routine')->with('user')->first;
+  //return view('routine')->with('user')->first;
 */
-return view('routine',compact('user'));
+return view('routine', [
+  'user' => $user,
+  'exercises' => $exercises
+]);
 
 }
+
+  public function save(Request $request) {
+    $exercise_ids = $request->input('routine'); // [1,2,3,4,5] // array of excercise ids
+
+    // TODO: Osher: write code to create a Routine 
+    // + associate Exercises (using the IDs we received
+    // from the browser, see $excercise_ids)
+
+    // $routine = new Routine(); // create an empty routine
+
+    // Add the exercises to the routine (lookup the id first)
+    // 
+    // foreach $exercise_ids as $exercise_id:
+    //
+    //   $exercise = Exercise::where('id', $exercise_id)->get(); // get the exercise by id
+    //
+    //   $routine->exercises->add($exercise); // add it to the routine (relationship exercises)
+    //
+    // $routine->save(); // save to the database
+
+
+
+    die(); 
+
+    // TODO: Osher: instead of die(), 
+    // redirect to show the routine (show_routine/view_routine)
+  }
 
 }

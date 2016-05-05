@@ -8,7 +8,7 @@ class Exercise extends Model
 {
 	protected $table='exercises';
     public $timestamps = true;
-    $fillable = ['name'];
+    //$fillable = ['name'];
 
 public function exercises()
 {

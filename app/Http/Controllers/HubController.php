@@ -80,8 +80,15 @@ public function __construct() { // Constructor for checking user's auth after a 
     {
         $query->whereIn('expectations.id', $profile->expectations->lists('id')); //returns a dropdown of the id's associated to the user's expectations.
       
-    })->whereNotIn('profiles.user_id',$followingNow->lists('id'))->get(); // exclude all the id's that match the $followingNow variable criteria.
+    })->whereNotIn('profiles.user_id',$followingNow->lists('id'))->where('user_id','!=',$this->user->id)->get();
+        //dd($mutuals);
+    // exclude (whereNotIn) all the id's that match the $followingNow variable criteria.
+    // user_id is in the profiles table (since we're querying the profile table).
+    // Explanation about this: 'user_id','!=',$this->user->id
+    //we're accessing the profile model. then accessing the current user's profile table record by typing $this->user in the query, then accessing his user_id designated column.
 
+
+   
    
     
 

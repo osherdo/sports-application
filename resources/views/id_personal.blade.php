@@ -28,9 +28,10 @@
 @endforeach
 </p>
 <!-- getting the user that matches $username query and finding it id in the 'id' column. -->
-<br><li><a href="{{URL::route('personal_follow',[$username->id])}}" class="button button-3d" name="make_follow">Follow {{ $username->username }} </a></li>
+<br><li><a href="{{URL::route('personal_follow',[$username->id])}}" class="button button-3d" name="make_follow" onclick="">Follow {{ $username->username }} </a></li>
 <br>
 
+<li><a href="{{URL::route('personal_unfollow',[$username->id])}}" class="button button-3d" name="unfollow"> Unfollow {{ $username->username }} </a></li>
 
 @if(Session::has('message')) <!-- Checking if session has a variable called message. -->
 <div class="alert alert-info">
@@ -38,4 +39,8 @@
 </div>
 @endif
 
+@foreach($username->followee() as $follower)
+test
+{{$follower->username}}
+@endforeach
 @stop {{-- ending the current section (content) --}}
