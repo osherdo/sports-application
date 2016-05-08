@@ -57,7 +57,24 @@ return view('routine', [
 }
 
   public function save(Request $request) {
-    $exercise_ids = $request->input('routine'); // [1,2,3,4,5] // array of excercise ids
+    //$exercise_ids = $request->input('routine'); // [1,2,3,4,5] // array of excercise ids
+
+    $routines= Input::['routine'];
+
+    foreach($routines as $routine_id) {
+    // 1- process img upload to your server
+
+    // 2- create Picture
+    $exercise = new Exercises;
+    $exercise->path = $img;
+    $exercise->save();
+
+    // 3- update the pivot table
+    $exercise->routine()->attach($routine_id);
+}
+
+    // Update the routine_id with the new routine created.
+    //$insert= $this->user->routine()->attach($routine_id)
 
     // TODO: Osher: write code to create a Routine 
     // + associate Exercises (using the IDs we received
@@ -75,7 +92,7 @@ return view('routine', [
     //
     // $routine->save(); // save to the database
 
-
+    // Later after saving the routine - access the routine details with something like this (not final): $this->user()->routine->exercises::All;
 
     die(); 
 

@@ -14,8 +14,11 @@ class UserRoutine extends Migration
     {
         Schema::create('user_routine',function (Blueprint $table) 
         {
-            $table->integer('user_id')->unsigned();
-            $table->integer('routine_id')->unsigned();
+            $table->integer('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('routine_id')->unsigned()->index();
+            $table->foreign('routine_id')->references('id')->on('routines')->onDelete('cascade');
+
         });
     }
 
@@ -27,5 +30,6 @@ class UserRoutine extends Migration
     public function down()
     {
         Schema::drop('user_routine');
+
     }
 }

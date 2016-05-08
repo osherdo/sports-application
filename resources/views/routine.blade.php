@@ -29,7 +29,7 @@
 
 Pick your routine type: {!! Form::select('type', ['Aerobic' => 'Aerobic', 'Anaerobic' => 'Anaerobic']); !!} <br><br>
 
-Give your routine a name: {!! Form::text('routine_name'); !!}
+Give your routine a name: <input type="text" name="routine_name" required>
 
 <header class="cd-header">
 	<h1>Now pick your routine exercises:</h1>
@@ -295,8 +295,8 @@ Give your routine a name: {!! Form::text('routine_name'); !!}
 </main> <!-- cd-main-content -->
 
 <!--hidden field for the images textbox. -->
-
- <input type="hidden" id="show_text_box">
+<!-- $routine->id is later being used in the controller (foreach loop). -->
+ <input type="hidden" name="routine[]" id="show_text_box" value='{{ $routine->id }}'>
 
 <!-- div for the text box and submit of each image. -->
 
