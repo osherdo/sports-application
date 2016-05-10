@@ -529,12 +529,14 @@ main {
 
 #sidebar-nav {
   position: fixed;
-  width: 250px;
+  width: 500px;
   top: 0;
   bottom: 0;
   right:0;
   background-color: #000;
-  z-index:99; 
+  z-index:99;
+  overflow-y: scroll;
+  overflow: auto;
   -webkit-transition: all 0.35s cubic-bezier(1, 1, 1, 1);
   -moz-transition: all 0.35s cubic-bezier(1, 1, 1, 1);
   -ms-transition: all 0.35s cubic-bezier(1, 1, 1, 1);

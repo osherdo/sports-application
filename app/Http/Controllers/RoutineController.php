@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\Expectation;
+use App\Routine;
+use Input;
 
 class RoutineController extends Controller
 {
@@ -29,9 +31,9 @@ public function __construct()
     view()->share('expectations_list',$expectations_list);
 }
 
+/*
 public function create(Request $request)
 {
-  $user = Auth::user();
 
   // Retrieve exercises
   $exercises = \App\Exercise::all();
@@ -48,30 +50,61 @@ public function create(Request $request)
   dd($routine);
 
   //return view('routine')->with('user')->first;
-*/
+
 return view('routine', [
   'user' => $user,
   'exercises' => $exercises
 ]);
 
 }
+*/
 
-  public function save(Request $request) {
+  public function save() {
+    
     //$exercise_ids = $request->input('routine'); // [1,2,3,4,5] // array of excercise ids
 
-    $routines= Input::['routine'];
+    
 
-    foreach($routines as $routine_id) {
+    //$exercise_ids = $request->input('routine'); 
+
+    //$routines= Input::['routine'];
+
+    //create a routine first then attach it to exercise e.g
+    // this is not working: $exercise_ids = $request->input('routine'); (braces error)
+    //$routines = $request->input('routine');  // Can be used as well, in this case.
+    $user = Auth::user();
+
+    $input = Input::get('routine');
+    //dd($input);
+    //$routine = Routine::create($input);
+
+    $routine = Routine::create(Request::all());
+
+
+    // get $exercise_id that you want to associate with this routine.
+    $routine->exercise()->attach($exercise_id);
+    // Attach the user to the routine 
+    $routine->user()->attach($user_id );
+
+
+
+    foreach($routine as $routine_id) 
+    {
     // 1- process img upload to your server
 
     // 2- create Picture
     $exercise = new Exercises;
-    $exercise->path = $img;
+    $exercise->image_path = $img;
     $exercise->save();
 
-    // 3- update the pivot table
-    $exercise->routine()->attach($routine_id);
-}
+    }
+
+
+
+    $routine = Routine::create($routine);
+
+    return redirect ('view_routine')->with(['user' => $this->user],'routine');
+
 
     // Update the routine_id with the new routine created.
     //$insert= $this->user->routine()->attach($routine_id)
@@ -94,10 +127,10 @@ return view('routine', [
 
     // Later after saving the routine - access the routine details with something like this (not final): $this->user()->routine->exercises::All;
 
-    die(); 
 
     // TODO: Osher: instead of die(), 
     // redirect to show the routine (show_routine/view_routine)
+    
   }
 
 }

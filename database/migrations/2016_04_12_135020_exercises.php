@@ -14,8 +14,10 @@ class Exercises extends Migration
     {
          Schema::create('exercises',function (Blueprint $table) 
         {
-            $table->string('Anaerobic');
-            $table->string('Aerobic');
+            $table->increments('id');
+            $table->string('name');
+            $table->string('image_path');
+            $table->string('category');
         });
     }
 

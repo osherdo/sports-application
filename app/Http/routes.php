@@ -65,7 +65,7 @@ Route::group(['middleware' => 'auth'] ,function(){
 
  Route::get('unfollow/{id}','IdController@unfollow_current')->name('personal_unfollow');
 
- Route::get('routine','RoutineController@create')->name('create_routine');
+ Route::get('routine','RoutineController@save')->name('create_routine');
 
  //Route::get('edit_routine','RoutineController@edit')->name('edit_routine');
 
