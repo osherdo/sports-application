@@ -67,7 +67,7 @@ Route::group(['middleware' => 'auth'] ,function(){
 
  Route::get('routine','RoutineController@index');
 
- Route::post('create_routine','RoutineController@create')->name('create_routine'); // form action view (after submitting the routine).
+ Route::post('view_routine','RoutineController@create')->name('view_routine'); // form action view (after submitting the routine).
 
  //Route::post('routine','RoutineController@save')->name('save_routine'); // Saving routine details (on submit).
 

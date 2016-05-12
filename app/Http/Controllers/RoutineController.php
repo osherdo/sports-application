@@ -61,7 +61,7 @@ public function create()
     //dd($input);
     //$routine = Routine::create($input);
     //dd($routine);
-    /*
+    
     foreach($input as $exercise)
     {
           $exerciseRoutine = new ExerciseRoutine;
@@ -70,8 +70,10 @@ public function create()
           $exerciseRoutine->exercise_id = $exercise;
           $exerciseRoutine->save();
     }
-*/
-     for($i = 1; $i < count($input); $i++)
+/*
+    // this for loop is an alternative to the foreach.
+
+     for($i = 0; $i < count($input); $i++)
       {
          $exerciseRoutine = new ExerciseRoutine;
           $exerciseRoutine->user_id = $user_id;
@@ -79,6 +81,7 @@ public function create()
           $exerciseRoutine->exercise_id = $input[$i];
           $exerciseRoutine->save();
       }
+      */
     
     //dd($routine);
     //$routine = Routine::create(Request::all());

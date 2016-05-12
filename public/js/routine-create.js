@@ -49,6 +49,16 @@
 				if(findIfAlreadyChecked == 'true'){
 				}
 				else{
+					
+					 var count = $('#sidebar-nav li').size(); // Find the number of <li> items added to the sidebar.
+					 	//console.log("count"+count);
+					  if(count > 8)
+					{
+ 						alert('You cannot add more than 9 exercises');
+ 						return false; // Stoping the execution of the script. Just like exit() in php .
+					} 
+					
+						//console.log($('#sidebar-nav li').size());
 					elem= '<li>';
 					// adding the exercises to an array ( [] )
 					elem+= '<input type="hidden" name="routine[]" value='+findId+'>';

@@ -203,7 +203,10 @@ Give your routine a name:         {!! Form::label('name', 'Name') !!}
 
 <!--hidden field for the images textbox. -->
 <!-- $routine->id is later being used in the controller (foreach loop). -->
- <input type="hidden" name="routine[]" id="show_text_box">
+
+<!-- the hidden field beyond is unnneccesary since we're creating in the routine.create.js file.
+
+<!-- <input type="hidden" name="routine[]" id="show_text_box" value="something"> --> 
 
 <!-- div for the text box and submit of each image. -->
 
@@ -240,7 +243,7 @@ Give your routine a name:         {!! Form::label('name', 'Name') !!}
 
 <div id="sidebar-nav">
 		<ul> <!-- list items are injected here (from js). --> 
-		<form action="{{ route('create_routine') }}" method="post"> 
+		<form action="{{ route('view_routine') }}" method="post"> 
 		{!! csrf_field() !!} 
 
 			<!-- content will come here from js as li elements -->
