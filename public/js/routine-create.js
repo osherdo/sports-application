@@ -33,11 +33,9 @@
 					//accesses the ahref and changes it.add the content of class add_to_routine . also clear out previous data of text,id.state and others.also clear out the text if it's writing: "already added".
 					$('.info_box .info_content a').addClass('add_to_routine').html('ADD TO ROUTINE ');
 				}
+		});
 
 /* script for copying the exercises images to the sidebar */
-
-
-			});
 
 			$('.add_to_routine').click(function(e){
 				// this function will only be for those who have data-state as false.
@@ -46,19 +44,25 @@
 				findText = $(this).parent('').children('.elem-msg').html();
 
 				findIfAlreadyChecked = $('.elements li img.r'+findId).attr('data-state');
+
+
 				if(findIfAlreadyChecked == 'true'){
 				}
 				else{
 					elem= '<li>';
-					// adding the exercises to an array ( [] ). should ask Ankit about this (what's the difference between this and data-id attribute).
+					// adding the exercises to an array ( [] )
 					elem+= '<input type="hidden" name="routine[]" value='+findId+'>';
 					// Now it equals to this:
 					//<li>  < input type="hidden" name="routine[]" value='+findId+'>
 					elem+= '<img src='+findImg+'>';
 					elem+= '<span>' + findText + '</span>';
 					elem+= '</li>';
-					$('#sidebar-nav ul form button').before(elem);
+					//console.log("this is the element"+elem);
+					$('#sidebar-nav ul').first().append(elem); //  Overtime the exercise is clicked - the elem variable has a list item <li> </li> which is appended to the first UL item
+						// I pick the first ul element.
+
 					$('#sidebar-nav ul form button[type="submit"]').show();
+
 
 			// acknowledge this routine has been added.
 			$('.elements li img.r'+findId).attr('data-state','true');

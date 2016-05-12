@@ -26,13 +26,13 @@
 <p> {{ $user->name }}, here you can create your first workout routine!<br><br>
  Let's get started: </p>
 
-{!! Form::open(['action' => 'RoutineController@save']) !!}
+{!! Form::open(['action' => 'RoutineController@create']) !!}
     
     <div class="form-group">
 
 Pick your routine type: {!! Form::select('type', ['Aerobic' => 'Aerobic', 'Anaerobic' => 'Anaerobic']); !!} <br><br>
 
-Give your routine a name:         {!! Form::label('name', 'Name',) !!} 
+Give your routine a name:         {!! Form::label('name', 'Name') !!} 
 
         {!! Form::text('name', null, ['class' => 'form-control postcode',  'placeholder' => 'Name']) !!}{{-- add required here. --}}
 </div>
@@ -188,6 +188,76 @@ Give your routine a name:         {!! Form::label('name', 'Name',) !!}
 		<div class="cd-fail-message">No results found</div>
 	</section> <!-- cd-gallery -->
  
+
+ 
+	<a href="#0" class="cd-filter-trigger">Filters</a>
+
+		<div id="toggle-button">
+	<!-- <a href="javascript:;"> refers to a js code. the js code is the jquery at the bottom. The jquery gets the a href by the selector. I am using only empty ahref jquery (without <a href="javascript:;"> instead) -->
+		<a href="">																
+				View Routine Details
+			</a>
+		</div>
+
+</main> <!-- cd-main-content -->
+
+<!--hidden field for the images textbox. -->
+<!-- $routine->id is later being used in the controller (foreach loop). -->
+ <input type="hidden" name="routine[]" id="show_text_box">
+
+<!-- div for the text box and submit of each image. -->
+
+<div class="body-inactive"></div>
+
+<div class="info_box" >
+		<a href="javascript:;" id="closeIt">X</a> <!-- the x for closing the info_box -->
+		<div class="info_content"  id="" data-state=""> 
+			
+			<img class="exercise_img img-responsive">
+			<div class="elem-msg clear">
+				<!-- now the different text will reside here -->
+			</div>
+			<a href="" class="add_to_routine"> <!-- will submit the form -->
+				ADD TO ROUTINE 
+			</a>
+		</div>
+	</div>
+
+<!--sidebar code. -->
+
+ 	<style>
+		*,
+		*:before,
+		*:after{
+			padding:0;
+			margin:0;
+		}
+
+		body{
+			font-size:20px;
+		}
+	</style>
+
+<div id="sidebar-nav">
+		<ul> <!-- list items are injected here (from js). --> 
+		<form action="{{ route('create_routine') }}" method="post"> 
+		{!! csrf_field() !!} 
+
+			<!-- content will come here from js as li elements -->
+
+<div class="form-group">
+	</ul>
+            <button type="submit" name="submit" class="submit btn btn-primary">Submit</button>
+    </div>
+		 </form> 
+	</div>								
+
+<!-- end of html structure for sidebar routine. -->
+
+{!! Form::close() !!}
+
+<!-- Side Filter html -->
+
 	<div class="cd-filter">
 		<form>
 			<div class="cd-filter-block">
@@ -287,75 +357,9 @@ Give your routine a name:         {!! Form::label('name', 'Name',) !!}
 		</form>
  
 		<a href="#0" class="cd-close">Close</a>
+
+
 	</div> <!-- cd-filter -->
- 
-	<a href="#0" class="cd-filter-trigger">Filters</a>
-
-		<div id="toggle-button">
-	<!-- <a href="javascript:;"> refers to a js code. the js code is the jquery at the bottom. The jquery gets the a href by the selector. I am using only empty ahref jquery (without <a href="javascript:;"> instead) -->
-		<a href="">																
-				View Routine Details
-			</a>
-		</div>
-
-</main> <!-- cd-main-content -->
-
-<!--hidden field for the images textbox. -->
-<!-- $routine->id is later being used in the controller (foreach loop). -->
- <input type="hidden" name="routine[]" id="show_text_box"  value='{{ $routine->id }}'>
-
-<!-- div for the text box and submit of each image. -->
-
-<div class="body-inactive"></div>
-
-<div class="info_box" >
-		<a href="javascript:;" id="closeIt">X</a> <!-- the x for closing the info_box -->
-		<div class="info_content"  id="" data-state=""> 
-			
-			<img class="exercise_img img-responsive">
-			<div class="elem-msg clear">
-				<!-- now the different text will reside here -->
-			</div>
-			<a href="" class="add_to_routine"> <!-- will submit the form -->
-				ADD TO ROUTINE 
-			</a>
-		</div>
-	</div>
-
-<!--sidebar code. -->
-
- 	<style>
-		*,
-		*:before,
-		*:after{
-			padding:0;
-			margin:0;
-		}
-
-		body{
-			font-size:20px;
-		}
-	</style>
-
-<div id="sidebar-nav">
-		<ul>
-		<form action="{{ route('save_routine') }}" method="post">
-		{!! csrf_field() !!} 
-
-			<!-- content will come here from js as li elements -->
-
-<div class="form-group">
-            <button type="submit" name="submit" class="submit btn btn-primary">Submit</button>
-    </div>
-		</form>
-		</ul>
-	</div>								
-
-	
-
-<!-- end of html structure for sidebar routine. -->
-
-{!! Form::close() !!}
 
 
 @stop {{-- ending the current section 'content' --}}

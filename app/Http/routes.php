@@ -65,12 +65,14 @@ Route::group(['middleware' => 'auth'] ,function(){
 
  Route::get('unfollow/{id}','IdController@unfollow_current')->name('personal_unfollow');
 
- Route::get('routine','RoutineController@save')->name('create_routine');
+ Route::get('routine','RoutineController@index');
+
+ Route::post('create_routine','RoutineController@create')->name('create_routine'); // form action view (after submitting the routine).
+
+ //Route::post('routine','RoutineController@save')->name('save_routine'); // Saving routine details (on submit).
 
  //Route::get('edit_routine','RoutineController@edit')->name('edit_routine');
 
- Route::get('view_routine','RoutineController@view_routine')->name('view_routine');
-
- Route::post('save_routine','RoutineController@save')->name('save_routine');
+ //Route::get('view_routine','RoutineController@routine_list')->name('routine_list');
 
  Route::get('oop','OopController@view'); // Practicing OOP.

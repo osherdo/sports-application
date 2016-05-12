@@ -14,13 +14,12 @@ class CreateRoutinesForUser extends Migration
     {
         Schema::create('routines', function (Blueprint $table) 
         {
-            $table->increments('id')->unsigned()->index();
-            $table->string('name');
-            $table->enum('type',array('aerobic','anaerobic'))->default('anaerobic');
-            $table->integer('user_id');
-            $table->rememberToken(); //http://stackoverflow.com/questions/23262351/laravel-remember-token
-            $table->timestamps();
-            
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('routine_name');
+            $table->enum('routine_type', array('Aerobic', 'Anaerboic'));
+            $table->timestamps();    
         });
     }
 
