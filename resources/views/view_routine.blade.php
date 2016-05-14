@@ -42,8 +42,8 @@
   @endforeach
 </ul>
 
-{!! Form::open(['url' => '/']) !!}
-    {!! Form::select('type', ['Aerobic' => 'Aerobic','Anaerobic' => 'Anaerobic']) !!}
-    {!! Form::submit() !!}
-{!! Form::close() !!}
+@foreach ($all_routines as $routine) {
+    echo $routineExercise->name;
+}
 
+@endforeach

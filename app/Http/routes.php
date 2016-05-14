@@ -73,6 +73,6 @@ Route::group(['middleware' => 'auth'] ,function(){
 
  //Route::get('edit_routine','RoutineController@edit')->name('edit_routine');
 
- //Route::get('view_routine','RoutineController@routine_list')->name('routine_list');
+ Route::get('view_routine','RoutineController@routine_list');
 
  Route::get('oop','OopController@view'); // Practicing OOP.

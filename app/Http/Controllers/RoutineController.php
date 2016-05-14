@@ -134,37 +134,18 @@ public function create()
     //
     //   $routine->exercises->add($exercise); // add it to the routine (relationship exercises)
 
-
-
-  // Retrieve exercises
-  
-  $routine = $user->profile()->create
-  ([
-    'name'=>$request['routine_name'],
-    'type'=> Input::get['type'],
-    'aerobic'=>$request['routine[]'],
-    'anaerobic'=>$request['routine[]'];
-  ]);
-    
-  dd($routine);
-
-  //return view('routine')->with('user')->first;
-
-return view('routine', [
-  'user' => $user,
-  'exercises' => $exercises
-]);
-
 }
 
-
-  /*
+public function routine_list()
+{
   $user=Auth::user();
+   
    // Retrieve exercises
-  $exercises = \App\Exercise::all();
-  
+  $all_routines = \App\ExerciseRoutine::all();
+  dd($user_routine_list);
+  $user_routine_list =
 
-
-}
+  return view('view_routine',compact('user_routine_list','$all_routines');
+  }
 
 }
