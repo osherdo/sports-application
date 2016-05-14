@@ -49,7 +49,7 @@
 				if(findIfAlreadyChecked == 'true'){
 				}
 				else{
-					
+						//Restricting the user from adding more than 9 exercises.
 					 var count = $('#sidebar-nav li').size(); // Find the number of <li> items added to the sidebar.
 					 	//console.log("count"+count);
 					  if(count > 8)
@@ -59,6 +59,7 @@
 					} 
 					
 						//console.log($('#sidebar-nav li').size());
+						
 					elem= '<li>';
 					// adding the exercises to an array ( [] )
 					elem+= '<input type="hidden" name="routine[]" value='+findId+'>';

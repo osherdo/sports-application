@@ -52,11 +52,13 @@ public function create()
     $input = Input::get('routine');
 
     $routine = new Routine; // Creating A new object called Routine, coming from a eloquent model called Routine.php.
-    $routine->routine_name = "Routine Name"; // Hardcoded.
-    $routine->routine_type = "aerobic"; // Hardcoded.
+    //$routine->routine_name = "Routine Name"; // Hardcoded.
+    $routine->routine_name = Input::get('routine_name'); // Dynamically got.
+    //$routine->routine_type = "aerobic"; // Hardcoded.
+    $routine->routine_type = Input::get('type');
     $routine->user_id = $user_id; // getting the id from the $user_id variable.
-        $routine->save(); // Inserting the record inside the table.
-        echo $routine->id;
+   $routine->save(); // Inserting the record inside the table.
+    echo $routine->id; // Show the routine id in the view_routine view (After submission).
 
     //dd($input);
     //$routine = Routine::create($input);

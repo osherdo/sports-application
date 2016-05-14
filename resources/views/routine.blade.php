@@ -32,9 +32,7 @@
 
 Pick your routine type: {!! Form::select('type', ['Aerobic' => 'Aerobic', 'Anaerobic' => 'Anaerobic']); !!} <br><br>
 
-Give your routine a name:         {!! Form::label('name', 'Name') !!} 
-
-        {!! Form::text('name', null, ['class' => 'form-control postcode',  'placeholder' => 'Name']) !!}{{-- add required here. --}}
+Give your routine a name:         {!!  Form:: text('routine_name', null, array('class' => 'form-control', 'required' => '')) !!}
 </div>
 
 <header class="cd-header">
