@@ -57,7 +57,7 @@ public function create()
     //$routine->routine_type = "aerobic"; // Hardcoded.
     $routine->routine_type = Input::get('type');
     $routine->user_id = $user_id; // getting the id from the $user_id variable.
-   $routine->save(); // Inserting the record inside the table.
+    $routine->save(); // Inserting the record inside the table.
     echo $routine->id; // Show the routine id in the view_routine view (After submission).
 
     //dd($input);
@@ -70,7 +70,7 @@ public function create()
           $exerciseRoutine->user_id = $user_id;
           $exerciseRoutine->routine_id = $routine->id;
           $exerciseRoutine->exercise_id = $exercise;
-          $exerciseRoutine->save();
+          $exerciseRoutine->save();  // save to the exercise_routines database.
     }
 /*
     // this for loop is an alternative to the foreach.
@@ -133,29 +133,11 @@ public function create()
     //   $exercise = Exercise::where('id', $exercise_id)->get(); // get the exercise by id
     //
     //   $routine->exercises->add($exercise); // add it to the routine (relationship exercises)
-    //
-    // $routine->save(); // save to the database
-
-    // Later after saving the routine - access the routine details with something like this (not final): $this->user()->routine->exercises::All;
 
 
 
-//$exercise_ids = $request->input('routine'); // [1,2,3,4,5] // array of excercise ids
-
-    //$exercise_ids = $request->input('routine'); 
-
-    //$routines= Input::['routine'];
-
-    //create a routine first then attach it to exercise e.g
-    // this is not working: $exercise_ids = $request->input('routine'); (braces error)
-    //$routines = $request->input('routine');  // Can be used as well, in this case.
-    
-
-
-/*
   // Retrieve exercises
-
-  /*
+  
   $routine = $user->profile()->create
   ([
     'name'=>$request['routine_name'],
@@ -174,13 +156,13 @@ return view('routine', [
 ]);
 
 }
-*/
+
 
   /*
   $user=Auth::user();
    // Retrieve exercises
   $exercises = \App\Exercise::all();
-  */
+  
 
 
 }
