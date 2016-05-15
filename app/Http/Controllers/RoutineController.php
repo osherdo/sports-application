@@ -139,13 +139,45 @@ public function create()
 public function routine_list()
 {
   $user=Auth::user();
-   
-   // Retrieve exercises
-  $all_routines = \App\ExerciseRoutine::all();
-  dd($user_routine_list);
-  $user_routine_list =
+  
+    // Retrieve exercises
+  //Auth::user()->id
+  $all_routines = Routine::where('user_id',Auth::user()->id)->get();
+  //dd($all_routines);
+  //$user_routine_list =
 
-  return view('view_routine',compact('user_routine_list','$all_routines');
+  return view('view_routine',compact('all_routines','user'));
+  }
+
+  public function details ($routine) // Accessing the Routine model and then getting the routine id number from the view.$routine is a placeholder.
+  {
+    $user=Auth::user();
+
+    $exercises_routines=ExerciseRoutine::where('routine_id',$routine)->where('user_id',Auth::user()->id)->get(); 
+  // TO DO : 
+    // if (count($exercises_routines == 0){echo "no exercises found"})
+//SELECT * FROM exercises_routines WHERE routine_id= 30
+    $exercises_in_routine = array();
+    $count = 0;
+    foreach($exercises_routines as $single_routine)
+    {
+      //echo $single_routine->exercise_id; accessing the ExerciseRoutine , and get the exercise id's associated with the current routine.
+      
+      $exercise_id = $single_routine->exercise_id; //So far we accessed the routine_id column. Now we're assigning all the exercises id's to the $single_routine.and now it has all its exercises. 
+      $exercise =Exercise::find($exercise_id); // Accessing the Exercise Model, and looking for those exercises we're looking for, and making a match (for each loop - for one exercise only).
+      //Select * from exercises where id  = 11
+      $exercises_in_routine[$count]['id'] = $exercise->id;
+      $exercises_in_routine[$count]['exercise_name'] = $exercise->name;
+      $exercises_in_routine[$count]['image_path'] = $exercise->image_path;
+      $exercises_in_routine[$count]['category'] = $exercise->category;
+      $count++;
+      
+    }
+
+    dd($exercises_in_routine);
+    //return view('routine_details',compact('user','user_routine_details'));
+
+
   }
 
 }

@@ -241,7 +241,7 @@ Give your routine a name:         {!!  Form:: text('routine_name', null, array('
 
 <div id="sidebar-nav">
 		<ul> <!-- list items are injected here (from js). --> 
-		<form action="{{ route('view_routine') }}" method="post"> 
+		<form action="{{ route('create_routine') }}" method="post"> 
 		{!! csrf_field() !!} 
 
 			<!-- content will come here from js as li elements -->

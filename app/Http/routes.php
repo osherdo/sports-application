@@ -67,12 +67,14 @@ Route::group(['middleware' => 'auth'] ,function(){
 
  Route::get('routine','RoutineController@index');
 
- Route::post('view_routine','RoutineController@create')->name('view_routine'); // form action view (after submitting the routine).
+ Route::post('create_routine','RoutineController@create')->name('create_routine'); // form action view (after submitting the routine).
 
  //Route::post('routine','RoutineController@save')->name('save_routine'); // Saving routine details (on submit).
 
  //Route::get('edit_routine','RoutineController@edit')->name('edit_routine');
 
  Route::get('view_routine','RoutineController@routine_list');
+
+ Route::get('routine_details/{routine}','RoutineController@details'); // Getting the routine details on a separate view. {routine} is a placeholder for the number we're getting in view_routine.blade.php
 
  Route::get('oop','OopController@view'); // Practicing OOP.

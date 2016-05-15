@@ -28,7 +28,7 @@
 {{--
     This user has a profile whose properties you can also display
  --}}
-
+<!--
 <p>Welcome to your active routines page: {{ $user->profile->goals }}</p>
 
 {{--
@@ -41,9 +41,14 @@
     <li class="routines-list-item">{!! $expectation->name !!}</li>
   @endforeach
 </ul>
+-->
+@foreach ($all_routines as $routine) 
 
-@foreach ($all_routines as $routine) {
-    echo $routineExercise->name;
-}
+    <li><a href="/routine_details/{{$routine->id}}">{{$routine->routine_name}}</a></li>
+    {{-- Getting the routine id numbr is done through this: {{$routine->id}} , There's a placeholder for the number in routes.php. --}}
+    <br />
+
+
+
 
 @endforeach
