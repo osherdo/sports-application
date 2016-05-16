@@ -58,7 +58,7 @@ public function create()
     $routine->routine_type = Input::get('type');
     $routine->user_id = $user_id; // getting the id from the $user_id variable.
     $routine->save(); // Inserting the record inside the table.
-    echo $routine->id; // Show the routine id in the view_routine view (After submission).
+    //echo $routine->id; // Show the routine id in the view_routine view (After submission).
 
     //dd($input);
     //$routine = Routine::create($input);
@@ -72,6 +72,10 @@ public function create()
           $exerciseRoutine->exercise_id = $exercise;
           $exerciseRoutine->save();  // save to the exercise_routines database.
     }
+
+     return redirect('view_routine');
+    
+
 /*
     // this for loop is an alternative to the foreach.
 
@@ -114,25 +118,9 @@ public function create()
 
     //return redirect ('routine_list')->with(['user' => $this->user],'routine','exercise_id','user_id');;
 
-  
-
-
     // Update the routine_id with the new routine created.
     //$insert= $this->user->routine()->attach($routine_id)
 
-    // TODO: Osher: write code to create a Routine 
-    // + associate Exercises (using the IDs we received
-    // from the browser, see $excercise_ids)
-
-    // $routine = new Routine(); // create an empty routine
-
-    // Add the exercises to the routine (lookup the id first)
-    // 
-    // foreach $exercise_ids as $exercise_id:
-    //
-    //   $exercise = Exercise::where('id', $exercise_id)->get(); // get the exercise by id
-    //
-    //   $routine->exercises->add($exercise); // add it to the routine (relationship exercises)
 
 }
 
@@ -149,7 +137,7 @@ public function routine_list()
   return view('view_routine',compact('all_routines','user'));
   }
 
-  public function details ($routine) // Accessing the Routine model and then getting the routine id number from the view.$routine is a placeholder.
+  public function details ($routine) // Getting the routine id number from the view.$routine is a placeholder.
   {
     $user=Auth::user();
 
@@ -166,18 +154,60 @@ public function routine_list()
       $exercise_id = $single_routine->exercise_id; //So far we accessed the routine_id column. Now we're assigning all the exercises id's to the $single_routine.and now it has all its exercises. 
       $exercise =Exercise::find($exercise_id); // Accessing the Exercise Model, and looking for those exercises we're looking for, and making a match (for each loop - for one exercise only).
       //Select * from exercises where id  = 11
-      $exercises_in_routine[$count]['id'] = $exercise->id;
-      $exercises_in_routine[$count]['exercise_name'] = $exercise->name;
-      $exercises_in_routine[$count]['image_path'] = $exercise->image_path;
-      $exercises_in_routine[$count]['category'] = $exercise->category;
-      $count++;
+      $exercises_in_routine[$count]['id'] = $exercise->id; // for each loop, we're getting the exercise id of that loop. We found the exercise through the Exercise model.
+      $exercises_in_routine[$count]['exercise_name'] = $exercise->name; //for each loop, we're getting the exercise name of that loop.
+      $exercises_in_routine[$count]['image_path'] = "images/".$exercise->image_path; //for each loop, we're getting the exercise image_path of that loop.
+      $exercises_in_routine[$count]['category'] = $exercise->category; //for each loop, we're getting the exercise category of that loop.
+      $count++; // Insert it all in the array ,as done above. and then iterate again, and add 1 to the count.
       
     }
+//Todo : Ask Karthik if there is a better way to bring details.
+    /*
+   echo "Print Exercises in routin";
+   echo "<pre>";
+       print_r($exercises_in_routine);
+       echo "<pre/>";  
+    */
 
-    dd($exercises_in_routine);
-    //return view('routine_details',compact('user','user_routine_details'));
+// Arranging the array in form of categories:
+
+    $exercise_category = array();  //Stores the exercise category.
+    $list_of_exercises = array();  //Stores exercises but ordered by a category.
+
+    for($x=0; $x<count($exercises_in_routine); $x++)
+    {
+      $category = $exercises_in_routine[$x]['category']; // Get the current exercise category, from the foreach loop above (it's a value that we get there)
+      // We're accessing a property called 'category'.
+      if(!in_array($category, $exercise_category))
+      {
+        //If category is not inside the array - create a new key
+        $list_of_exercises[$category][0]['exercise_name'] = $exercises_in_routine[$x]['exercise_name']; // We're accessing again the array above and getting the exercise_name there, and assigning it to the new array name.
+        // We're using here an asssociative array, so we're assigning a value to the key 'exercise_name' in this array.
+        $list_of_exercises[$category][0]['image_path'] = $exercises_in_routine[$x]['image_path']; // Same thing goes here, like with exercise_name one line above.
+        $list_of_exercises[$category][0]['id'] = $exercises_in_routine[$x]['id'];  // Same thing goes here, like with exercise_name 2 lines above.
+
+        array_push($exercise_category, $category); //Push the category to exercise category
+      }
+      else
+      {     // exercise_name and image_path and id are all used for the array.
+        $count = count($list_of_exercises[$category]); // Gives count of array elements in php. we're counting the exercises of the same category, so it could increase the index number by one each time.
+        $list_of_exercises[$category][$count]['exercise_name'] = $exercises_in_routine[$x]['exercise_name']; //If we already have the category name in the TRUE condition above, we're trying to get the rest of the exercises of the same group.
+
+        $list_of_exercises[$category][$count]['image_path'] = $exercises_in_routine[$x]['image_path']; // Trying to get the image_path of the image from the same category we're on now (stored in $category). Also getting the current count value.
+        $list_of_exercises[$category][$count]['id'] = $exercises_in_routine[$x]['id'];  // Trying to get the id of the image from the same category we're on now (stored in $category). Also getting the current count value.
+      }
+    }
+
+   // dd($list_of_exercises);
+
+return view('routine_details',compact('user','exercises_routines','list_of_exercises','count'));
 
 
+  }
+
+  public function update_routine(Request $request)
+  {
+   
   }
 
 }
