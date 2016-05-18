@@ -205,9 +205,18 @@ return view('routine_details',compact('user','exercises_routines','list_of_exerc
 
   }
 
-  public function update_routine(Request $request)
+  public function edit_routine(Request $request)
   {
-   
+    $exercise = Exercise::find($request->exercise_id); // exercise_id is taken from the jquery code (it's a variable there).
+
+    // find() equals to select * from exercises where id is the same as given in the value attribute.
+   // dd($exercise->category);
+    $ajax_exercises = Exercise::where('category',$exercise->category)->get(); // Getting all the exercises belongs to the same category like the one being replaced now.
+
+    
+   return $ajax_exercises; // Store the $exercise variable into the data parameter of Ajax call. (Can be viewed in the browser's console)
   }
+
+  
 
 }

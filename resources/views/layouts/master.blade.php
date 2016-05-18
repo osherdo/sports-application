@@ -14,6 +14,7 @@
 
     @yield( 'scripts')
     <title>Sports App @yield('title')</title>
+
 </head>
 
 <body>

@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('homepage');
 });
-	
+
 // Authentication routes
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
@@ -42,13 +42,13 @@ Route::get('hub/{user_id}','HubController@add_followee')->name('follow');
 // telling laravel there's a paramter (variable) in the uri that's called user_id and follow.
 // hub/{user_id} is needed to pass the user id to the controller.
 // 'follow' - I have chained the route's name to the end. it can be used as shorthand for writing the route path.
-// In the view: instead : 'hub/user/1' you can use {{route('follow')}} 
+// In the view: instead : 'hub/user/1' you can use {{route('follow')}}
 // In the controller: redirect('hub/user/o1') I can do this: redirect()->route('follow')
 /*
 //creating 2 routes under one group that should be authenticated.
 Route::group(['middleware' => 'auth'] ,function(){
     Route::post('search','SearchController@query')->name('search'); // route for name/user search
-    //Route::post('search_multiple','SearchController@multiSelect')->name('multi_search');	
+    //Route::post('search_multiple','SearchController@multiSelect')->name('multi_search');
     Route::post('search_multiple', 'SearchController@multiSelect')->name('multi_search');
 
     // url's will be accessible only from a registered user.
@@ -56,7 +56,7 @@ Route::group(['middleware' => 'auth'] ,function(){
 */
 
  Route::post('search','SearchController@query')->name('search'); // Route for name/user search.
-   
+
  Route::post('search_multiple', 'SearchController@multiSelect')->name('multi_search');
 
  Route::get('personal/{slug}','IdController@get_details')->name('personal'); // 'personal' has a parameter called {slug} that does representation of the value.We're passing it in the named route.(search.blade.php)
@@ -71,11 +71,28 @@ Route::group(['middleware' => 'auth'] ,function(){
 
  //Route::post('routine','RoutineController@save')->name('save_routine'); // Saving routine details (on submit).
 
- Route::post(:'edit_routine','RoutineController@update_routine');
+ Route::post('routine_details/edit_routine','RoutineController@edit_routine');
 
  Route::get('view_routine','RoutineController@routine_list');
 
  Route::get('routine_details/{routine}','RoutineController@details'); // Getting the routine details on a separate view. {routine} is a placeholder for the number we're getting in view_routine.blade.php
 
-
  Route::get('oop','OopController@view'); // Practicing OOP.
+
+ Route::get('ajax','Ajaxcontroller@run');
+
+
+ Route::Get('/getRequest',function()
+ {
+ 	if(Request::ajax())
+ 	{
+ 		return 'getRequest has loaded completely';
+ 	}
+ });
+
+ Route::post('/register',function()
+ {
+   if(Request::ajax()){
+     return Response::json(Request::all());
+   };
+ });

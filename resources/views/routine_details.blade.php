@@ -1,5 +1,68 @@
 @extends('layouts.master')
+    <meta name="_token" content="{!! csrf_token() !!}"/>
+
 @section('scripts')
+<script type="text/javascript">
+$(document).ready(function(){
+   $('.pickexercise').on('click','button',function(){
+    console.log("okay");
+   });
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){ // . is used for class identify. # is for id.
+  $('.replaceExercise').on('click', function(e){
+    $('.modal-body').html(''); // clear the modal-body each time we're opening the modal-body div.
+      var exercise_id = $(this).val(); // Getting the current value attribute of the replaceExercise button.
+    console.log("Exercise "+exercise_id);
+
+      $.ajax({
+          url: 'edit_routine',
+          type: "POST",
+          data: {'exercise_id':exercise_id}, // First parameter is a name given for the data. Second parameter (exercise_id) is the variable declared above (value).
+          success: function(data){
+            console.log(data);
+            var count;
+            // Accessing the data in this format: Access of index and then accesing its key (which could be (in this instace, take from exercises table: id, image_path etc).
+            for(count  = 0; count < data.length; count++)
+            {
+
+              var name= data[count].name; // Accessing the data object,than (continue commenting).
+              var id= data[count].id;
+
+              var image_path= data[count].image_path;
+              //console.log(location.origin);
+              image_path = location.origin + '/images/' + image_path;
+              element = '<li>';
+              element += '<img src='+image_path+'>';
+              element+= '<span>' + name + '</span>';
+              // check if the exercise id number is NOT equal to the current picked exercise_id, so we could show the pick exercise buttton to the different exercises and not the same one.
+              if(id != exercise_id){ 
+                element+= '<button class="pickexercise" type="submit" value="'+id+'">Pick this exercise</button>'; 
+              }
+              // Catch the id of the exercises, when you click the button.
+              element+= '</li>';
+              //console.log(name); // showing the exercises name of the picked exercise mutual category.
+              //console.log(element);
+
+              $('.modal-body').append(element); // replace the entire modal-body div with the element contents we are passing.
+
+            }
+            
+            
+        }
+      });
+
+  });
+});
+</script>
+
+<script type="text/javascript">
+$.ajaxSetup({
+   headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+});
+</script>
+
 @stop
 
 @section('content')
@@ -25,6 +88,7 @@
 <div class="panel-group" id="accordion">
 
  <?php $accordion_count = 0; ?> <!-- $accordion_count is used to iterate over accordion collapse divs (generated with a foreach (the divs)) -->
+ <!-- 
  'abdomnials'
     [0]=>exercise_name,
     [1]=>exercise_name, 
@@ -32,6 +96,7 @@
     [0]
     [1]
     [2]
+  -->
 @foreach($list_of_exercises as $category_name=>$exercise) {{--$exercise is getting values of the $list_of_exercises by their category name. $exercises is just a placeholder is this case. --}}
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -45,6 +110,11 @@
   @for($x = 0; $x < count($exercise); $x++) <!-- we were iterating over exercises categories avobe. Now we're iterating over their individual exercises -->
        <img src="{{ asset($exercise[$x]['image_path']) }}" />
       <b>{{ $exercise[$x]['exercise_name'] }}</b>
+      <!-- Button trigger modal -->
+<button type="button" id="replaceExercise" value="{{ $exercise[$x]['id'] }}" class="btn btn-primary btn-lg replaceExercise" data-toggle="modal" data-target="#myModal">
+  Replace this exercise
+</button>
+
      <!-- Iterating over the number of exercises the catergory (above) have, and going out once finised.Then increasing the number of $accordion_count.--> 
 
       <br/>
@@ -55,6 +125,25 @@
 <?php $accordion_count++; ?>
 @endforeach 
 
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="container">
 
 
