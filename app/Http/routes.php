@@ -69,7 +69,7 @@ Route::group(['middleware' => 'auth'] ,function(){
 
  Route::post('create_routine','RoutineController@create')->name('create_routine'); // form action view (after submitting the routine).
 
- //Route::post('routine','RoutineController@save')->name('save_routine'); // Saving routine details (on submit).
+ Route::post('routine_details/update_routine','RoutineController@update'); // Saving routine details (on submit), done from the routine_details view.
 
  Route::post('routine_details/edit_routine','RoutineController@edit_routine');
 
@@ -79,20 +79,6 @@ Route::group(['middleware' => 'auth'] ,function(){
 
  Route::get('oop','OopController@view'); // Practicing OOP.
 
- Route::get('ajax','Ajaxcontroller@run');
 
 
- Route::Get('/getRequest',function()
- {
- 	if(Request::ajax())
- 	{
- 		return 'getRequest has loaded completely';
- 	}
- });
-
- Route::post('/register',function()
- {
-   if(Request::ajax()){
-     return Response::json(Request::all());
-   };
- });
+ 

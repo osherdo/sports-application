@@ -3,17 +3,48 @@
 
 @section('scripts')
 <script type="text/javascript">
-$(document).ready(function(){
-   $('.pickexercise').on('click','button',function(){
-    console.log("okay");
-   });
-});
+
+/* Live Binding(for future events): When the browser will detect a class called pickexercise, it'll trigger the function.
+
+This won't work: ( the browser here expects to identify this class on document ready.)
+ $('.pickexercise').click(function (event)
+  {
+      console.log("hello");
+    });
+
+*/
+  $(document).on('click','.pickexercise', function(event)
+  {
+    // Getting the neccesary parameters to update to another exercise.
+
+      var new_exercise = $(this).val(); // Getting the current value of the exercise being clicked (which is an id of the exercise).
+
+      var routine = $('.routine').html(); //getting the current routine id. Putting it with .html  (since it's the content of the routine class)  
+      //console.log(routine);
+
+      var old_exercise = $(this).attr('id');
+      //var token =$('.token').val();
+      $.ajax({
+        type: "POST",
+        url: "update_routine",
+        data: {
+          // getting the picked exercise, old exercise and routine id with the variables declared above.
+          //'_token':token,
+          'chosen_exercise': new_exercise,
+          'routine': routine,
+          'exercise_to_replace': old_exercise
+        },
+        success: function (data) {
+            console.log("updated");
+        }
+      });
+   }); 
 </script>
 <script type="text/javascript">
 $(document).ready(function(){ // . is used for class identify. # is for id.
   $('.replaceExercise').on('click', function(e){
     $('.modal-body').html(''); // clear the modal-body each time we're opening the modal-body div.
-      var exercise_id = $(this).val(); // Getting the current value attribute of the replaceExercise button.
+      var exercise_id = $(this).val(); // Getting the current value attribute of the replaceExercise button (replaceExercise is defined in line 22).
     console.log("Exercise "+exercise_id);
 
       $.ajax({
@@ -27,18 +58,26 @@ $(document).ready(function(){ // . is used for class identify. # is for id.
             for(count  = 0; count < data.length; count++)
             {
 
-              var name= data[count].name; // Accessing the data object,than (continue commenting).
+              var name= data[count].name; // Accessing the data object,than accessing the current count of the iteration (first is 0). Then accessing the name property in the Exercise model. The name is accessed throught the data parameter.
               var id= data[count].id;
 
               var image_path= data[count].image_path;
               //console.log(location.origin);
               image_path = location.origin + '/images/' + image_path;
               element = '<li>';
+              /*
+              if(count==0)
+              {
+                element+='<input type="hidden" class="token" id="token" value="{{ csrf_token() }}”>';
+              }
+              */
+
               element += '<img src='+image_path+'>';
               element+= '<span>' + name + '</span>';
               // check if the exercise id number is NOT equal to the current picked exercise_id, so we could show the pick exercise buttton to the different exercises and not the same one.
               if(id != exercise_id){ 
-                element+= '<button class="pickexercise" type="submit" value="'+id+'">Pick this exercise</button>'; 
+                // Getting the old exercise id, and in the value attribute we're getting the new id of the new exercise picked. 
+                element+= '<button class="pickexercise" id='+exercise_id+' type="submit" value="'+id+'">Pick this exercise</button>'; 
               }
               // Catch the id of the exercises, when you click the button.
               element+= '</li>';
@@ -47,14 +86,19 @@ $(document).ready(function(){ // . is used for class identify. # is for id.
 
               $('.modal-body').append(element); // replace the entire modal-body div with the element contents we are passing.
 
-            }
-            
-            
+            }           
         }
       });
 
   });
 });
+</script>
+
+<!-- Saving the replacement exercise to the server. -->
+<script type="text/javascript">
+// Should be triggered only once when clicking on "Replace this exercise".
+ 
+
 </script>
 
 <script type="text/javascript">
@@ -85,6 +129,9 @@ $.ajaxSetup({
 <p>Hello, {{ $user->name }}.</p>
 
 <!-- Key is: category_name and Value is $exercise array (using the foreach loop with associative array). --> 
+
+<div class="routine" style="visibility:hidden">{{ $routine }}</div> <!-- $routine represents the current routine id taken from the details() function in the controller.
+ <!-- getting the current routine id from the details() function in the controller. -->
 <div class="panel-group" id="accordion">
 
  <?php $accordion_count = 0; ?> <!-- $accordion_count is used to iterate over accordion collapse divs (generated with a foreach (the divs)) -->
@@ -107,7 +154,7 @@ $.ajaxSetup({
     </div>
       <div id="collapse<?php echo $accordion_count; ?>" class="panel-collapse collapse in"> <!-- attaching the current accordion_count value to the collapse name (collapse1,collapse2,etc...) -->
 
-  @for($x = 0; $x < count($exercise); $x++) <!-- we were iterating over exercises categories avobe. Now we're iterating over their individual exercises -->
+  @for($x = 0; $x < count($exercise); $x++) <!-- we're iterating over exercises categories avobe. Now we're iterating over their individual exercises -->
        <img src="{{ asset($exercise[$x]['image_path']) }}" />
       <b>{{ $exercise[$x]['exercise_name'] }}</b>
       <!-- Button trigger modal -->
@@ -124,6 +171,7 @@ $.ajaxSetup({
 </div>
 <?php $accordion_count++; ?>
 @endforeach 
+
 
 
 <!-- Modal -->

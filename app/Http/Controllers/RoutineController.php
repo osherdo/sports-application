@@ -200,7 +200,7 @@ public function routine_list()
 
    // dd($list_of_exercises);
 
-return view('routine_details',compact('user','exercises_routines','list_of_exercises','count'));
+return view('routine_details',compact('user','exercises_routines','routine','list_of_exercises','count'));
 
 
   }
@@ -215,6 +215,29 @@ return view('routine_details',compact('user','exercises_routines','list_of_exerc
 
     
    return $ajax_exercises; // Store the $exercise variable into the data parameter of Ajax call. (Can be viewed in the browser's console)
+  }
+
+  public function update(Request $request)
+  { 
+    
+    // What we need to achieve:
+    //UPDATE  `exercise_routines` SET  `exercise_id` =31 WHERE  
+    //`exercise_id` =35 AND  `routine_id` =57
+
+    // Determining the current routine id, that's attached to the current user.
+
+     /*  Requesting the current routine id from the javascript file in the view (starting from this line:
+      $(document).on('click','.pickexercise', function(event)) by getting the value of the routine variable. (it is passed from there in a JSON format).
+      */
+
+    $current_routine = ExerciseRoutine::where('routine_id',$request->routine)
+    ->where('exercise_id',$request->exercise_to_replace) // getting the exercise to replace from the view.
+    ->update('exercise_id',$request->chosen_exercise); // Updating the exercise_id column with the new picked exercise.
+    // All this data is transferred to the controller using the POST request we're making from the script in the view.
+   
+    dd($current_routine);
+
+//$update_routine= update() needed.
   }
 
   
