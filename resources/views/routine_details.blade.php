@@ -4,7 +4,8 @@
 @section('scripts')
 <script type="text/javascript">
 
-/* Live Binding(for future events): When the browser will detect a class called pickexercise, it'll trigger the function.
+/* 
+Live Binding(for future events): When the browser will detect a class called pickexercise, it'll trigger the function.
 
 This won't work: ( the browser here expects to identify this class on document ready.)
  $('.pickexercise').click(function (event)
@@ -24,6 +25,14 @@ This won't work: ( the browser here expects to identify this class on document r
 
       var old_exercise = $(this).attr('id');
       //var token =$('.token').val();
+
+      $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+     });
+
+
       $.ajax({
         type: "POST",
         url: "update_routine",
@@ -36,10 +45,18 @@ This won't work: ( the browser here expects to identify this class on document r
         },
         success: function (data) {
             console.log("updated");
+          //Comment out this line for debugging purposes.
+            window.location.reload();
+        },
+        error: function(data){ // This is error callback function.Can be written for testing purposes, to see if the ajax function's is being executed well. 
+          alert("AN error occured");
         }
       });
    }); 
 </script>
+<!-- CSRF Token. -->
+<meta name="_token" content="{{csrf_token()}}">
+
 <script type="text/javascript">
 $(document).ready(function(){ // . is used for class identify. # is for id.
   $('.replaceExercise').on('click', function(e){
@@ -129,8 +146,8 @@ $.ajaxSetup({
 <p>Hello, {{ $user->name }}.</p>
 
 <!-- Key is: category_name and Value is $exercise array (using the foreach loop with associative array). --> 
-
-<div class="routine" style="visibility:hidden">{{ $routine }}</div> <!-- $routine represents the current routine id taken from the details() function in the controller.
+<div class="routine" style="visibility:hidden">{{ $routine }}</div>
+<!--<script></script> !--><!-- $routine represents the current routine id taken from the details() function in the controller.
  <!-- getting the current routine id from the details() function in the controller. -->
 <div class="panel-group" id="accordion">
 

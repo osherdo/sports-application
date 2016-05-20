@@ -229,15 +229,16 @@ return view('routine_details',compact('user','exercises_routines','routine','lis
      /*  Requesting the current routine id from the javascript file in the view (starting from this line:
       $(document).on('click','.pickexercise', function(event)) by getting the value of the routine variable. (it is passed from there in a JSON format).
       */
-
-    $current_routine = ExerciseRoutine::where('routine_id',$request->routine)
-    ->where('exercise_id',$request->exercise_to_replace) // getting the exercise to replace from the view.
-    ->update('exercise_id',$request->chosen_exercise); // Updating the exercise_id column with the new picked exercise.
+     // dd($request);
+    //dd($request->routine); // can be seen in the Network tab, in the inspector tools.
+    $current_routine = ExerciseRoutine::where('routine_id',$request->routine)->where('exercise_id',$request->exercise_to_replace)
+    ->update(['exercise_id'=>$request->chosen_exercise]); 
+     // getting the exercise to replace from the view.
+    // Updating the exercise_id column with the new picked exercise.
     // All this data is transferred to the controller using the POST request we're making from the script in the view.
    
-    dd($current_routine);
+   // dd($current_routine);
 
-//$update_routine= update() needed.
   }
 
   

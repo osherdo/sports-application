@@ -12,7 +12,7 @@ class FollowerFollowee extends Migration
      */
     public function up()
     {
-        Schema::create('follower_followee', function (Blueprint $table) 
+        Schema::create('follower_followees', function (Blueprint $table) 
         {
             $table->integer('follower_id')->unsigned(); // follower id number,must be positive.
             $table->integer('followee_id')->unsigned(); // followee id number,must be positive.

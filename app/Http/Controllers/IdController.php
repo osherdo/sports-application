@@ -43,30 +43,42 @@ class IdController extends Controller
         }
     }
 
+
+
     public function follow_current($id)
     {
     	  //dd($slug);
     	  $user =Auth::user();
-    	  $user->followee()->attach($id); // Accessing the users' followee relationship and attaching the id from the route.(route gets the id automatically).
-    	  $follow_current= \App\User::find($id);//searches the primary key with the value in $id
+          $followerFollowee = new \App\FollowerFollowee; // Creating a new instance of the model.
+          $followerFollowee->follower_id = $user->id; // Accessing the model's associated table, and then accesing its column, and then assing the column a new record that's the current user id.
+          $followerFollowee->followee_id = $id; // Assigning the future followed user id to the followee_id column.
+          $followerFollowee->save();
+          // doing the same thing above with the attach() method.
+    	  //$user->followee()->attach($id); // Accessing the users' followee relationship and attaching the id from the route.(route gets the id automatically).
+    	  $follow_current=  \App\User::find($id);//searches the primary key with the value in $id
     	  $notify= "You're now following".$follow_current->username; // notification about following the current profile user.
   		  return back()->with("message",$notify); // go to last page. using the name "message" (could be other name).
     }
 
-    public function unfollow_current($id)
+    public function unfollow_current($id) // Getting $id from the view.
     {
+        //dd($id); 
         $user= Auth::user();
         // Gets the user to unfollow by finding the current id of profile page.
-        $follow_current= \App\User::find($id);
-        $user_to_unfollow=$this->user->followers()->detach($follow_current);
+        //$follow_current= \App\User::find($id);
+        //$user_to_unfollow=$this->user->followers()->detach($follow_current);
         // Get the list of users that follow a followee.
-        $userFollowers= User::whereIn('id',$userfollowers->lists('id'))->get;
-        
+        //$userFollowers= User::whereIn('id',$userfollowers->lists('id'))->get;
 
+        $current_follower= $user->id;
+        // Deleting the followed user with the variables we have.
+         $follow_current=  \App\User::find($id);
+        // dd($follow_current->username);
+        $deletedRows = \App\FollowerFollowee::where('followee_id', $id)
+        ->where('follower_id',$current_follower)->delete();
+
+        return back()->with('message',$follow_current->username."is now unfollowed.");
         //dd($userFollowers);
-
-
-
     }
  
 
