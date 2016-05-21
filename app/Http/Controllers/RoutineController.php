@@ -233,8 +233,7 @@ return view('routine_details',compact('user','exercises_routines','routine','lis
     //dd($request->routine); // can be seen in the Network tab, in the inspector tools.
     $current_routine = ExerciseRoutine::where('routine_id',$request->routine)->where('exercise_id',$request->exercise_to_replace)
     ->update(['exercise_id'=>$request->chosen_exercise]); 
-     // getting the exercise to replace from the view.
-    // Updating the exercise_id column with the new picked exercise.
+     // getting the current routine_id and the exercise to replace. and replace it with the chosen exercise.
     // All this data is transferred to the controller using the POST request we're making from the script in the view.
    
    // dd($current_routine);

@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.signup')
 
 <form method="POST" action="/auth/login">
     {!! csrf_field() !!}

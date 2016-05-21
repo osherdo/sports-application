@@ -35,7 +35,7 @@ class SearchController extends Controller
         $user = $request->user(); // Grab the authenticated user for the request. and store it in $user.
         $userInput= $request->get('NameUser'); // id of input type text.
         // Querying 2 columns: 'username' and 'name' (chaining the search on username column:);
-        $UserNameQuery = User::where('name',$userInput)->orWhere('username', $userInput)->get(); 
+        $UserNameQuery = User::where('name',$userInput)->whereNotIn('id', [$user->id])->orWhere('username', $userInput)->get(); 
         //dd($UserNameQuery);
 
       return view('search',compact('user','userInput','UserNameQuery'));
@@ -64,15 +64,17 @@ class SearchController extends Controller
         // First access the expectations tabel and then the column (in the query itself).
 */
         
+        $user = Auth::user();
+
          $prefQuery = Profile::whereHas('expectations', function($query) use($userSelect) {
         $query->whereIn('id', $userSelect); // First Query: compare the name column in expectations table with the user selection.
 
         //now chain another query:
-        })->whereBetween('age', [$min,$max])->get();   //Passing the function 2 arguments: minimum and maximum values from the view (with 'use').
-
+        })->whereBetween('age', [$min,$max])->whereNotIn('user_id', [Auth::user()->id])->get();//Passing the function 2 arguments: minimum and maximum values from the view (with 'use').
+         // Excluding the current user that is logged in from the search results.
         //return $prefQuery; // Return in json format.
         //return $request->all(); // return all vars associated with the current request you're making.(here's the request is the search you're making).
-        //dd($prefQuery);
+        
 
         if($this->user)
     {
