@@ -66,7 +66,8 @@ class SearchController extends Controller
         
         $user = Auth::user();
 
-         $prefQuery = Profile::whereHas('expectations', function($query) use($userSelect) {
+        $prefQuery = Profile::whereHas('expectations', function($query) use($userSelect) 
+        {
         $query->whereIn('id', $userSelect); // First Query: compare the name column in expectations table with the user selection.
 
         //now chain another query:
@@ -74,7 +75,8 @@ class SearchController extends Controller
          // Excluding the current user that is logged in from the search results.
         //return $prefQuery; // Return in json format.
         //return $request->all(); // return all vars associated with the current request you're making.(here's the request is the search you're making).
-        
+        //dd($prefQuery);
+
 
         if($this->user)
     {

@@ -48,8 +48,9 @@ This won't work: ( the browser here expects to identify this class on document r
           //Comment out this line for debugging purposes.
             window.location.reload();
         },
-        error: function(data){ // This is error callback function.Can be written for testing purposes, to see if the ajax function's is being executed well. 
-          alert("AN error occured");
+        error: function(data)
+        { // This is error callback function.Can be written for testing purposes, to see if the ajax function's is being executed well. 
+          alert("An error occured.");
         }
       });
    }); 
