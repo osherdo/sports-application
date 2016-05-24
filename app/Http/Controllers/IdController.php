@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Expectation;
 use App\Profile;
+use App\FollowerFollowee;
 
 class IdController extends Controller
 {
@@ -33,11 +34,25 @@ class IdController extends Controller
   		$username= \App\User::where('username',$slug)->first(); // first() - returns the first element of the get array and turn it into an object.
   		// if using ->get(); - Laravel using Eloquent array to refer to this data.
         
+
+        $follow = FollowerFollowee::where("follower_id", $user->id)
+            ->where("followee_id", $username->id)
+            ->first();
+
+        if ($follow) {
+            $follow = true;
+        }
+        else {
+            $follow = false;
+        }
+
+        //dd($follow);
+        
         // To check if no user has been found , we use the isset.
 
         if(isset($username->id))
         {    
-        return view('id_personal',compact('username','user','id_expectations','profile'));
+        return view('id_personal',compact('username','user','id_expectations','profile', 'follow'));
         }else{
             return redirect()->back(); // return to search page in case no user has been found.
         }
@@ -49,18 +64,19 @@ class IdController extends Controller
     {
     	  //dd($slug);
     	  $user =Auth::user();
-          $followerFollowee = new \App\FollowerFollowee; // Creating a new instance of the model.
+           $followerFollowee = new \App\FollowerFollowee; // Creating a new instance of the model.
           $followerFollowee->follower_id = $user->id; // Accessing the model's associated table, and then accesing its column, and then assing the column a new record that's the current user id.
           $followerFollowee->followee_id = $id; // Assigning the future followed user id to the followee_id column.
-          $followerFollowee->save();
+         $followerFollowee->save();
           // doing the same thing above with the attach() method.
-    	  //$user->followee()->attach($id); // Accessing the users' followee relationship and attaching the id from the route.(route gets the id automatically).
-    	  $follow_current=  \App\User::find($id);//searches the primary key with the value in $id
+         //$user->followee()->attach($id); // Accessing the users' followee relationship and attaching the id from the route.(route gets the id automatically).
+         $follow_current=  \App\User::find($id);//searches the primary key with the value in $id
     	  $notify= "You're now following".$follow_current->username; // notification about following the current profile user.
   		  return back()->with("message",$notify); // go to last page. using the name "message" (could be other name).
     }
 
-    public function unfollow_current($id) // Getting $id from the view.
+        public function unfollow_current($id) // Getting $id from the view.
+
     {
         //dd($id); 
         $user= Auth::user();
@@ -72,7 +88,7 @@ class IdController extends Controller
 
         $current_follower= $user->id;
         // Deleting the followed user with the variables we have.
-         $follow_current=  \App\User::find($id);
+         $follow_current=\App\User::find($id);
         // dd($follow_current->username);
         $deletedRows = \App\FollowerFollowee::where('followee_id', $id)
         ->where('follower_id',$current_follower)->delete();

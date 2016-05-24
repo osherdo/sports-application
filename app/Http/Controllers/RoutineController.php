@@ -141,7 +141,7 @@ public function routine_list()
   {
     $user=Auth::user();
 
-    $exercises_routines=ExerciseRoutine::where('routine_id',$routine)->where('user_id',Auth::user()->id)->get(); 
+    $exercises_routines=ExerciseRoutine::where('routine_id',$routine)->where('user_id',Auth::user()->id)->orderBy("id", "DESC")->get(); // Ordering the exercises by their id's, for better sorting in the view.
   // TO DO : 
     // if (count($exercises_routines == 0){echo "no exercises found"})
 //SELECT * FROM exercises_routines WHERE routine_id= 30
@@ -231,8 +231,10 @@ return view('routine_details',compact('user','exercises_routines','routine','lis
       */
      // dd($request);
     //dd($request->routine); // can be seen in the Network tab, in the inspector tools.
-    $current_routine = ExerciseRoutine::where('routine_id',$request->routine)->where('exercise_id',$request->exercise_to_replace)
-    ->update(['exercise_id'=>$request->chosen_exercise]); 
+    $current_routine = ExerciseRoutine::where('routine_id',$request->routine)->where('exercise_id',$request->exercise_to_replace)->first(); // Getting only the first elemtn from the request to replace.
+
+    $current_routine->exercise_id = $request->chosen_exercise;
+    $current_routine->save(); 
      // getting the current routine_id and the exercise to replace. and replace it with the chosen exercise.
     // All this data is transferred to the controller using the POST request we're making from the script in the view.
    

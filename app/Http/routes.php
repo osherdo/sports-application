@@ -60,7 +60,7 @@ Route::group(['middleware' => 'auth'] ,function(){
  Route::post('search_multiple', 'SearchController@multiSelect')->name('multi_search');
 
  Route::get('personal/{slug}','IdController@get_details')->name('personal'); // 'personal' has a parameter called {slug} that does representation of the value.We're passing it in the named route.(search.blade.php)
-
+ 
  Route::get('follow/{id}','IdController@follow_current')->name('personal_follow');
 
  Route::get('unfollow/{id}','IdController@unfollow_current')->name('personal_unfollow');

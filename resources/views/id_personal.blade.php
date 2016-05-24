@@ -28,10 +28,16 @@
 @endforeach
 </p>
 <!-- getting the user that matches $username query and finding it id in the 'id' column. -->
-<br><li><a href="{{URL::route('personal_follow',[$username->id])}}" class="button button-3d" name="make_follow" onclick="">Follow {{ $username->username }} </a></li>
 <br>
 
-<li><a href="{{URL::route('personal_unfollow',[$username->id])}}" class="button button-3d" name="unfollow"> Unfollow {{ $username->username }} </a></li> <!-- passing here the id property to the controller when you click unfollow (done with the route personal_unfollow).
+@if ($follow == false)
+<li><a href="{{URL::route('personal_follow',[$username->id])}}" class="button button-3d" name="make_follow" onclick="">Follow {{ $username->username }} </a></li>
+
+<br>
+@else
+<li><a href="{{URL::route('personal_unfollow',[$username->id])}}" class="button button-3d" name="unfollow"> Unfollow {{ $username->username }} </a></li> 
+@endif
+<!-- passing here the id property to the controller when you click unfollow (done with the route personal_unfollow).
 
 @if(Session::has('message')) <!-- Checking if session has a variable called message. -->
 <div class="alert alert-info">

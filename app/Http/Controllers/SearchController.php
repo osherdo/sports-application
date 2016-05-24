@@ -37,7 +37,7 @@ class SearchController extends Controller
         // Querying 2 columns: 'username' and 'name' (chaining the search on username column:);
         $UserNameQuery = User::where('name',$userInput)->whereNotIn('id', [$user->id])->orWhere('username', $userInput)->get(); 
         //dd($UserNameQuery);
-
+        //dd($user->profile);
       return view('search',compact('user','userInput','UserNameQuery'));
 
     	
@@ -62,7 +62,7 @@ class SearchController extends Controller
         //pass in the $userSelect variable into the closure (with use).
         // I can query the expectations table since: A profile has one or more expectations.
         // First access the expectations tabel and then the column (in the query itself).
-*/
+        */
         
         $user = Auth::user();
 

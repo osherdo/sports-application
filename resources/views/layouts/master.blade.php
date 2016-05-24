@@ -86,7 +86,7 @@
         buttonTitle: function(options, select) {
             var labels = [];
             options.each(function() {
-                labels.push($(this).text()); // get the options in a string (with .text method). later it would be joined with - seperated between each.
+                labels.push($(this).text()); // get the options in a string (with .text method). later it would be joined with - separated between each.
             });
             $('#range-div,#range-options').toggleClass('hide', labels.length === 0); // hiding both range-div and range-options divs.
 

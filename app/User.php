@@ -63,7 +63,7 @@ Many to Many
 
   public function followee() 
   { //Fetch the followee list for the follower.
-    return $this->belongsToMany('App\User', 'follower_followee', 'follower_id', 'followee_id');
+    return $this->belongsToMany('App\User', 'follower_followees', 'follower_id', 'followee_id');
         // 'User' is the model name.'follower_followee' is the name of the pivot table.
         //The third argument is the foreign key name of the model on which you are defining the relationship. (source).
         //The fourth argument is the foreign key name of the model that you are joining to. (destination.)
@@ -72,7 +72,7 @@ Many to Many
 
   public function followers() {
    // fetch those that follow you.
-    return $this->belongsToMany('App\User', 'follower_followee', 'followed_id', 'follower_id');
+    return $this->belongsToMany('App\User', 'follower_followees', 'followed_id', 'follower_id');
   }
 
 
