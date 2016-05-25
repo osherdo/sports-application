@@ -72,9 +72,10 @@ public function __construct() { // Constructor for checking user's auth after a 
     // Then iterate over them in the view (@foreach).
 
     
-    // Profile is the name of the model.
     $get_post_uploader=User::WhereIn('name',$followingNow->lists('name'))->get();
     //dd($get_post_uploader);
+
+    // Querying Profile Model.
 
     $mutuals = Profile::whereHas('expectations', function($query) use ($profile,$followingNow)
     {

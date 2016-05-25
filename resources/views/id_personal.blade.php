@@ -37,7 +37,7 @@
 @else
 <li><a href="{{URL::route('personal_unfollow',[$username->id])}}" class="button button-3d" name="unfollow"> Unfollow {{ $username->username }} </a></li> 
 @endif
-<!-- passing here the id property to the controller when you click unfollow (done with the route personal_unfollow).
+<!-- passing here the id property to the controller when you click unfollow (done with the route personal_unfollow). -->
 
 @if(Session::has('message')) <!-- Checking if session has a variable called message. -->
 <div class="alert alert-info">
@@ -46,7 +46,7 @@
 @endif
 
 @foreach($username->followee() as $follower)
-test
+
 {{$follower->username}}
 @endforeach
 @stop {{-- ending the current section (content) --}}

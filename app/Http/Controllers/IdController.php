@@ -47,7 +47,7 @@ class IdController extends Controller
         }
 
         //dd($follow);
-        
+
         // To check if no user has been found , we use the isset.
 
         if(isset($username->id))
@@ -71,7 +71,7 @@ class IdController extends Controller
           // doing the same thing above with the attach() method.
          //$user->followee()->attach($id); // Accessing the users' followee relationship and attaching the id from the route.(route gets the id automatically).
          $follow_current=  \App\User::find($id);//searches the primary key with the value in $id
-    	  $notify= "You're now following".$follow_current->username; // notification about following the current profile user.
+    	  $notify= "You're now following ".$follow_current->username."."; // notification about following the current profile user.
   		  return back()->with("message",$notify); // go to last page. using the name "message" (could be other name).
     }
 
