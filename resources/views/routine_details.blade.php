@@ -18,6 +18,8 @@ This won't work: ( the browser here expects to identify this class on document r
   {
     // Getting the neccesary parameters to update to another exercise.
 
+      var current_obj = $(this);
+
       var new_exercise = $(this).val(); // Getting the current value of the exercise being clicked (which is an id of the exercise).
 
       var routine = $('.routine').html(); //getting the current routine id. Putting it with .html  (since it's the content of the routine class)  
@@ -25,6 +27,15 @@ This won't work: ( the browser here expects to identify this class on document r
 
       var old_exercise = $(this).attr('id');
       //var token =$('.token').val();
+
+      //alert(new_exercise);
+      //alert(old_exercise);
+
+      var old_exercise_obj = $(".exercise-container[data-id="+old_exercise+"]");
+
+      var new_img = $(this).closest("li").find("img").attr("src");
+      var new_desc = $(this).closest("li").find("span").html();
+      //alert(new_img);
 
       $.ajaxSetup({
         headers: {
@@ -46,7 +57,18 @@ This won't work: ( the browser here expects to identify this class on document r
         success: function (data) {
             console.log("updated");
           //Comment out this line for debugging purposes.
-            window.location.reload();
+            //window.location.reload();
+
+            console.log(old_exercise_obj);
+
+            old_exercise_obj.find("img:first").attr("src", new_img);
+            old_exercise_obj.find(".replaceExercise:first").attr("value", new_exercise);
+            old_exercise_obj.find("b:first").html(new_desc);
+            old_exercise_obj.attr("data-id:first", new_exercise);
+
+            //current_obj.val(new_exercise);
+
+            $("#myModal").modal("toggle");
         },
         error: function(data)
         { // This is error callback function.Can be written for testing purposes, to see if the ajax function's is being executed well. 
@@ -173,12 +195,16 @@ $.ajaxSetup({
       <div id="collapse<?php echo $accordion_count; ?>" class="panel-collapse collapse in"> <!-- attaching the current accordion_count value to the collapse name (collapse1,collapse2,etc...) -->
 
   @for($x = 0; $x < count($exercise); $x++) <!-- we're iterating over exercises categories avobe. Now we're iterating over their individual exercises -->
+
+    <div class="exercise-container" data-id="{{ $exercise[$x]['id'] }}">
        <img src="{{ asset($exercise[$x]['image_path']) }}" />
       <b>{{ $exercise[$x]['exercise_name'] }}</b>
       <!-- Button trigger modal -->
 <button type="button" id="replaceExercise" value="{{ $exercise[$x]['id'] }}" class="btn btn-primary btn-lg replaceExercise" data-toggle="modal" data-target="#myModal">
   Replace this exercise
 </button>
+
+</div>
 
      <!-- Iterating over the number of exercises the catergory (above) have, and going out once finised.Then increasing the number of $accordion_count.--> 
 

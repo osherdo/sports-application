@@ -41,18 +41,14 @@ class PartialRegistration extends Command
         //if a user id is not on profiles table - delete the user id on user's table.
 
     // First Guess.
-    $user_id=new App\User();
-    $data=$user_id->all(array('id')); // Getting the 'id' columns from the db. Can retrieve more columns by passing their name in the paranthesis.
-    /*
-    $id_to_delete=App\User::find(5);
-    $id_to_delete->delete();
-    */
+    //$empty_profiles= App\User::doesntHave('profile')->get(); // Getting all the records that does not have profile relationship records.
+    $empty_profiles = App\User::doesntHave('profile')->delete();
 
     //Second Guess:
 
     $profile=new App\profile();
     $profile_id=$profile->all(array('id')); // Getting all the id's in the profiles table.
-    
+
     // Check this query in tinker.
     $missed_id = DB::table('profiles')
                     ->whereNotIn('id', $data)
