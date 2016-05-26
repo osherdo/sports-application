@@ -2,7 +2,8 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
+
+namespace App\Console\Commands\App\User;
 
 class PartialRegistration extends Command
 {
@@ -44,14 +45,14 @@ class PartialRegistration extends Command
     //$empty_profiles= App\User::doesntHave('profile')->get(); // Getting all the records that does not have profile relationship records.
     $empty_profiles = App\User::doesntHave('profile')->delete();
 
-    //Second Guess:
+    /* This won't work since the code is executed in the first line, and the second line does not get any arguments then.
+    $empty_profiles = App\User::doesntHave('profile')->delete();
+    $empty_profiles->delete();
 
-    $profile=new App\profile();
-    $profile_id=$profile->all(array('id')); // Getting all the id's in the profiles table.
+    This would work:
+    $empty_profiles = App\User::doesntHave('profile');
+    $empty_profiles->delete();
+    */
 
-    // Check this query in tinker.
-    $missed_id = DB::table('profiles')
-                    ->whereNotIn('id', $data)
-                    ->get();
     }
 }

@@ -14,6 +14,7 @@ This won't work: ( the browser here expects to identify this class on document r
     });
 
 */
+// When clicking on click class.
   $(document).on('click','.pickexercise', function(event)
   {
     // Getting the neccesary parameters to update to another exercise.
@@ -101,7 +102,8 @@ $(document).ready(function(){ // . is used for class identify. # is for id.
           url: 'edit_routine',
           type: "POST",
           data: {'exercise_id':exercise_id}, // First parameter is a name given for the data. Second parameter (exercise_id) is the variable declared above (value).
-          success: function(data){
+          success: function(data)
+          {
             console.log(data);
             var count;
             // Accessing the data in this format: Access of index and then accesing its key (which could be (in this instace, take from exercises table: id, image_path etc).
@@ -129,6 +131,7 @@ $(document).ready(function(){ // . is used for class identify. # is for id.
                 // Getting the old exercise id, and in the value attribute we're getting the new id of the new exercise picked. 
                 element+= '<button class="pickexercise" id='+exercise_id+' type="submit" value="'+id+'">Pick this exercise</button>'; 
               }
+
               // Catch the id of the exercises, when you click the button.
               element+= '</li>';
               //console.log(name); // showing the exercises name of the picked exercise mutual category.
@@ -240,7 +243,7 @@ $.ajaxSetup({
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel"> {{$routine->routine_name}}</h4>
       </div>
       <div class="modal-body">
         ...

@@ -139,7 +139,6 @@ public function routine_list()
 
   public function details ($routine) // Getting the routine id number from the view.$routine is a placeholder.
   {
-    $user=Auth::user();
 
     $exercises_routines=ExerciseRoutine::where('routine_id',$routine)->where('user_id',Auth::user()->id)->orderBy("id", "DESC")->get(); // Ordering the exercises by their id's, for better sorting in the view.
   // TO DO : 
