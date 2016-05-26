@@ -31,7 +31,11 @@ This won't work: ( the browser here expects to identify this class on document r
       //alert(new_exercise);
       //alert(old_exercise);
 
-      var old_exercise_obj = $(".exercise-container[data-id="+old_exercise+"]");
+        var counter = localStorage.getItem('counter');
+
+        //alert(counter);
+
+      var old_exercise_obj = $(".exercise-container[data-counter="+counter+"]");
 
       var new_img = $(this).closest("li").find("img").attr("src");
       var new_desc = $(this).closest("li").find("span").html();
@@ -83,6 +87,12 @@ This won't work: ( the browser here expects to identify this class on document r
 <script type="text/javascript">
 $(document).ready(function(){ // . is used for class identify. # is for id.
   $('.replaceExercise').on('click', function(e){
+
+    var counter = $(this).closest(".exercise-container").attr("data-counter");
+    //alert(counter);
+
+    localStorage.setItem('counter', counter);
+
     $('.modal-body').html(''); // clear the modal-body each time we're opening the modal-body div.
       var exercise_id = $(this).val(); // Getting the current value attribute of the replaceExercise button (replaceExercise is defined in line 22).
     console.log("Exercise "+exercise_id);
@@ -184,6 +194,9 @@ $.ajaxSetup({
     [1]
     [2]
   -->
+
+    <?php $counter = 0; ?>
+
 @foreach($list_of_exercises as $category_name=>$exercise) {{--$exercise is getting values of the $list_of_exercises by their category name. $exercises is just a placeholder is this case. --}}
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -196,7 +209,7 @@ $.ajaxSetup({
 
   @for($x = 0; $x < count($exercise); $x++) <!-- we're iterating over exercises categories avobe. Now we're iterating over their individual exercises -->
 
-    <div class="exercise-container" data-id="{{ $exercise[$x]['id'] }}">
+    <div class="exercise-container" data-id="{{ $exercise[$x]['id'] }}" data-counter="{{$counter}}">
        <img src="{{ asset($exercise[$x]['image_path']) }}" />
       <b>{{ $exercise[$x]['exercise_name'] }}</b>
       <!-- Button trigger modal -->
@@ -209,6 +222,9 @@ $.ajaxSetup({
      <!-- Iterating over the number of exercises the catergory (above) have, and going out once finised.Then increasing the number of $accordion_count.--> 
 
       <br/>
+
+    <?php $counter++; ?>
+
   @endfor
       </div>
 
@@ -237,5 +253,4 @@ $.ajaxSetup({
   </div>
 </div>
 <div class="container">
-
 
