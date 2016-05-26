@@ -2,8 +2,10 @@
 
 namespace App\Console\Commands;
 
+//namespace App\Console\Commands\App\User; - can't have multiple namespaces.
 
-namespace App\Console\Commands\App\User;
+use Illuminate\Console\Command;
+use \App\User;
 
 class PartialRegistration extends Command
 {
@@ -43,7 +45,7 @@ class PartialRegistration extends Command
 
     // First Guess.
     //$empty_profiles= App\User::doesntHave('profile')->get(); // Getting all the records that does not have profile relationship records.
-    $empty_profiles = App\User::doesntHave('profile')->delete();
+    $empty_profiles = User::doesntHave('profile')->delete();
 
     /* This won't work since the code is executed in the first line, and the second line does not get any arguments then.
     $empty_profiles = App\User::doesntHave('profile')->delete();

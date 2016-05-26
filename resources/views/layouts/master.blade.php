@@ -20,8 +20,7 @@
 <body>
     @section('sidebar') Maser Page content demo @show
     <div class="container">
-
-      <a href="auth/logout">Logout</a>
+    <a href="/auth/logout">Logout</a>
 
 <div class="col-sm-4">
  <form action="{{ route('search') }}" method="post" >

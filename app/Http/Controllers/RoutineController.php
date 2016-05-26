@@ -199,6 +199,9 @@ public function routine_list()
 
    // dd($list_of_exercises);
 
+    $user = Auth::user();
+    $routine = Routine::find($routine); // difference between find() and all() and get()
+
 return view('routine_details',compact('user','exercises_routines','routine','list_of_exercises','count'));
 
 

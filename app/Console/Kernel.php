@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Console;
-namespace App\Commands;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -27,6 +26,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('inspire')
                  ->hourly();
+        $schedule->command('removepartialreg')->daily();             
 
     }
 }
